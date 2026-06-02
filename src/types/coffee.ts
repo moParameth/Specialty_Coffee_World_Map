@@ -1,6 +1,6 @@
 export type RegionGroup = "Africa" | "Latin America" | "Asia-Pacific";
 
-export type CoffeeSpecies = "Arabica" | "Robusta" | "Liberica";
+export type CoffeeSpecies = "Arabica" | "Robusta" | "Liberica" | "Stenophylla";
 
 export type ProcessingMethod =
   | "Washed"

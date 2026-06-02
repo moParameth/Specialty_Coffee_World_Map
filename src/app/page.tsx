@@ -49,7 +49,7 @@ export default function Home() {
       </div>
 
       <main className="flex-1 flex flex-col lg:flex-row lg:overflow-hidden max-w-7xl mx-auto w-full px-4 lg:px-6 pb-6 gap-6">
-        <div className="flex-1 min-h-[500px] lg:min-h-0 relative rounded-2xl bg-white border border-slate-200 shadow-xl overflow-hidden flex flex-col">
+        <div className="flex-1 min-h-[350px] md:min-h-[500px] lg:min-h-0 relative rounded-2xl bg-white border border-slate-200 shadow-xl overflow-hidden flex flex-col">
           <div className="absolute top-4 left-4 z-10 bg-white/90 backdrop-blur-md p-3 rounded-lg border border-slate-200 shadow-sm pointer-events-none">
             <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-2">Origins</h3>
             <div className="flex items-center gap-2 text-sm text-slate-700 font-medium">
@@ -64,7 +64,7 @@ export default function Home() {
           />
         </div>
 
-        <div className="w-full lg:w-96 flex-none bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl border border-slate-200 overflow-hidden flex flex-col transition-all duration-300 min-h-[500px] lg:min-h-0">
+        <div className="w-full lg:w-96 flex-none bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl border border-slate-200 overflow-hidden flex flex-col transition-all duration-300">
           <CountryDetailPanel 
             country={selectedCountry} 
             onClose={() => setSelectedCountry(null)} 
