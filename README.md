@@ -1,36 +1,57 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Specialty Coffee World Map
+
+A complete MVP web application for exploring specialty coffee origins through an interactive flat 2D world map.
+
+## Features
+
+- **Interactive 2D World Map**: Built with React Simple Maps using a public TopoJSON file.
+- **Hover Tooltip**: Quick overview of coffee species, processing, and flavor notes.
+- **Detailed Country Panel**: Comprehensive information including specialty highlights, varieties, altitude, and sources.
+- **Sensory Profile Radar Chart**: Visual representation of coffee characteristics using Recharts.
+- **Advanced Filtering**: Filter by search term, region, species, and processing methods.
+- **Responsive Layout**: Designed for both desktop and mobile viewing with a coffee-inspired aesthetic.
+- **Local Dataset**: Pre-filled researched dataset requiring no external API keys or backend.
+
+## Tech Stack
+
+- Next.js (App Router)
+- TypeScript
+- Tailwind CSS
+- React Simple Maps
+- Recharts
+- Lucide React
 
 ## Getting Started
 
-First, run the development server:
+First, install the dependencies:
+
+```bash
+npm install
+# Note: if you encounter peer dependency issues with react-simple-maps, run:
+# npm install --legacy-peer-deps
+```
+
+Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Build for Production
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+```
 
-## Learn More
+## Deployment
 
-To learn more about Next.js, take a look at the following resources:
+The application is a standard Next.js project and can be deployed easily to platforms like Vercel or Netlify.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Vercel** (Recommended): Connect your GitHub repository and import the project. Vercel will automatically detect Next.js and configure the build settings.
+- **Netlify**: Connect your repository, set the build command to `npm run build`, and the publish directory to `.next`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Data Disclaimer
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The dataset included in this MVP is curated from reputable public sources (e.g., World Coffee Research, SCA, and national coffee boards). Sensory profile values are representative indicators for visualization purposes and not official cupping scores. Please validate data before using it for commercial or academic publication.
