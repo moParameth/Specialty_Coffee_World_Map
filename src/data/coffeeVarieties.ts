@@ -1212,7 +1212,6 @@ export const coffeeVarieties: CoffeeVariety[] = [
         "name": "World Coffee Research - Timor Hybrid",
         "url": "https://varieties.worldcoffeeresearch.org/varieties/timor-hybrid"
       }
-    ],
-    "imageUrl": "https://optimise2.assets-servd.host/worldcoffee-research/production/images/Arabica/Hibrido-de-Timor-1.jpg?w=640&h=480&auto=compress%2Cformat&fit=crop&dm=1684915621&s=4d0a927a421b446c6ea40a463eb4c134"
+    ]
   }
 ];
