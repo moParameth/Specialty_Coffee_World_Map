@@ -142,7 +142,7 @@ export default function CountryDetailPanel({ country, onClose }: CountryDetailPa
                       {v}
                     </Link>
                     {idx < country.varieties.length - 1 && (
-                      <span className="text-slate-350 ml-1.5 text-xs select-none">•</span>
+                      <span className="text-slate-400 ml-1.5 text-xs select-none">•</span>
                     )}
                   </span>
                 );

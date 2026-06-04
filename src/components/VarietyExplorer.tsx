@@ -117,7 +117,7 @@ export default function VarietyExplorer() {
         {/* Left Side: Varieties Grid */}
         <div className="lg:col-span-2 space-y-4">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 px-1">
-            <h3 className="text-xs font-bold uppercase tracking-wider text-slate-450 flex items-center gap-1.5">
+            <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
               <SlidersHorizontal className="h-3.5 w-3.5" />
               <span>Results ({filteredVarieties.length} varieties)</span>
             </h3>
@@ -195,7 +195,7 @@ export default function VarietyExplorer() {
       </div>
 
       {/* Bottom Side: Compare Section */}
-      <div className="w-full pt-4 border-t border-slate-250/60">
+      <div className="w-full pt-4 border-t border-slate-200/60">
         <VarietyCompare
           selectedVarieties={comparedVarieties}
           onRemove={handleRemoveCompare}

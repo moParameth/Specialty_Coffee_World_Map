@@ -92,7 +92,7 @@ export default function VarietyFilterBar({
         {/* Reset Button */}
         <button
           onClick={onReset}
-          className="col-span-2 sm:col-span-1 flex items-center justify-center gap-2 rounded-xl bg-slate-100 px-4 py-2.5 text-xs font-bold text-slate-700 hover:bg-slate-200 active:scale-98 transition-all border border-slate-250 shadow-sm"
+          className="col-span-2 sm:col-span-1 flex items-center justify-center gap-2 rounded-xl bg-slate-100 px-4 py-2.5 text-xs font-bold text-slate-700 hover:bg-slate-200 active:scale-98 transition-all border border-slate-200 shadow-sm"
           title="Reset Filters"
         >
           <RotateCcw className="h-3.5 w-3.5" />

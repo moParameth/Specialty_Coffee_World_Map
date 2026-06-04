@@ -440,19 +440,19 @@ export default function VarietyTreeGraph({
       <div className="absolute inset-0 pointer-events-none grid grid-cols-4 text-center opacity-70">
         <div className="border-r border-slate-100 bg-slate-50/20 flex flex-col justify-between p-4">
           <span className="text-[10px] font-black uppercase tracking-wider text-slate-400">Ancestral Landraces</span>
-          <span className="text-[9px] text-slate-350 font-medium">Yemen & Ethiopian Origins</span>
+          <span className="text-[9px] text-slate-400 font-medium">Yemen & Ethiopian Origins</span>
         </div>
         <div className="border-r border-slate-100 bg-slate-50/40 flex flex-col justify-between p-4">
           <span className="text-[10px] font-black uppercase tracking-wider text-slate-400">Mutations & Selections</span>
-          <span className="text-[9px] text-slate-350 font-medium">Early Clonal & Field Selections</span>
+          <span className="text-[9px] text-slate-400 font-medium">Early Clonal & Field Selections</span>
         </div>
         <div className="border-r border-slate-100 bg-slate-50/20 flex flex-col justify-between p-4">
           <span className="text-[10px] font-black uppercase tracking-wider text-slate-400">Primary Hybrid Crosses</span>
-          <span className="text-[9px] text-slate-350 font-medium">F1 Crossings & Timor Derivatives</span>
+          <span className="text-[9px] text-slate-400 font-medium">F1 Crossings & Timor Derivatives</span>
         </div>
         <div className="bg-slate-50/40 flex flex-col justify-between p-4">
           <span className="text-[10px] font-black uppercase tracking-wider text-slate-400">Advanced Selections</span>
-          <span className="text-[9px] text-slate-350 font-medium">Modern Composite Cultivars</span>
+          <span className="text-[9px] text-slate-400 font-medium">Modern Composite Cultivars</span>
         </div>
       </div>
 
@@ -493,16 +493,10 @@ export default function VarietyTreeGraph({
       </div>
 
       {/* Main SVG Canvas */}
-      <svg
-        className="w-full h-full"
-        style={{
-          transform: `translate(${pan.x}px, ${pan.y}px) scale(${zoom})`,
-          transformOrigin: "0 0",
-          transition: isDragging ? "none" : "transform 0.15s ease-out"
-        }}
-      >
+      <svg className="w-full h-full">
         <defs>
           {/* Arrow markers for directed parent-child edges */}
+          {/* Regular targets */}
           <marker
             id="arrow"
             viewBox="0 0 10 10"
@@ -523,158 +517,197 @@ export default function VarietyTreeGraph({
             markerHeight="6"
             orient="auto-start-reverse"
           >
-            <path d="M 0 0 L 10 5 L 0 10 z" fill="#2563eb" />
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#3b82f6" />
+          </marker>
+
+          {/* Selected targets (radius 20, offset by 26) */}
+          <marker
+            id="arrow-selected"
+            viewBox="0 0 10 10"
+            refX="26"
+            refY="5"
+            markerWidth="6"
+            markerHeight="6"
+            orient="auto-start-reverse"
+          >
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#cbd5e1" />
+          </marker>
+          <marker
+            id="arrow-highlighted-selected"
+            viewBox="0 0 10 10"
+            refX="26"
+            refY="5"
+            markerWidth="6"
+            markerHeight="6"
+            orient="auto-start-reverse"
+          >
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#3b82f6" />
           </marker>
         </defs>
 
-        {/* --- DRAW EDGES (LINES) --- */}
-        <g>
-          {edges.map((edge, idx) => {
-            const sourceNode = nodes.find((n) => n.id === edge.source);
-            const targetNode = nodes.find((n) => n.id === edge.target);
-            if (!sourceNode || !targetNode) return null;
+        {/* Transformed Group for Zoom & Pan */}
+        <g
+          style={{
+            transform: `translate(${pan.x}px, ${pan.y}px) scale(${zoom})`,
+            transformOrigin: "0 0",
+            transition: isDragging ? "none" : "transform 0.15s ease-out"
+          }}
+        >
+          {/* --- DRAW EDGES (LINES) --- */}
+          <g>
+            {edges.map((edge, idx) => {
+              const sourceNode = nodes.find((n) => n.id === edge.source);
+              const targetNode = nodes.find((n) => n.id === edge.target);
+              if (!sourceNode || !targetNode) return null;
 
-            const linkId = `${edge.source}->${edge.target}`;
-            const isHighlighted = hoveredNodeId ? highlight.edges.has(linkId) : false;
-            
-            // Faded link state
-            const isFaded = hoveredNodeId ? !isHighlighted : false;
+              const linkId = `${edge.source}->${edge.target}`;
+              const isHighlighted = hoveredNodeId ? highlight.edges.has(linkId) : false;
+              
+              // Faded link state
+              const isFaded = hoveredNodeId ? !isHighlighted : false;
 
-            // Draw curved cubic bezier paths for premium visuals
-            const dx = targetNode.x - sourceNode.x;
-            const controlX1 = sourceNode.x + dx * 0.4;
-            const controlX2 = sourceNode.x + dx * 0.6;
-            const pathData = `M ${sourceNode.x} ${sourceNode.y} C ${controlX1} ${sourceNode.y}, ${controlX2} ${targetNode.y}, ${targetNode.x} ${targetNode.y}`;
+              // Check if target is selected to choose proper marker offset
+              const isTargetSelected = selectedVariety?.id === edge.target;
+              let markerUrl = isHighlighted ? "url(#arrow-highlighted)" : "url(#arrow)";
+              if (isTargetSelected) {
+                markerUrl = isHighlighted ? "url(#arrow-highlighted-selected)" : "url(#arrow-selected)";
+              }
 
-            return (
-              <path
-                key={idx}
-                d={pathData}
-                fill="none"
-                stroke={isHighlighted ? "#3b82f6" : "#e2e8f0"}
-                strokeWidth={isHighlighted ? 2.5 : 1.5}
-                strokeDasharray={edge.type === "mutation" ? "4,4" : undefined}
-                markerEnd={isHighlighted ? "url(#arrow-highlighted)" : "url(#arrow)"}
-                opacity={isFaded ? 0.15 : 1}
-                className="transition-all duration-300"
-              />
-            );
-          })}
-        </g>
+              // Draw curved cubic bezier paths for premium visuals
+              const dx = targetNode.x - sourceNode.x;
+              const controlX1 = sourceNode.x + dx * 0.4;
+              const controlX2 = sourceNode.x + dx * 0.6;
+              const pathData = `M ${sourceNode.x} ${sourceNode.y} C ${controlX1} ${sourceNode.y}, ${controlX2} ${targetNode.y}, ${targetNode.x} ${targetNode.y}`;
 
-        {/* --- DRAW NODES --- */}
-        <g>
-          {nodes.map((node) => {
-            const isSelected = selectedVariety?.id === node.id;
-            const isSearched = isNodeSearched(node);
-            const isHighlighted = hoveredNodeId ? highlight.nodes.has(node.id) : false;
-            
-            // Faded node state
-            const isFaded = hoveredNodeId ? !isHighlighted : false;
+              return (
+                <path
+                  key={idx}
+                  d={pathData}
+                  fill="none"
+                  stroke={isHighlighted ? "#3b82f6" : "#e2e8f0"}
+                  strokeWidth={isHighlighted ? 2.5 : 1.5}
+                  strokeDasharray={edge.type === "mutation" ? "4,4" : undefined}
+                  markerEnd={markerUrl}
+                  opacity={isFaded ? 0.15 : 1}
+                  className="transition-all duration-300"
+                />
+              );
+            })}
+          </g>
 
-            // Species styling
-            let nodeFillColor = "fill-white";
-            let textBadgeColor = "bg-slate-100 text-slate-700";
-            
-            if (node.species === "Robusta") {
-              nodeFillColor = "fill-amber-50/20";
-            } else if (node.species === "Hybrid") {
-              nodeFillColor = "fill-purple-50/20";
-            }
+          {/* --- DRAW NODES --- */}
+          <g>
+            {nodes.map((node) => {
+              const isSelected = selectedVariety?.id === node.id;
+              const isSearched = isNodeSearched(node);
+              const isHighlighted = hoveredNodeId ? highlight.nodes.has(node.id) : false;
+              
+              // Faded node state
+              const isFaded = hoveredNodeId ? !isHighlighted : false;
 
-            return (
-              <g
-                key={node.id}
-                transform={`translate(${node.x}, ${node.y})`}
-                className={`cursor-pointer transition-all duration-300 ${
-                  isFaded ? "opacity-25" : "opacity-100"
-                }`}
-                onMouseEnter={() => setHoveredNodeId(node.id)}
-                onMouseLeave={() => setHoveredNodeId(null)}
-                onClick={() => {
-                  if (!node.isVirtual) {
-                    onSelectVariety(node.id);
-                  }
-                }}
-              >
-                {/* Search Glow Circle Indicator */}
-                {isSearched && (
-                  <circle
-                    r="32"
-                    className="fill-blue-100/70 stroke-blue-400 stroke-[2] animate-pulse"
-                  />
-                )}
+              // Species styling
+              let nodeFillColor = "fill-white";
+              
+              if (node.species === "Robusta") {
+                nodeFillColor = "fill-amber-50/20";
+              } else if (node.species === "Hybrid") {
+                nodeFillColor = "fill-purple-50/20";
+              }
 
-                {/* Selected Node Pulsating Ring */}
-                {isSelected && (
-                  <circle
-                    r="28"
-                    className="fill-none stroke-blue-500 stroke-[1.5] animate-ping"
-                    style={{ animationDuration: "3s" }}
-                  />
-                )}
-
-                {/* Outer Node Circle */}
-                <circle
-                  r={isSelected ? 20 : 16}
-                  className={`${nodeFillColor} stroke-2 transition-all ${
-                    isSelected
-                      ? "stroke-blue-600 shadow-md stroke-[3]"
-                      : node.isVirtual
-                      ? "stroke-slate-350 stroke-dasharray-[3,3] stroke-[1.5]"
-                      : "stroke-slate-400 hover:stroke-blue-500 stroke-[1.5]"
+              return (
+                <g
+                  key={node.id}
+                  transform={`translate(${node.x}, ${node.y})`}
+                  className={`cursor-pointer transition-all duration-300 ${
+                    isFaded ? "opacity-25" : "opacity-100"
                   }`}
-                  style={{
-                    strokeDasharray: node.isVirtual ? "4,3" : undefined
+                  onMouseEnter={() => setHoveredNodeId(node.id)}
+                  onMouseLeave={() => setHoveredNodeId(null)}
+                  onClick={() => {
+                    if (!node.isVirtual) {
+                      onSelectVariety(node.id);
+                    }
                   }}
-                />
+                >
+                  {/* Search Glow Circle Indicator */}
+                  {isSearched && (
+                    <circle
+                      r="32"
+                      className="fill-blue-100/70 stroke-blue-400 stroke-[2] animate-pulse"
+                  />
+                  )}
 
-                {/* Species Color Center Dot */}
-                <circle
-                  r="6"
-                  className={`${
-                    node.species === "Robusta"
-                      ? "fill-amber-600"
-                      : node.species === "Hybrid"
-                      ? "fill-purple-500"
-                      : "fill-blue-500"
-                  }`}
-                />
+                  {/* Selected Node Pulsating Ring */}
+                  {isSelected && (
+                    <circle
+                      r="28"
+                      className="fill-none stroke-blue-500 stroke-[1.5] animate-ping"
+                      style={{ animationDuration: "3s" }}
+                    />
+                  )}
 
-                {/* Label Box (Positioned above or below node based on column layout) */}
-                <g transform="translate(0, 0)">
-                  {/* Label Text */}
-                  <text
-                    textAnchor="middle"
-                    y={isSelected ? -28 : -24}
-                    className={`text-[11px] transition-all font-black select-none ${
+                  {/* Outer Node Circle */}
+                  <circle
+                    r={isSelected ? 20 : 16}
+                    className={`${nodeFillColor} stroke-2 transition-all ${
                       isSelected
-                        ? "fill-blue-700 font-extrabold text-[12px]"
+                        ? "stroke-blue-600 shadow-md stroke-[3]"
                         : node.isVirtual
-                        ? "fill-slate-400 font-medium italic"
-                        : "fill-slate-800 font-bold hover:fill-blue-600"
+                        ? "stroke-slate-300 stroke-[1.5]"
+                        : "stroke-slate-400 hover:stroke-blue-500 stroke-[1.5]"
                     }`}
-                  >
-                    {node.name}
-                  </text>
-                  
-                  {/* Lineage small text badge (Only for highlighted nodes/zoomed states) */}
-                  {(isSelected || isHighlighted || isSearched) && (
+                    style={{
+                      strokeDasharray: node.isVirtual ? "4,3" : undefined
+                    }}
+                  />
+
+                  {/* Species Color Center Dot */}
+                  <circle
+                    r="6"
+                    className={`${
+                      node.species === "Robusta"
+                        ? "fill-amber-600"
+                        : node.species === "Hybrid"
+                        ? "fill-purple-500"
+                        : "fill-blue-500"
+                    }`}
+                  />
+
+                  {/* Label Box (Positioned above or below node based on column layout) */}
+                  <g transform="translate(0, 0)">
+                    {/* Label Text */}
                     <text
                       textAnchor="middle"
-                      y={isSelected ? 32 : 28}
-                      className="text-[8px] font-bold fill-slate-400 uppercase tracking-widest pointer-events-none"
+                      y={isSelected ? -28 : -24}
+                      className={`text-[11px] transition-all select-none ${
+                        isSelected
+                          ? "fill-blue-700 font-black text-[12px]"
+                          : node.isVirtual
+                          ? "fill-slate-400 font-medium italic"
+                          : "fill-slate-700 font-bold hover:fill-blue-600"
+                      }`}
                     >
-                      {node.lineage}
+                      {node.name}
                     </text>
-                  )}
-                </g>
+                    
+                    {/* Lineage small text badge (Only for highlighted nodes/zoomed states) */}
+                    {(isSelected || isHighlighted || isSearched) && (
+                      <text
+                        textAnchor="middle"
+                        y={isSelected ? 32 : 28}
+                        className="text-[8px] font-bold fill-slate-400 uppercase tracking-widest pointer-events-none"
+                      >
+                        {node.lineage}
+                      </text>
+                    )}
+                  </g>
 
-                {/* Simple tooltip structure inside SVG for touch devices */}
-                <title>{`${node.name} (${node.species} species)\nLineage: ${node.lineage}\n${node.description || ""}`}</title>
-              </g>
-            );
-          })}
+                  {/* Simple tooltip structure inside SVG for touch devices */}
+                  <title>{`${node.name} (${node.species} species)\nLineage: ${node.lineage}\n${node.description || ""}`}</title>
+                </g>
+              );
+            })}
+          </g>
         </g>
       </svg>
 
@@ -702,7 +735,7 @@ export default function VarietyTreeGraph({
           <span className="text-slate-500 font-medium">Natural mutation lineage</span>
         </div>
         <div className="flex items-center gap-2">
-          <span className="w-3.5 h-3.5 border-1.5 border-dashed border-slate-350 rounded-full flex items-center justify-center text-[7px] text-slate-400 font-bold">V</span>
+          <span className="w-3.5 h-3.5 border-1.5 border-dashed border-slate-300 rounded-full flex items-center justify-center text-[7px] text-slate-400 font-bold">V</span>
           <span className="text-slate-500 font-medium">Virtual botanical parent</span>
         </div>
       </div>

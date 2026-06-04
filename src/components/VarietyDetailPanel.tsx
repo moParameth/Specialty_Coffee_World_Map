@@ -114,11 +114,11 @@ export default function VarietyDetailPanel({
         {/* Technical Origins */}
         <section className="grid grid-cols-2 gap-4 rounded-xl bg-slate-50 p-4 border border-slate-200">
           <div>
-            <p className="text-[10px] font-bold text-slate-450 uppercase tracking-wider mb-0.5">Genetic Parentage</p>
+            <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-0.5">Genetic Parentage</p>
             <p className="text-sm font-medium text-slate-800">{variety.parentage || "Unknown"}</p>
           </div>
           <div>
-            <p className="text-[10px] font-bold text-slate-450 uppercase tracking-wider mb-0.5">Historical Origin</p>
+            <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-0.5">Historical Origin</p>
             <p className="text-sm font-medium text-slate-800">{variety.origin || "Unknown"}</p>
           </div>
         </section>
