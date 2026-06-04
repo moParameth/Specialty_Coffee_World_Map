@@ -13,7 +13,7 @@ export const coffeeHistory: HistoryEvent[] = [
     varietyConnections: ["typica"],
     keyFigures: ["Kaldi"],
     stats: "Earliest origin date recorded in folk legends",
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/c/c5/Coffee_berries_1.jpg"
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/7/79/Coffee_berries_1.jpg"
   },
   {
     id: "avicenna-medical",
@@ -27,7 +27,7 @@ export const coffeeHistory: HistoryEvent[] = [
     varietyConnections: [],
     keyFigures: ["Avicenna (Ibn Sina)"],
     stats: "First clinical documentation of the coffee seed",
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/f/fb/Avicenna.jpg"
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/b/b2/Avicenna.jpg"
   },
   {
     id: "yemen-sufi",
@@ -41,7 +41,7 @@ export const coffeeHistory: HistoryEvent[] = [
     varietyConnections: [],
     keyFigures: ["Sufi Monks"],
     stats: "Yemen remains the cradle of commercial coffee cultivation",
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/b/b5/Mocha_1692.jpg"
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/d/db/Mocha_Dapper_1680.jpg"
   },
   {
     id: "mecca-ban",
@@ -55,7 +55,7 @@ export const coffeeHistory: HistoryEvent[] = [
     varietyConnections: [],
     keyFigures: ["Kha'ir Beg", "Sultan of Cairo"],
     stats: "First recorded legal challenge against coffee consumption",
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/f/f4/Makkah_1880.jpg"
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/2/27/Masjid_Haram_1889_Snouck_Hurgronje.jpg"
   },
   {
     id: "rauwolf-description",
@@ -69,7 +69,7 @@ export const coffeeHistory: HistoryEvent[] = [
     varietyConnections: [],
     keyFigures: ["Leonhard Rauwolf"],
     stats: "First published European account of coffee drinking",
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/8/8e/Rauwolf_Reise.jpg"
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/5/55/Leonhard_Rauwolf.jpg"
   },
   {
     id: "baba-budan",
@@ -83,7 +83,7 @@ export const coffeeHistory: HistoryEvent[] = [
     varietyConnections: ["typica", "k7"],
     keyFigures: ["Baba Budan"],
     stats: "7 seeds successfully smuggled to break the trade monopoly",
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/4/4e/Baba_Budangiri_hills.jpg"
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/a/a0/Baba_budan_giri.jpg"
   },
   {
     id: "venice-introduction",
@@ -97,7 +97,7 @@ export const coffeeHistory: HistoryEvent[] = [
     varietyConnections: [],
     keyFigures: ["Pope Clement VIII"],
     stats: "First papal baptism of a commodity",
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/7/7b/Canaletto_-_The_Piazza_San_Marco%2C_Venice_-_WGA3919.jpg"
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/6/66/Canaletto_-_The_Piazza_San_Marco_in_Venice_-_Google_Art_Project.jpg"
   },
   {
     id: "london-coffeehouse",
@@ -111,7 +111,7 @@ export const coffeeHistory: HistoryEvent[] = [
     varietyConnections: [],
     keyFigures: ["Pasqua Rosée"],
     stats: "Over 3,000 coffeehouses in London by 1700",
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/e/ea/London_coffeehouse_17th_century.JPG"
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/3/39/Garraway's_Coffee_House.jpg"
   },
   {
     id: "vienna-coffee",
@@ -125,7 +125,7 @@ export const coffeeHistory: HistoryEvent[] = [
     varietyConnections: [],
     keyFigures: ["Franz Georg Kolschitzky"],
     stats: "500+ bags of coffee left behind by the Ottoman army",
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/e/e7/Kolschitzky_Statue_Wien.jpg"
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/2/2a/Favoritenstraße_32.JPG"
   },
   {
     id: "java-dutch",
@@ -139,7 +139,7 @@ export const coffeeHistory: HistoryEvent[] = [
     varietyConnections: ["typica"],
     keyFigures: ["Adrian van Ommen", "Nicolaas Witsen"],
     stats: "Java becomes synonymous with global coffee trade",
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/f/fb/Chatelain_-_Carte_de_l%27Isle_de_Java_1718.jpg"
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/e/e4/1718_Chatelain_Map_of_Java_-_Geographicus_-_Java-chatelain-1718.jpg"
   },
   {
     id: "paris-noble-tree",
@@ -167,7 +167,7 @@ export const coffeeHistory: HistoryEvent[] = [
     varietyConnections: ["typica"],
     keyFigures: ["Gabriel de Clieu"],
     stats: "1 seedling saved by water sharing sparks Caribbean coffee boom",
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/a/ad/French_ship_of_the_line_in_the_18th_century.jpg"
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/9/92/French_ships_of_the_line-Pierre_Puget_-_Trois_vaisseaux_de_guerre_français_vers_1654.jpg"
   },
   {
     id: "brazil-smuggling",
@@ -181,7 +181,7 @@ export const coffeeHistory: HistoryEvent[] = [
     varietyConnections: ["typica"],
     keyFigures: ["Francisco de Melo Palheta"],
     stats: "Handful of seeds sparks Brazil's rise to produce 40%+ of global coffee",
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/a/a9/Covens_%26_Mortier_-_Carte_du_Br%C3%A9sil_18th_century.jpg"
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/b/b3/1780_Raynal_and_Bonne_Map_of_Northern_Brazil_-_Geographicus_-_SeptBresil-bonne-1780.jpg"
   },
   {
     id: "bach-cantata",
@@ -209,7 +209,7 @@ export const coffeeHistory: HistoryEvent[] = [
     varietyConnections: [],
     keyFigures: ["John Adams", "American Colonists"],
     stats: "342 chests of British tea dumped, triggering the patriotic switch to coffee",
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/5/52/The_Destruction_of_Tea_at_Boston_Harbor.jpg"
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/5/52/Boston_Tea_Party_Currier_colored.jpg"
   },
   {
     id: "ceylon-leaf-rust",
@@ -223,7 +223,7 @@ export const coffeeHistory: HistoryEvent[] = [
     varietyConnections: ["catimor", "marsellesa", "centroamericano", "parainema", "obata", "timor-hybrid"],
     keyFigures: ["British planters", "Dr. H. Marshall Ward"],
     stats: "Over 90% of Ceylon's coffee crop wiped out",
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/e/e0/Hemileia_vastatrix_on_Coffea_arabica.jpg"
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/b/bd/Hemileia_vastatrix.jpg"
   },
   {
     id: "moriondo-patent",
@@ -237,7 +237,7 @@ export const coffeeHistory: HistoryEvent[] = [
     varietyConnections: [],
     keyFigures: ["Angelo Moriondo"],
     stats: "First patent for bulk steam-powered rapid coffee brewing",
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/e/ea/Espresso-machine-first-patent-angelo-moriondo.jpg"
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/3/38/Espresso-machine-first-patent-angelo-moriondo.jpg"
   },
   {
     id: "espresso-invention",
@@ -251,7 +251,7 @@ export const coffeeHistory: HistoryEvent[] = [
     varietyConnections: [],
     keyFigures: ["Luigi Bezzera", "Desiderio Pavoni"],
     stats: "Steam pressure of 1.5 bars used to brew in 45 seconds",
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/7/73/Luigi_Bezzera_espresso_machine_patent_drawing.jpg"
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/4/42/Bezzera_%26_caffè_espresso.jpg"
   },
   {
     id: "decaf-invention",
@@ -265,7 +265,7 @@ export const coffeeHistory: HistoryEvent[] = [
     varietyConnections: ["laurina"],
     keyFigures: ["Ludwig Roselius"],
     stats: "First industrial decaffeination using benzene solvent",
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/b/b3/Ludwig_Roselius_portrait.jpg"
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/e/e4/Ludwig_Roselius_by_Nicola_Perscheid_c1905.jpg"
   },
   {
     id: "nescafe-instant",
@@ -279,7 +279,7 @@ export const coffeeHistory: HistoryEvent[] = [
     varietyConnections: [],
     keyFigures: ["Max Morgenthaler"],
     stats: "Developed over 7 years to absorb Brazil's massive surplus",
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/8/8a/Nestle_Vevey.jpg"
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/8/83/Nestle_Vevey_2014.jpg"
   },
   {
     id: "gaggia-crema",
@@ -293,7 +293,7 @@ export const coffeeHistory: HistoryEvent[] = [
     varietyConnections: [],
     keyFigures: ["Achille Gaggia"],
     stats: "Water pressure increased to 9 bars, reducing brew time to 25 seconds",
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/4/43/Gaggia_Classica_espresso_machine_1948.jpg"
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/a/a1/Gaggia%2C_modello_Classica_-1948.jpg"
   },
   {
     id: "peets-specialty",
@@ -307,7 +307,7 @@ export const coffeeHistory: HistoryEvent[] = [
     varietyConnections: [],
     keyFigures: ["Alfred Peet"],
     stats: "Brought high-quality Arabica to US commercial market",
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/a/ab/Peets_Coffee_and_Tea_Vine_Street_Berkeley.jpg"
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/c/cb/PeetsStore.jpg"
   },
   {
     id: "starbucks-founding",
@@ -321,7 +321,7 @@ export const coffeeHistory: HistoryEvent[] = [
     varietyConnections: [],
     keyFigures: ["Jerry Baldwin", "Zev Siegl", "Gordon Bowker", "Howard Schultz"],
     stats: "Grew from 1 store to over 30,000 stores globally",
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/a/a2/The_original_Starbucks_store_in_Pike_Place_Market_Seattle.jpg"
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/e/e3/2013_Original_Starbucks_Coffee_in_Pike_Place_Market_Seattle.jpg"
   },
   {
     id: "third-wave",
@@ -335,6 +335,6 @@ export const coffeeHistory: HistoryEvent[] = [
     varietyConnections: ["geisha", "pacamara", "sl28", "starmaya", "centroamericano", "marsellesa", "obata", "k7", "sidra", "pink-bourbon", "wush-wush", "sudan-rume", "eugenioides"],
     keyFigures: ["Trish Rothgeb", "Specialty Roasters"],
     stats: "Appreciation of single-origins and farm traceability",
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/1/14/Hario_V60_brewing.jpg"
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/a/a2/Coffee_pour_over_using_Hario_cone.jpg"
   }
 ];

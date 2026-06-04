@@ -213,12 +213,20 @@ export default function HistoryTimeline() {
                     <div className="group bg-white border border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-md hover:border-slate-300 transition-all duration-300 flex flex-col gap-3 relative">
                       {/* Event Image */}
                       {event.imageUrl && !failedImages[event.id] && (
-                        <div className="w-full h-56 overflow-hidden rounded-xl border border-slate-200 bg-slate-50/50 relative flex items-center justify-center p-2">
+                        <div className="w-full h-48 sm:h-56 overflow-hidden rounded-xl border border-slate-200/80 bg-slate-100/30 relative flex items-center justify-center">
+                          {/* Blurred aspect-ratio filler backdrop */}
+                          <img
+                            src={event.imageUrl}
+                            alt=""
+                            className="absolute inset-0 w-full h-full object-cover blur-md opacity-20 scale-105 pointer-events-none"
+                            aria-hidden="true"
+                          />
+                          {/* Centered crisp image */}
                           <img
                             src={event.imageUrl}
                             alt={event.title}
                             onError={() => handleImageError(event.id)}
-                            className="max-h-full max-w-full object-contain rounded-lg shadow-sm transition-transform duration-500 group-hover:scale-[1.02]"
+                            className="relative z-10 max-h-[calc(100%-1rem)] max-w-[calc(100%-1rem)] object-contain rounded-lg shadow-sm transition-transform duration-500 group-hover:scale-[1.02]"
                             loading="lazy"
                           />
                         </div>
