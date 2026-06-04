@@ -30,290 +30,494 @@ interface VarietyTreeGraphProps {
 
 // Coordinate layout mapping for the 1000 x 700 canvas
 const nodes: Node[] = [
-  // --- COLUMN 1: Ancestors & Landraces (x: 120) ---
   {
-    id: "geisha",
-    name: "Geisha",
-    x: 120,
-    y: 80,
-    species: "Arabica",
-    lineage: "Ethiopian Landrace",
-    description: "Wild Ethiopian landrace collection"
+    "id": "geisha",
+    "name": "Geisha",
+    "x": 120,
+    "y": 80,
+    "species": "Arabica",
+    "lineage": "Ethiopian Landrace",
+    "description": "Wild Ethiopian landrace collection"
   },
   {
-    id: "java",
-    name: "Java",
-    x: 120,
-    y: 160,
-    species: "Arabica",
-    lineage: "Ethiopian Landrace",
-    description: "Wild Ethiopian landrace via Java"
+    "id": "java",
+    "name": "Java",
+    "x": 120,
+    "y": 160,
+    "species": "Arabica",
+    "lineage": "Ethiopian Landrace",
+    "description": "Wild Ethiopian landrace via Java"
   },
   {
-    id: "typica",
-    name: "Typica",
-    x: 120,
-    y: 250,
-    species: "Arabica",
-    lineage: "Typica",
-    description: "Foundational early Arabica cultivar"
+    "id": "typica",
+    "name": "Typica",
+    "x": 120,
+    "y": 250,
+    "species": "Arabica",
+    "lineage": "Typica",
+    "description": "Foundational early Arabica cultivar"
   },
   {
-    id: "bourbon",
-    name: "Bourbon",
-    x: 120,
-    y: 380,
-    species: "Arabica",
-    lineage: "Bourbon",
-    description: "Foundational early Arabica cultivar"
+    "id": "bourbon",
+    "name": "Bourbon",
+    "x": 120,
+    "y": 380,
+    "species": "Arabica",
+    "lineage": "Bourbon",
+    "description": "Foundational early Arabica cultivar"
   },
   {
-    id: "conilon",
-    name: "Conilon",
-    x: 120,
-    y: 560,
-    species: "Robusta",
-    lineage: "Robusta",
-    description: "Coffea canephora group parent"
-  },
-
-  // --- COLUMN 2: Mutations & Early Selections (x: 360) ---
-  {
-    id: "maragogype",
-    name: "Maragogype",
-    x: 360,
-    y: 190,
-    species: "Arabica",
-    isVirtual: true,
-    lineage: "Typica",
-    description: "Natural giant-bean mutation of Typica"
+    "id": "conilon",
+    "name": "Conilon",
+    "x": 120,
+    "y": 560,
+    "species": "Robusta",
+    "lineage": "Robusta",
+    "description": "Coffea canephora group parent"
   },
   {
-    id: "sl34",
-    name: "SL34",
-    x: 360,
-    y: 250,
-    species: "Arabica",
-    lineage: "Bourbon-Typica",
-    description: "Scott Labs selection, Typica-like genetics"
+    "id": "sl14",
+    "name": "SL14",
+    "x": 360,
+    "y": 80,
+    "species": "Arabica",
+    "lineage": "Bourbon-Typica",
+    "description": "Drought-tolerant selection from Typica"
   },
   {
-    id: "caturra",
-    name: "Caturra",
-    x: 360,
-    y: 320,
-    species: "Arabica",
-    lineage: "Bourbon",
-    description: "Natural dwarf mutation of Red Bourbon"
+    "id": "maragogype",
+    "name": "Maragogype",
+    "x": 360,
+    "y": 150,
+    "species": "Arabica",
+    "lineage": "Typica",
+    "description": "Natural giant-bean mutation of Typica"
   },
   {
-    id: "pacas",
-    name: "Pacas",
-    x: 360,
-    y: 380,
-    species: "Arabica",
-    isVirtual: true,
-    lineage: "Bourbon",
-    description: "Natural dwarf mutation of Bourbon in El Salvador"
+    "id": "sl34",
+    "name": "SL34",
+    "x": 360,
+    "y": 220,
+    "species": "Arabica",
+    "lineage": "Bourbon-Typica",
+    "description": "Scott Labs selection, Typica-like genetics"
   },
   {
-    id: "sl28",
-    name: "SL28",
-    x: 360,
-    y: 440,
-    species: "Arabica",
-    lineage: "Bourbon-Typica",
-    description: "Scott Labs selection, Bourbon lineage"
+    "id": "caturra",
+    "name": "Caturra",
+    "x": 360,
+    "y": 290,
+    "species": "Arabica",
+    "lineage": "Bourbon",
+    "description": "Natural dwarf mutation of Red Bourbon"
   },
   {
-    id: "villa-sarchi",
-    name: "Villa Sarchi",
-    x: 360,
-    y: 500,
-    species: "Arabica",
-    isVirtual: true,
-    lineage: "Bourbon",
-    description: "Natural dwarf mutation of Bourbon in Costa Rica"
+    "id": "tekisic",
+    "name": "Tekisic",
+    "x": 360,
+    "y": 350,
+    "species": "Arabica",
+    "lineage": "Bourbon",
+    "description": "Exceptional sweetness selection of Bourbon"
   },
   {
-    id: "timor-hybrid",
-    name: "Timor Hybrid",
-    x: 360,
-    y: 590,
-    species: "Hybrid",
-    isVirtual: true,
-    lineage: "Introgressed",
-    description: "Natural Arabica-Robusta cross (rust resistant)"
-  },
-
-  // --- COLUMN 3: F1 Crossings & Selection Lines (x: 600) ---
-  {
-    id: "s795",
-    name: "S795",
-    x: 600,
-    y: 130,
-    species: "Arabica",
-    lineage: "Introgressed",
-    description: "Kent x S.288 (Liberica hybrid)"
+    "id": "pacas",
+    "name": "Pacas",
+    "x": 360,
+    "y": 410,
+    "species": "Arabica",
+    "lineage": "Bourbon",
+    "description": "Natural dwarf mutation of Bourbon in El Salvador"
   },
   {
-    id: "pacamara",
-    name: "Pacamara",
-    x: 600,
-    y: 200,
-    species: "Arabica",
-    lineage: "Bourbon-Typica",
-    description: "Pacas x Maragogype cross"
+    "id": "k7",
+    "name": "K7",
+    "x": 360,
+    "y": 470,
+    "species": "Arabica",
+    "lineage": "Bourbon-Typica",
+    "description": "Kenya selection, rust & CBD resistant"
   },
   {
-    id: "mundo-novo",
-    name: "Mundo Novo",
-    x: 600,
-    y: 280,
-    species: "Arabica",
-    lineage: "Bourbon-Typica",
-    description: "Natural Typica x Red Bourbon cross"
+    "id": "sl28",
+    "name": "SL28",
+    "x": 360,
+    "y": 530,
+    "species": "Arabica",
+    "lineage": "Bourbon-Typica",
+    "description": "Scott Labs selection, Bourbon lineage"
   },
   {
-    id: "anacafe-14",
-    name: "Anacafé 14",
-    x: 600,
-    y: 380,
-    species: "Arabica",
-    lineage: "Catimor",
-    description: "Pacas x Timor Hybrid natural cross"
+    "id": "villa-sarchi",
+    "name": "Villa Sarchi",
+    "x": 360,
+    "y": 590,
+    "species": "Arabica",
+    "lineage": "Bourbon",
+    "description": "Natural dwarf mutation of Bourbon in Costa Rica"
   },
   {
-    id: "catimor",
-    name: "Catimor",
-    x: 600,
-    y: 440,
-    species: "Arabica",
-    lineage: "Catimor",
-    description: "Timor Hybrid x Caturra cross"
+    "id": "timor-hybrid",
+    "name": "Timor Hybrid",
+    "x": 360,
+    "y": 650,
+    "species": "Hybrid",
+    "isVirtual": true,
+    "lineage": "Introgressed",
+    "description": "Natural Arabica-Robusta cross (rust resistant)"
   },
   {
-    id: "parainema",
-    name: "Parainema",
-    x: 600,
-    y: 500,
-    species: "Arabica",
-    lineage: "Sarchimor",
-    description: "Sarchimor selection (Villa Sarchi x Timor Hybrid)"
+    "id": "s795",
+    "name": "S795",
+    "x": 600,
+    "y": 100,
+    "species": "Arabica",
+    "lineage": "Introgressed",
+    "description": "Kent x S.288 (Liberica hybrid)"
   },
   {
-    id: "robusta-commercial-clones",
-    name: "Robusta Clones",
-    x: 600,
-    y: 620,
-    species: "Robusta",
-    lineage: "Robusta",
-    description: "Selected clones (TR4, TR9, TRS1, BP-939)"
-  },
-
-  // --- COLUMN 4: Modern Advanced Crosses (x: 840) ---
-  {
-    id: "catuai",
-    name: "Catuaí",
-    x: 840,
-    y: 300,
-    species: "Arabica",
-    lineage: "Bourbon-Typica",
-    description: "Mundo Novo x Caturra dwarf cross"
+    "id": "pacamara",
+    "name": "Pacamara",
+    "x": 600,
+    "y": 170,
+    "species": "Arabica",
+    "lineage": "Bourbon-Typica",
+    "description": "Pacas x Maragogype cross"
   },
   {
-    id: "colombia",
-    name: "Colombia",
-    x: 840,
-    y: 380,
-    species: "Arabica",
-    lineage: "Catimor",
-    description: "Caturra x Timor Hybrid Cenicafé composite"
+    "id": "mundo-novo",
+    "name": "Mundo Novo",
+    "x": 600,
+    "y": 240,
+    "species": "Arabica",
+    "lineage": "Bourbon-Typica",
+    "description": "Natural Typica x Red Bourbon cross"
   },
   {
-    id: "castillo",
-    name: "Castillo",
-    x: 840,
-    y: 450,
-    species: "Arabica",
-    lineage: "Catimor",
-    description: "Cenicafé selection to replace Colombia variety"
+    "id": "centroamericano",
+    "name": "Centroamericano",
+    "x": 600,
+    "y": 310,
+    "species": "Arabica",
+    "lineage": "Sarchimor",
+    "description": "T5296 x Sudan Rume F1 hybrid"
   },
   {
-    id: "ruiru-11",
-    name: "Ruiru 11",
-    x: 840,
-    y: 520,
-    species: "Arabica",
-    lineage: "Catimor",
-    description: "CBD & Leaf Rust resistant dwarf hybrid"
+    "id": "anacafe-14",
+    "name": "Anacafé 14",
+    "x": 600,
+    "y": 380,
+    "species": "Arabica",
+    "lineage": "Catimor",
+    "description": "Pacas x Timor Hybrid natural cross"
   },
   {
-    id: "batian",
-    name: "Batian",
-    x: 840,
-    y: 600,
-    species: "Arabica",
-    lineage: "Introgressed",
-    description: "Ruiru 11 x Castillo x SL28 x SL34 complex cross"
+    "id": "catimor",
+    "name": "Catimor",
+    "x": 600,
+    "y": 450,
+    "species": "Arabica",
+    "lineage": "Catimor",
+    "description": "Timor Hybrid x Caturra cross"
+  },
+  {
+    "id": "marsellesa",
+    "name": "Marsellesa",
+    "x": 600,
+    "y": 520,
+    "species": "Arabica",
+    "lineage": "Sarchimor",
+    "description": "Villa Sarchi x Timor Hybrid Sarchimor line"
+  },
+  {
+    "id": "parainema",
+    "name": "Parainema",
+    "x": 600,
+    "y": 585,
+    "species": "Arabica",
+    "lineage": "Sarchimor",
+    "description": "Sarchimor selection (Villa Sarchi x Timor Hybrid)"
+  },
+  {
+    "id": "robusta-commercial-clones",
+    "name": "Robusta Clones",
+    "x": 600,
+    "y": 650,
+    "species": "Robusta",
+    "lineage": "Robusta",
+    "description": "Selected clones (TR4, TR9, TRS1, BP-939)"
+  },
+  {
+    "id": "starmaya",
+    "name": "Starmaya",
+    "x": 840,
+    "y": 120,
+    "species": "Arabica",
+    "lineage": "Sarchimor",
+    "description": "Marsellesa x Caturra seed-propagated F1"
+  },
+  {
+    "id": "catuai",
+    "name": "Catuaí",
+    "x": 840,
+    "y": 210,
+    "species": "Arabica",
+    "lineage": "Bourbon-Typica",
+    "description": "Mundo Novo x Caturra dwarf cross"
+  },
+  {
+    "id": "obata",
+    "name": "Obata",
+    "x": 840,
+    "y": 300,
+    "species": "Arabica",
+    "lineage": "Sarchimor",
+    "description": "Sarchimor x Catuaí cross"
+  },
+  {
+    "id": "colombia",
+    "name": "Colombia",
+    "x": 840,
+    "y": 390,
+    "species": "Arabica",
+    "lineage": "Catimor",
+    "description": "Caturra x Timor Hybrid Cenicafé composite"
+  },
+  {
+    "id": "castillo",
+    "name": "Castillo",
+    "x": 840,
+    "y": 470,
+    "species": "Arabica",
+    "lineage": "Catimor",
+    "description": "Cenicafé selection to replace Colombia variety"
+  },
+  {
+    "id": "ruiru-11",
+    "name": "Ruiru 11",
+    "x": 840,
+    "y": 550,
+    "species": "Arabica",
+    "lineage": "Catimor",
+    "description": "CBD & Leaf Rust resistant dwarf hybrid"
+  },
+  {
+    "id": "batian",
+    "name": "Batian",
+    "x": 840,
+    "y": 630,
+    "species": "Arabica",
+    "lineage": "Introgressed",
+    "description": "Ruiru 11 x Castillo x SL28 x SL34 complex cross"
   }
 ];
 
 const edges: Edge[] = [
-  // Typica mutations and selections
-  { source: "typica", target: "maragogype", type: "mutation" },
-  { source: "typica", target: "sl34", type: "selection" },
-  
-  // Bourbon mutations and selections
-  { source: "bourbon", target: "caturra", type: "mutation" },
-  { source: "bourbon", target: "pacas", type: "mutation" },
-  { source: "bourbon", target: "sl28", type: "selection" },
-  { source: "bourbon", target: "villa-sarchi", type: "mutation" },
-
-  // S795 parentage (Kent Typica selection x S.288)
-  { source: "typica", target: "s795", type: "hybrid" },
-
-  // Typica x Bourbon F1 crosses
-  { source: "typica", target: "mundo-novo", type: "hybrid" },
-  { source: "bourbon", target: "mundo-novo", type: "hybrid" },
-
-  // Caturra F1 derivatives
-  { source: "caturra", target: "catuai", type: "hybrid" },
-  { source: "mundo-novo", target: "catuai", type: "hybrid" },
-
-  // Pacas/Maragogype crossings
-  { source: "pacas", target: "pacamara", type: "hybrid" },
-  { source: "maragogype", target: "pacamara", type: "hybrid" },
-
-  // Robusta Timor Hybrid F1 (Arabica Typica-related x Robusta Conilon)
-  { source: "typica", target: "timor-hybrid", type: "hybrid" },
-  { source: "conilon", target: "timor-hybrid", type: "hybrid" },
-
-  // Timor Hybrid Introgressed Lines
-  { source: "timor-hybrid", target: "catimor", type: "hybrid" },
-  { source: "caturra", target: "catimor", type: "hybrid" },
-  
-  { source: "timor-hybrid", target: "parainema", type: "hybrid" },
-  { source: "villa-sarchi", target: "parainema", type: "hybrid" },
-
-  { source: "timor-hybrid", target: "anacafe-14", type: "hybrid" },
-  { source: "pacas", target: "anacafe-14", type: "hybrid" },
-
-  { source: "timor-hybrid", target: "colombia", type: "hybrid" },
-  { source: "caturra", target: "colombia", type: "hybrid" },
-
-  // Advanced composite crosses
-  { source: "colombia", target: "castillo", type: "selection" },
-  { source: "catimor", target: "ruiru-11", type: "hybrid" },
-
-  // Batian composite parentages (SL28, SL34, Castillo, Ruiru 11)
-  { source: "sl28", target: "batian", type: "hybrid" },
-  { source: "sl34", target: "batian", type: "hybrid" },
-  { source: "castillo", target: "batian", type: "hybrid" },
-  { source: "ruiru-11", target: "batian", type: "hybrid" },
-
-  // Robusta lineage
-  { source: "conilon", target: "robusta-commercial-clones", type: "selection" }
+  {
+    "source": "typica",
+    "target": "maragogype",
+    "type": "mutation"
+  },
+  {
+    "source": "typica",
+    "target": "sl34",
+    "type": "selection"
+  },
+  {
+    "source": "typica",
+    "target": "sl14",
+    "type": "selection"
+  },
+  {
+    "source": "bourbon",
+    "target": "caturra",
+    "type": "mutation"
+  },
+  {
+    "source": "bourbon",
+    "target": "pacas",
+    "type": "mutation"
+  },
+  {
+    "source": "bourbon",
+    "target": "sl28",
+    "type": "selection"
+  },
+  {
+    "source": "bourbon",
+    "target": "villa-sarchi",
+    "type": "mutation"
+  },
+  {
+    "source": "bourbon",
+    "target": "tekisic",
+    "type": "selection"
+  },
+  {
+    "source": "bourbon",
+    "target": "k7",
+    "type": "selection"
+  },
+  {
+    "source": "typica",
+    "target": "s795",
+    "type": "hybrid"
+  },
+  {
+    "source": "typica",
+    "target": "mundo-novo",
+    "type": "hybrid"
+  },
+  {
+    "source": "bourbon",
+    "target": "mundo-novo",
+    "type": "hybrid"
+  },
+  {
+    "source": "caturra",
+    "target": "catuai",
+    "type": "hybrid"
+  },
+  {
+    "source": "mundo-novo",
+    "target": "catuai",
+    "type": "hybrid"
+  },
+  {
+    "source": "pacas",
+    "target": "pacamara",
+    "type": "hybrid"
+  },
+  {
+    "source": "maragogype",
+    "target": "pacamara",
+    "type": "hybrid"
+  },
+  {
+    "source": "typica",
+    "target": "timor-hybrid",
+    "type": "hybrid"
+  },
+  {
+    "source": "conilon",
+    "target": "timor-hybrid",
+    "type": "hybrid"
+  },
+  {
+    "source": "timor-hybrid",
+    "target": "catimor",
+    "type": "hybrid"
+  },
+  {
+    "source": "caturra",
+    "target": "catimor",
+    "type": "hybrid"
+  },
+  {
+    "source": "timor-hybrid",
+    "target": "parainema",
+    "type": "hybrid"
+  },
+  {
+    "source": "villa-sarchi",
+    "target": "parainema",
+    "type": "hybrid"
+  },
+  {
+    "source": "timor-hybrid",
+    "target": "anacafe-14",
+    "type": "hybrid"
+  },
+  {
+    "source": "pacas",
+    "target": "anacafe-14",
+    "type": "hybrid"
+  },
+  {
+    "source": "timor-hybrid",
+    "target": "colombia",
+    "type": "hybrid"
+  },
+  {
+    "source": "caturra",
+    "target": "colombia",
+    "type": "hybrid"
+  },
+  {
+    "source": "timor-hybrid",
+    "target": "centroamericano",
+    "type": "hybrid"
+  },
+  {
+    "source": "villa-sarchi",
+    "target": "centroamericano",
+    "type": "hybrid"
+  },
+  {
+    "source": "timor-hybrid",
+    "target": "marsellesa",
+    "type": "hybrid"
+  },
+  {
+    "source": "villa-sarchi",
+    "target": "marsellesa",
+    "type": "hybrid"
+  },
+  {
+    "source": "timor-hybrid",
+    "target": "obata",
+    "type": "hybrid"
+  },
+  {
+    "source": "catuai",
+    "target": "obata",
+    "type": "hybrid"
+  },
+  {
+    "source": "marsellesa",
+    "target": "starmaya",
+    "type": "hybrid"
+  },
+  {
+    "source": "caturra",
+    "target": "starmaya",
+    "type": "hybrid"
+  },
+  {
+    "source": "colombia",
+    "target": "castillo",
+    "type": "selection"
+  },
+  {
+    "source": "catimor",
+    "target": "ruiru-11",
+    "type": "hybrid"
+  },
+  {
+    "source": "sl28",
+    "target": "batian",
+    "type": "hybrid"
+  },
+  {
+    "source": "sl34",
+    "target": "batian",
+    "type": "hybrid"
+  },
+  {
+    "source": "castillo",
+    "target": "batian",
+    "type": "hybrid"
+  },
+  {
+    "source": "ruiru-11",
+    "target": "batian",
+    "type": "hybrid"
+  },
+  {
+    "source": "conilon",
+    "target": "robusta-commercial-clones",
+    "type": "selection"
+  }
 ];
 
 export default function VarietyTreeGraph({

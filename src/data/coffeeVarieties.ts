@@ -583,5 +583,439 @@ export const coffeeVarieties: CoffeeVariety[] = [
         url: "https://worldcoffeeresearch.org"
       }
     ]
+  },
+  {
+    "id": "maragogype",
+    "name": "Maragogype",
+    "alternativeNames": [
+      "Maragogipe",
+      "Elephant Beans"
+    ],
+    "species": "Arabica",
+    "lineage": "Typica",
+    "parentage": "Natural mutation of Typica",
+    "origin": "Brazil (Marahojipe, Bahia)",
+    "plantStature": "Tall",
+    "beanSize": "Exceptional",
+    "yieldPotential": "Low",
+    "qualityPotential": "High",
+    "optimalAltitude": "1100–1600 m",
+    "leafRustResistance": "Low",
+    "coffeeBerryDiseaseResistance": "Low",
+    "nematodeResistance": "Unknown",
+    "nutritionRequirement": "Medium",
+    "commonCountries": [
+      "Mexico",
+      "Guatemala",
+      "Nicaragua",
+      "Colombia",
+      "Brazil"
+    ],
+    "flavorNotes": [
+      "mild citrus",
+      "floral",
+      "clean tea-like",
+      "sweet honey",
+      "light body"
+    ],
+    "summary": "A natural mutation of the Typica variety first discovered in Brazil in 1870. It is famous for producing extremely large seeds (elephant beans) and leaves, and has a tall stature with long internodes. While yields are low and the plant is highly susceptible to rust, its delicate, tea-like and highly sweet cup profile is prized in specialty markets.",
+    "relatedVarieties": [
+      "typica",
+      "pacamara"
+    ],
+    "sources": [
+      {
+        "name": "World Coffee Research - Maragogype",
+        "url": "https://varieties.worldcoffeeresearch.org/varieties/maragogype"
+      }
+    ],
+    "imageUrl": "https://optimise2.assets-servd.host/worldcoffee-research/production/images/Arabica/Maragogipe-1.jpg?w=4000&h=2667&auto=compress%2Cformat&fit=crop&dm=1684915629&s=d2373d7951b6134aef9edc1f1ea34f0c"
+  },
+  {
+    "id": "pacas",
+    "name": "Pacas",
+    "alternativeNames": [],
+    "species": "Arabica",
+    "lineage": "Bourbon",
+    "parentage": "Natural dwarf mutation of Red Bourbon",
+    "origin": "El Salvador (Santa Ana)",
+    "plantStature": "Compact",
+    "beanSize": "Medium",
+    "yieldPotential": "High",
+    "qualityPotential": "Good",
+    "optimalAltitude": "1000–1600 m",
+    "leafRustResistance": "Low",
+    "coffeeBerryDiseaseResistance": "Low",
+    "nematodeResistance": "Low",
+    "nutritionRequirement": "Medium",
+    "commonCountries": [
+      "El Salvador",
+      "Honduras",
+      "Nicaragua"
+    ],
+    "flavorNotes": [
+      "caramel",
+      "stone fruit",
+      "milk chocolate",
+      "sweet acidity",
+      "smooth body"
+    ],
+    "summary": "A natural dwarf mutation of Red Bourbon discovered in 1949 on the Pacas family farm in El Salvador. Like Caturra, its compact stature allows for dense plantings, substantially increasing yield per hectare. It is highly adapted to wind and dry conditions in Central America, and forms the genetic basis of Pacamara and Anacafé 14.",
+    "relatedVarieties": [
+      "bourbon",
+      "pacamara",
+      "anacafe-14"
+    ],
+    "sources": [
+      {
+        "name": "World Coffee Research - Pacas",
+        "url": "https://varieties.worldcoffeeresearch.org/varieties/pacas"
+      }
+    ]
+  },
+  {
+    "id": "villa-sarchi",
+    "name": "Villa Sarchi",
+    "alternativeNames": [
+      "La Luisa",
+      "Sarchi"
+    ],
+    "species": "Arabica",
+    "lineage": "Bourbon",
+    "parentage": "Natural dwarf mutation of Bourbon",
+    "origin": "Costa Rica (Sarchí)",
+    "plantStature": "Compact",
+    "beanSize": "Medium",
+    "yieldPotential": "High",
+    "qualityPotential": "Very High",
+    "optimalAltitude": "1200–1800 m",
+    "leafRustResistance": "Low",
+    "coffeeBerryDiseaseResistance": "Low",
+    "nematodeResistance": "Low",
+    "nutritionRequirement": "Medium",
+    "commonCountries": [
+      "Costa Rica",
+      "Honduras",
+      "Panama"
+    ],
+    "flavorNotes": [
+      "bright lemon",
+      "citrus",
+      "floral",
+      "refined sweetness",
+      "crisp finish"
+    ],
+    "summary": "A natural dwarf mutation of Bourbon discovered in Costa Rica in 1955. It features compact stature, short internodes, and elegant bronze-tipped leaves. It thrives at high altitudes under strong winds and heavy rainfall, yielding a very sweet cup with clean, bright acidity. It is a parent of Sarchimor lines like Parainema.",
+    "relatedVarieties": [
+      "bourbon",
+      "parainema"
+    ],
+    "sources": [
+      {
+        "name": "World Coffee Research - Villa Sarchi",
+        "url": "https://varieties.worldcoffeeresearch.org/varieties/villa-sarchi"
+      }
+    ],
+    "imageUrl": "https://optimise2.assets-servd.host/worldcoffee-research/production/images/Arabica/Villa-Sarchi-1.jpg?w=640&h=480&auto=compress%2Cformat&fit=crop&dm=1684915651&s=92d842c3fefd21fc68802c1ad54f181f"
+  },
+  {
+    "id": "starmaya",
+    "name": "Starmaya",
+    "alternativeNames": [],
+    "species": "Arabica",
+    "lineage": "Sarchimor",
+    "parentage": "Cross between Marsellesa and a male-sterile Bourbon/Caturra selection",
+    "origin": "Nicaragua (developed by CIRAD & Ecom)",
+    "plantStature": "Compact",
+    "beanSize": "High",
+    "yieldPotential": "Very High",
+    "qualityPotential": "Very High",
+    "optimalAltitude": "900–1500 m",
+    "leafRustResistance": "High",
+    "coffeeBerryDiseaseResistance": "Low",
+    "nematodeResistance": "Unknown",
+    "nutritionRequirement": "Medium",
+    "commonCountries": [
+      "Nicaragua",
+      "Costa Rica"
+    ],
+    "flavorNotes": [
+      "floral",
+      "stone fruit",
+      "orange peel",
+      "milk chocolate",
+      "creamy body"
+    ],
+    "summary": "Released in 2017, Starmaya is a major breakthrough in coffee breeding: it is the first F1 hybrid Arabica variety that can be propagated by seed rather than costly cloning/tissue culture, which lowers cost for farmers. It offers high resistance to Leaf Rust, exceptionally high yields, and a very complex sweet cup profile.",
+    "relatedVarieties": [
+      "marsellesa"
+    ],
+    "sources": [
+      {
+        "name": "World Coffee Research - Starmaya",
+        "url": "https://varieties.worldcoffeeresearch.org/varieties/starmaya"
+      }
+    ],
+    "imageUrl": "https://optimise2.assets-servd.host/worldcoffee-research/production/images/Arabica/Starmaya-4.jpg?w=4000&h=2667&auto=compress%2Cformat&fit=crop&dm=1684915649&s=dc5fcde9f8ce869307f26de14bfb8f7f"
+  },
+  {
+    "id": "centroamericano",
+    "name": "Centroamericano",
+    "alternativeNames": [
+      "H1",
+      "H-1"
+    ],
+    "species": "Arabica",
+    "lineage": "Sarchimor",
+    "parentage": "F1 hybrid cross between Sarchimor T5296 and wild Ethiopian landrace Sudan Rume",
+    "origin": "Central America (developed by CATIE, CIRAD & PROMECAFE)",
+    "plantStature": "Tall",
+    "beanSize": "High",
+    "yieldPotential": "Very High",
+    "qualityPotential": "Exceptional",
+    "optimalAltitude": "1000–1800+ m",
+    "leafRustResistance": "High",
+    "coffeeBerryDiseaseResistance": "Low",
+    "nematodeResistance": "High",
+    "nutritionRequirement": "High",
+    "commonCountries": [
+      "Costa Rica",
+      "Nicaragua",
+      "Honduras",
+      "Guatemala"
+    ],
+    "flavorNotes": [
+      "jasmine",
+      "floral",
+      "bergamot",
+      "peach",
+      "brown sugar",
+      "bright acidity"
+    ],
+    "summary": "An F1 hybrid cross of Sarchimor T5296 (rust-resistant) and the famous wild Ethiopian landrace Sudan Rume (renowned for flavor). It is highly productive, resistant to leaf rust and root-knot nematodes, and has won Cup of Excellence titles due to its exceptional floral and peach-like cup profile when grown at high altitudes.",
+    "relatedVarieties": [
+      "parainema"
+    ],
+    "sources": [
+      {
+        "name": "World Coffee Research - Centroamericano",
+        "url": "https://varieties.worldcoffeeresearch.org/varieties/centroamericano"
+      }
+    ],
+    "imageUrl": "https://optimise2.assets-servd.host/worldcoffee-research/production/images/Arabica/Centroamericano-1.jpg?w=2592&h=1944&auto=compress%2Cformat&fit=crop&dm=1684915613&s=8e3acb0f708fbc25fbc8d3a33db23a55"
+  },
+  {
+    "id": "marsellesa",
+    "name": "Marsellesa",
+    "alternativeNames": [],
+    "species": "Arabica",
+    "lineage": "Sarchimor",
+    "parentage": "Selection from Sarchimor population (Villa Sarchi x Timor Hybrid)",
+    "origin": "Nicaragua (selected by CIRAD)",
+    "plantStature": "Compact",
+    "beanSize": "Medium",
+    "yieldPotential": "High",
+    "qualityPotential": "Good",
+    "optimalAltitude": "900–1500 m",
+    "leafRustResistance": "High",
+    "coffeeBerryDiseaseResistance": "Low",
+    "nematodeResistance": "Unknown",
+    "nutritionRequirement": "High",
+    "commonCountries": [
+      "Mexico",
+      "Nicaragua",
+      "Honduras",
+      "Guatemala"
+    ],
+    "flavorNotes": [
+      "lemon citrus",
+      "red apple",
+      "caramel",
+      "clean finish",
+      "bright acidity"
+    ],
+    "summary": "A Sarchimor variety selected for its high resistance to leaf rust and high yield capacity. It is adapted to wet conditions and performs well at medium altitudes in Central America. It has a clean, citric cup profile with good acidity, and is a parent of the F1 hybrid Starmaya.",
+    "relatedVarieties": [
+      "villa-sarchi",
+      "starmaya"
+    ],
+    "sources": [
+      {
+        "name": "World Coffee Research - Marsellesa",
+        "url": "https://varieties.worldcoffeeresearch.org/varieties/marsellesa"
+      }
+    ],
+    "imageUrl": "https://optimise2.assets-servd.host/worldcoffee-research/production/images/Arabica/Marsellesa-1.jpg?w=4000&h=2667&auto=compress%2Cformat&fit=crop&dm=1684915632&s=c31bfddb2e38499731701518d10de310"
+  },
+  {
+    "id": "obata",
+    "name": "Obata",
+    "alternativeNames": [
+      "Obata Rojo",
+      "Obata Red"
+    ],
+    "species": "Arabica",
+    "lineage": "Sarchimor",
+    "parentage": "Cross between Sarchimor and Catuaí",
+    "origin": "Brazil (IAC)",
+    "plantStature": "Compact",
+    "beanSize": "High",
+    "yieldPotential": "Very High",
+    "qualityPotential": "Good",
+    "optimalAltitude": "800–1400 m",
+    "leafRustResistance": "High",
+    "coffeeBerryDiseaseResistance": "Low",
+    "nematodeResistance": "Unknown",
+    "nutritionRequirement": "High",
+    "commonCountries": [
+      "Brazil",
+      "Costa Rica"
+    ],
+    "flavorNotes": [
+      "cacao nibs",
+      "roasted nuts",
+      "caramel",
+      "low acidity",
+      "full body"
+    ],
+    "summary": "Bred in Brazil and released in 2000, Obata is a cross between Sarchimor (for leaf rust resistance) and Catuaí. It has a compact stature, dark bronze-tipped leaves, and high yield capacity. It is well-suited for high-density plantings and mechanical harvesting, rendering a balanced, chocolatey cup.",
+    "relatedVarieties": [
+      "catuai"
+    ],
+    "sources": [
+      {
+        "name": "World Coffee Research - Obata",
+        "url": "https://varieties.worldcoffeeresearch.org/varieties/obata-red"
+      }
+    ],
+    "imageUrl": "https://optimise2.assets-servd.host/worldcoffee-research/production/images/Arabica/Obata-Rojo-1.jpg?w=3000&h=2000&auto=compress%2Cformat&fit=crop&dm=1684915637&s=f8cf142b5809bc762b8e04cd18795c8e"
+  },
+  {
+    "id": "k7",
+    "name": "K7",
+    "alternativeNames": [
+      "K-7"
+    ],
+    "species": "Arabica",
+    "lineage": "Bourbon-Typica",
+    "parentage": "Selection from French Mission Bourbon",
+    "origin": "Kenya (selected on Legetet Estate)",
+    "plantStature": "Tall",
+    "beanSize": "High",
+    "yieldPotential": "Medium",
+    "qualityPotential": "Good",
+    "optimalAltitude": "1200–1600 m",
+    "leafRustResistance": "High",
+    "coffeeBerryDiseaseResistance": "Low",
+    "nematodeResistance": "Unknown",
+    "nutritionRequirement": "Medium",
+    "commonCountries": [
+      "Kenya",
+      "Tanzania"
+    ],
+    "flavorNotes": [
+      "citrus",
+      "spice",
+      "chocolate",
+      "full body",
+      "brown sugar"
+    ],
+    "summary": "Selected in Kenya in the 1930s on Legetet Estate from French Mission Bourbon trees. It is highly valued for its resistance to coffee leaf rust (specifically some races) and tolerance to CBD. It performs well at lower altitudes in rust-prone areas, displaying bronze-tipped leaves and a sweet, spicy profile.",
+    "relatedVarieties": [
+      "bourbon"
+    ],
+    "sources": [
+      {
+        "name": "World Coffee Research - K7",
+        "url": "https://varieties.worldcoffeeresearch.org/varieties/k7"
+      }
+    ],
+    "imageUrl": "https://optimise2.assets-servd.host/worldcoffee-research/production/images/Arabica/K7-1.jpg?w=4000&h=2667&auto=compress%2Cformat&fit=crop&dm=1684915625&s=9a3572a3fb9dca303ad090fca4bf6d5a"
+  },
+  {
+    "id": "sl14",
+    "name": "SL14",
+    "alternativeNames": [
+      "Scott Labs 14"
+    ],
+    "species": "Arabica",
+    "lineage": "Bourbon-Typica",
+    "parentage": "Selection from Typica (genetically Typica-like)",
+    "origin": "Kenya (selected by Scott Agricultural Laboratories)",
+    "plantStature": "Tall",
+    "beanSize": "Medium",
+    "yieldPotential": "Medium",
+    "qualityPotential": "Good",
+    "optimalAltitude": "1100–1500 m",
+    "leafRustResistance": "Low",
+    "coffeeBerryDiseaseResistance": "Low",
+    "nematodeResistance": "Unknown",
+    "nutritionRequirement": "Low",
+    "commonCountries": [
+      "Uganda",
+      "Kenya"
+    ],
+    "flavorNotes": [
+      "caramel",
+      "stone fruit",
+      "milk chocolate",
+      "black tea",
+      "creamy finish"
+    ],
+    "summary": "Selected in Kenya in the 1930s. It is highly drought-tolerant, making it very popular in Uganda (specifically the Mount Elgon region). While sensitive to major diseases, its low fertilizer requirement and reliable performance in dry weather make it a solid option for smallholders.",
+    "relatedVarieties": [
+      "typica",
+      "sl28"
+    ],
+    "sources": [
+      {
+        "name": "World Coffee Research - SL14",
+        "url": "https://varieties.worldcoffeeresearch.org/varieties/sl14"
+      }
+    ]
+  },
+  {
+    "id": "tekisic",
+    "name": "Tekisic",
+    "alternativeNames": [
+      "Tekisic Bourbon",
+      "ISIC Bourbon"
+    ],
+    "species": "Arabica",
+    "lineage": "Bourbon",
+    "parentage": "Selection from Salvadoran Red Bourbon",
+    "origin": "El Salvador (ISIC)",
+    "plantStature": "Tall",
+    "beanSize": "Medium",
+    "yieldPotential": "Medium",
+    "qualityPotential": "Exceptional",
+    "optimalAltitude": "1200–1800 m",
+    "leafRustResistance": "Low",
+    "coffeeBerryDiseaseResistance": "Low",
+    "nematodeResistance": "Low",
+    "nutritionRequirement": "Medium",
+    "commonCountries": [
+      "El Salvador",
+      "Guatemala",
+      "Honduras"
+    ],
+    "flavorNotes": [
+      "caramel",
+      "brown sugar",
+      "intense sweetness",
+      "stone fruit",
+      "clean acidity"
+    ],
+    "summary": "A highly refined selection of Salvadoran Bourbon developed by ISIC over 30 years starting in 1949. It is tall, low-yielding, and highly sensitive to disease, but retains world-class specialty status. It is famous for its exceptional, dense sweetness, clean caramel profile, and heavy mouthfeel.",
+    "relatedVarieties": [
+      "bourbon"
+    ],
+    "sources": [
+      {
+        "name": "World Coffee Research - Tekisic",
+        "url": "https://varieties.worldcoffeeresearch.org/varieties/tekisic"
+      }
+    ],
+    "imageUrl": "https://optimise2.assets-servd.host/worldcoffee-research/production/images/Arabica/Tekisic-1.jpg?w=3000&h=2000&auto=compress%2Cformat&fit=crop&dm=1684915651&s=b0ca464581510aeceb39eea31b9852da"
   }
 ];
