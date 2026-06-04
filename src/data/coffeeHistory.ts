@@ -55,7 +55,7 @@ export const coffeeHistory: HistoryEvent[] = [
     varietyConnections: [],
     keyFigures: ["Kha'ir Beg", "Sultan of Cairo"],
     stats: "First recorded legal challenge against coffee consumption",
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/c/c2/Mecca_1850.jpg"
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/f/f4/Makkah_1880.jpg"
   },
   {
     id: "rauwolf-description",
@@ -69,7 +69,7 @@ export const coffeeHistory: HistoryEvent[] = [
     varietyConnections: [],
     keyFigures: ["Leonhard Rauwolf"],
     stats: "First published European account of coffee drinking",
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/2/23/Leonhard_Rauwolf.jpg"
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/8/8e/Rauwolf_Reise.jpg"
   },
   {
     id: "baba-budan",
@@ -279,7 +279,7 @@ export const coffeeHistory: HistoryEvent[] = [
     varietyConnections: [],
     keyFigures: ["Max Morgenthaler"],
     stats: "Developed over 7 years to absorb Brazil's massive surplus",
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/1/1a/Nestle_Factory_in_Vevey_Switzerland_1910.jpg"
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/8/8a/Nestle_Vevey.jpg"
   },
   {
     id: "gaggia-crema",
@@ -335,6 +335,6 @@ export const coffeeHistory: HistoryEvent[] = [
     varietyConnections: ["geisha", "pacamara", "sl28", "starmaya", "centroamericano", "marsellesa", "obata", "k7", "sidra", "pink-bourbon", "wush-wush", "sudan-rume", "eugenioides"],
     keyFigures: ["Trish Rothgeb", "Specialty Roasters"],
     stats: "Appreciation of single-origins and farm traceability",
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/d/da/V60_pour_over_brewing_third_wave.jpg"
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/1/14/Hario_V60_brewing.jpg"
   }
 ];
