@@ -9,7 +9,8 @@ import VarietyFilterBar from "./VarietyFilterBar";
 import VarietyCard from "./VarietyCard";
 import VarietyDetailPanel from "./VarietyDetailPanel";
 import VarietyCompare from "./VarietyCompare";
-import { AlertCircle, SlidersHorizontal } from "lucide-react";
+import VarietyTreeGraph from "./VarietyTreeGraph";
+import { AlertCircle, SlidersHorizontal, LayoutGrid, Network } from "lucide-react";
 
 export default function VarietyExplorer() {
   const router = useRouter();
@@ -23,6 +24,9 @@ export default function VarietyExplorer() {
     lineage: "All Lineages",
     trait: "All Traits",
   });
+
+  // View Mode: Grid cards vs Genealogy Lineage Tree
+  const [viewMode, setViewMode] = useState<"grid" | "tree">("grid");
 
   // Selected Variety for details
   const [selectedVariety, setSelectedVariety] = useState<CoffeeVariety | null>(null);
@@ -112,14 +116,49 @@ export default function VarietyExplorer() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
         {/* Left Side: Varieties Grid */}
         <div className="lg:col-span-2 space-y-4">
-          <div className="flex items-center justify-between px-1">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 px-1">
             <h3 className="text-xs font-bold uppercase tracking-wider text-slate-450 flex items-center gap-1.5">
               <SlidersHorizontal className="h-3.5 w-3.5" />
               <span>Results ({filteredVarieties.length} varieties)</span>
             </h3>
+            
+            {/* View Mode Tabs */}
+            <div className="flex items-center bg-slate-100 p-0.5 rounded-xl border border-slate-200 self-start sm:self-auto">
+              <button
+                type="button"
+                onClick={() => setViewMode("grid")}
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                  viewMode === "grid"
+                    ? "bg-white text-blue-600 shadow-sm border border-slate-200/50"
+                    : "text-slate-500 hover:text-slate-800"
+                }`}
+              >
+                <LayoutGrid className="h-3.5 w-3.5" />
+                <span>Grid View</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => setViewMode("tree")}
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                  viewMode === "tree"
+                    ? "bg-white text-blue-600 shadow-sm border border-slate-200/50"
+                    : "text-slate-500 hover:text-slate-800"
+                }`}
+              >
+                <Network className="h-3.5 w-3.5" />
+                <span>Lineage Tree</span>
+              </button>
+            </div>
           </div>
 
-          {filteredVarieties.length === 0 ? (
+          {viewMode === "tree" ? (
+            <VarietyTreeGraph
+              selectedVariety={selectedVariety}
+              allVarieties={coffeeVarieties}
+              onSelectVariety={handleSelectVariety}
+              searchFilter={filters.search}
+            />
+          ) : filteredVarieties.length === 0 ? (
             <div className="rounded-2xl border border-slate-200 bg-white p-12 text-center shadow-sm">
               <p className="text-sm font-bold text-slate-500">No varieties match your filters.</p>
               <button
