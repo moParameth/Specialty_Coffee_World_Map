@@ -51,4 +51,5 @@ export interface CoffeeVariety {
   summary: string;
   relatedVarieties?: string[];
   sources: SourceLink[];
+  imageUrl?: string;
 }

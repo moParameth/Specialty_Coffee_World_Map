@@ -33,7 +33,8 @@ export const coffeeVarieties: CoffeeVariety[] = [
         url: "https://sca.coffee",
         note: "Sensory descriptors context"
       }
-    ]
+    ],
+    imageUrl: "/images/varieties/geisha.png"
   },
   {
     id: "typica",
@@ -61,7 +62,8 @@ export const coffeeVarieties: CoffeeVariety[] = [
         name: "World Coffee Research - Typica",
         url: "https://varieties.worldcoffeeresearch.org/varieties/typica"
       }
-    ]
+    ],
+    imageUrl: "/images/varieties/typica.png"
   },
   {
     id: "bourbon",
@@ -89,7 +91,8 @@ export const coffeeVarieties: CoffeeVariety[] = [
         name: "World Coffee Research - Bourbon",
         url: "https://varieties.worldcoffeeresearch.org/varieties/bourbon"
       }
-    ]
+    ],
+    imageUrl: "/images/varieties/bourbon.png"
   },
   {
     id: "caturra",
@@ -117,7 +120,8 @@ export const coffeeVarieties: CoffeeVariety[] = [
         name: "World Coffee Research - Caturra",
         url: "https://varieties.worldcoffeeresearch.org/varieties/caturra"
       }
-    ]
+    ],
+    imageUrl: "/images/varieties/bourbon.png"
   },
   {
     id: "catuai",
@@ -145,7 +149,8 @@ export const coffeeVarieties: CoffeeVariety[] = [
         name: "World Coffee Research - Catuai",
         url: "https://varieties.worldcoffeeresearch.org/varieties/catuai"
       }
-    ]
+    ],
+    imageUrl: "/images/varieties/bourbon.png"
   },
   {
     id: "mundo-novo",
@@ -173,7 +178,8 @@ export const coffeeVarieties: CoffeeVariety[] = [
         name: "World Coffee Research - Mundo Novo",
         url: "https://varieties.worldcoffeeresearch.org/varieties/mundo-novo"
       }
-    ]
+    ],
+    imageUrl: "/images/varieties/typica.png"
   },
   {
     id: "pacamara",
@@ -201,7 +207,8 @@ export const coffeeVarieties: CoffeeVariety[] = [
         name: "World Coffee Research - Pacamara",
         url: "https://varieties.worldcoffeeresearch.org/varieties/pacamara"
       }
-    ]
+    ],
+    imageUrl: "/images/varieties/pacamara.png"
   },
   {
     id: "sl28",
@@ -220,7 +227,7 @@ export const coffeeVarieties: CoffeeVariety[] = [
     coffeeBerryDiseaseResistance: "Low",
     nematodeResistance: "Unknown",
     nutritionRequirement: "Medium",
-    commonCountries: ["Kenya", "Uganda", "Zimbabwe", "Tanzania"],
+    commonCountries: ["Kenya", "Root-knot nematode (Unknown)", "Uganda", "Zimbabwe", "Tanzania"],
     flavorNotes: ["blackcurrant", "grapefruit", "tomato-like acidity", "wine-like", "brown sugar"],
     summary: "One of the most famous African varieties, selected in Kenya in the 1930s. It has broad, copper-colored leaves and is renowned for its intense blackcurrant acidity, rich body, and exceptional flavor. While highly susceptible to rust and CBD, it thrives in high altitude with moderate rainfall.",
     relatedVarieties: ["bourbon", "sl34"],
@@ -229,7 +236,8 @@ export const coffeeVarieties: CoffeeVariety[] = [
         name: "World Coffee Research - SL28",
         url: "https://varieties.worldcoffeeresearch.org/varieties/sl28"
       }
-    ]
+    ],
+    imageUrl: "/images/varieties/bourbon.png"
   },
   {
     id: "sl34",
@@ -257,7 +265,8 @@ export const coffeeVarieties: CoffeeVariety[] = [
         name: "World Coffee Research - SL34",
         url: "https://varieties.worldcoffeeresearch.org/varieties/sl34"
       }
-    ]
+    ],
+    imageUrl: "/images/varieties/typica.png"
   },
   {
     id: "batian",
@@ -285,7 +294,8 @@ export const coffeeVarieties: CoffeeVariety[] = [
         name: "World Coffee Research - Batian",
         url: "https://varieties.worldcoffeeresearch.org/varieties/batian"
       }
-    ]
+    ],
+    imageUrl: "/images/varieties/catimor.png"
   },
   {
     id: "ruiru-11",
@@ -313,7 +323,8 @@ export const coffeeVarieties: CoffeeVariety[] = [
         name: "World Coffee Research - Ruiru 11",
         url: "https://varieties.worldcoffeeresearch.org/varieties/ruiru-11"
       }
-    ]
+    ],
+    imageUrl: "/images/varieties/catimor.png"
   },
   {
     id: "castillo",
@@ -341,7 +352,8 @@ export const coffeeVarieties: CoffeeVariety[] = [
         name: "World Coffee Research - Castillo",
         url: "https://varieties.worldcoffeeresearch.org/varieties/castillo"
       }
-    ]
+    ],
+    imageUrl: "/images/varieties/catimor.png"
   },
   {
     id: "colombia",
@@ -369,7 +381,8 @@ export const coffeeVarieties: CoffeeVariety[] = [
         name: "World Coffee Research - Colombia",
         url: "https://varieties.worldcoffeeresearch.org/varieties/colombia"
       }
-    ]
+    ],
+    imageUrl: "/images/varieties/catimor.png"
   },
   {
     id: "catimor",
@@ -397,7 +410,8 @@ export const coffeeVarieties: CoffeeVariety[] = [
         name: "World Coffee Research - Catimor",
         url: "https://varieties.worldcoffeeresearch.org/varieties/catimor"
       }
-    ]
+    ],
+    imageUrl: "/images/varieties/catimor.png"
   },
   {
     id: "s795",
@@ -416,7 +430,7 @@ export const coffeeVarieties: CoffeeVariety[] = [
     coffeeBerryDiseaseResistance: "Low",
     nematodeResistance: "Unknown",
     nutritionRequirement: "Medium",
-    commonCountries: ["India", "Indonesia (Sumatra/Java)"],
+    commonCountries: ["India", "Indonesia"],
     flavorNotes: ["maple syrup", "brown sugar", "herbal", "spice", "chocolate", "full body"],
     summary: "Released in the 1940s, S795 is the most widely planted Arabica variety in India and Southeast Asia. It inherits leaf rust tolerance from the S.288 parent (which contains Liberica genetic material) and a sweet, balanced profile from Kent. Locally in Indonesia, it is often called Jember.",
     relatedVarieties: ["typica"],
@@ -425,7 +439,8 @@ export const coffeeVarieties: CoffeeVariety[] = [
         name: "World Coffee Research - S795",
         url: "https://varieties.worldcoffeeresearch.org/varieties/s795"
       }
-    ]
+    ],
+    imageUrl: "/images/varieties/typica.png"
   },
   {
     id: "java",
@@ -453,7 +468,8 @@ export const coffeeVarieties: CoffeeVariety[] = [
         name: "World Coffee Research - Java",
         url: "https://varieties.worldcoffeeresearch.org/varieties/java"
       }
-    ]
+    ],
+    imageUrl: "/images/varieties/geisha.png"
   },
   {
     id: "parainema",
@@ -481,7 +497,8 @@ export const coffeeVarieties: CoffeeVariety[] = [
         name: "World Coffee Research - Parainema",
         url: "https://varieties.worldcoffeeresearch.org/varieties/parainema"
       }
-    ]
+    ],
+    imageUrl: "/images/varieties/catimor.png"
   },
   {
     id: "anacafe-14",
@@ -509,7 +526,8 @@ export const coffeeVarieties: CoffeeVariety[] = [
         name: "ANACAFÉ Variety Catalog",
         url: "https://www.anacafe.org"
       }
-    ]
+    ],
+    imageUrl: "/images/varieties/catimor.png"
   },
   {
     id: "conilon",
@@ -528,7 +546,7 @@ export const coffeeVarieties: CoffeeVariety[] = [
     coffeeBerryDiseaseResistance: "High",
     nematodeResistance: "High",
     nutritionRequirement: "High",
-    commonCountries: ["Brazil (Espírito Santo)", "Côte d'Ivoire"],
+    commonCountries: ["Brazil", "Côte d'Ivoire"],
     flavorNotes: ["dark cocoa", "macadamia nut", "cereal", "low acidity", "bold body"],
     summary: "The main Robusta variety cultivated in Brazil, representing a significant portion of its total coffee output. It is characterized by high tolerance to drought, high yield potential, and resistance to nematodes and leaf rust. It has a heavy, clean, chocolatey profile often used in espresso bases.",
     relatedVarieties: ["robusta-commercial-clones"],
@@ -538,7 +556,8 @@ export const coffeeVarieties: CoffeeVariety[] = [
         url: "https://worldcoffeeresearch.org",
         note: "Robusta genetic resources"
       }
-    ]
+    ],
+    imageUrl: "/images/varieties/robusta.png"
   },
   {
     id: "robusta-commercial-clones",
@@ -566,6 +585,7 @@ export const coffeeVarieties: CoffeeVariety[] = [
         name: "World Coffee Research - Vietnam / Uganda",
         url: "https://worldcoffeeresearch.org"
       }
-    ]
+    ],
+    imageUrl: "/images/varieties/robusta.png"
   }
 ];

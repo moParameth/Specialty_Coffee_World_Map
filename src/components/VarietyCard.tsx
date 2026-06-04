@@ -30,6 +30,17 @@ export default function VarietyCard({
       }`}
     >
       <div>
+        {/* Image Thumbnail */}
+        {variety.imageUrl && (
+          <div className="w-full h-32 mb-4 overflow-hidden rounded-xl border border-slate-100 bg-slate-50 relative">
+            <img
+              src={variety.imageUrl}
+              alt={variety.name}
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            />
+          </div>
+        )}
+
         {/* Name and Species Badge */}
         <div className="flex items-start justify-between gap-2 mb-1.5">
           <h3 className="text-lg font-black text-slate-800 tracking-tight transition-colors group-hover:text-blue-650">

@@ -65,6 +65,17 @@ export default function VarietyDetailPanel({
 
   return (
     <div className="flex h-full flex-col bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden">
+      {/* Image Banner */}
+      {variety.imageUrl && (
+        <div className="w-full h-44 overflow-hidden bg-slate-50 border-b border-slate-100 relative">
+          <img
+            src={variety.imageUrl}
+            alt={variety.name}
+            className="w-full h-full object-cover"
+          />
+        </div>
+      )}
+
       {/* Detail Header */}
       <div className="border-b border-slate-100 p-6 bg-slate-50/50">
         <div className="flex flex-wrap items-center justify-between gap-3 mb-2">
