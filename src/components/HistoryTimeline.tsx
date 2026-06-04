@@ -213,12 +213,12 @@ export default function HistoryTimeline() {
                     <div className="group bg-white border border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-md hover:border-slate-300 transition-all duration-300 flex flex-col gap-3 relative">
                       {/* Event Image */}
                       {event.imageUrl && !failedImages[event.id] && (
-                        <div className="w-full h-48 overflow-hidden rounded-xl border border-slate-100 bg-slate-50 relative">
+                        <div className="w-full h-56 overflow-hidden rounded-xl border border-slate-200 bg-slate-50/50 relative flex items-center justify-center p-2">
                           <img
                             src={event.imageUrl}
                             alt={event.title}
                             onError={() => handleImageError(event.id)}
-                            className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500"
+                            className="max-h-full max-w-full object-contain rounded-lg shadow-sm transition-transform duration-500 group-hover:scale-[1.02]"
                             loading="lazy"
                           />
                         </div>

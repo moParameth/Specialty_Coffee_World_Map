@@ -27,7 +27,7 @@ export const coffeeHistory: HistoryEvent[] = [
     varietyConnections: [],
     keyFigures: ["Avicenna (Ibn Sina)"],
     stats: "First clinical documentation of the coffee seed",
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/f/f6/Avicenna_Portrait_1952.jpg"
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/f/fb/Avicenna.jpg"
   },
   {
     id: "yemen-sufi",
