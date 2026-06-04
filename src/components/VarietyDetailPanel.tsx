@@ -86,7 +86,7 @@ export default function VarietyDetailPanel({
             <div className="p-3 rounded-full bg-white/10 backdrop-blur-sm border border-white/20">
               <Coffee className="h-8 w-8 text-blue-200" />
             </div>
-            <span className="text-xs font-bold uppercase tracking-widest text-slate-350">Coffee Variety Profile</span>
+            <span className="text-xs font-bold uppercase tracking-widest text-slate-400">Coffee Variety Profile</span>
           </div>
         )}
       </div>
@@ -110,7 +110,7 @@ export default function VarietyDetailPanel({
         </div>
         <h2 className="text-2xl font-black text-slate-900 tracking-tight mb-1">{variety.name}</h2>
         {variety.alternativeNames && variety.alternativeNames.length > 0 && (
-          <p className="text-xs text-slate-505 font-semibold italic">
+          <p className="text-xs text-slate-500 font-semibold italic">
             Also known as: {variety.alternativeNames.join(", ")}
           </p>
         )}
@@ -210,7 +210,7 @@ export default function VarietyDetailPanel({
               return (
                 <span
                   key={country}
-                  className="inline-flex items-center rounded-full bg-slate-105 border border-slate-200 px-3 py-1 text-xs font-bold text-slate-550 shadow-sm"
+                  className="inline-flex items-center rounded-full bg-slate-100 border border-slate-200 px-3 py-1 text-xs font-bold text-slate-500 shadow-sm"
                 >
                   {country}
                 </span>
@@ -260,7 +260,7 @@ export default function VarietyDetailPanel({
                     href={src.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-bold text-slate-700 hover:text-blue-650 hover:underline flex items-center gap-1 inline-flex"
+                    className="font-bold text-slate-700 hover:text-blue-600 hover:underline flex items-center gap-1 inline-flex"
                   >
                     <span>{src.name}</span>
                     <ExternalLink className="h-3 w-3" />

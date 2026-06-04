@@ -51,7 +51,7 @@ export default function VarietyExplorer() {
   const handleSelectVariety = (id: string) => {
     const params = new URLSearchParams(searchParams.toString());
     params.set("selected", id);
-    router.push(`/varieties?${params.toString()}`);
+    router.push(`/varieties?${params.toString()}`, { scroll: false });
   };
 
   // Filter varieties

@@ -634,17 +634,18 @@ export default function VarietyTreeGraph({
   // Hover states for lineage path highlighting
   const [hoveredNodeId, setHoveredNodeId] = useState<string | null>(null);
 
-  // Calculate high-lighted nodes & links based on hovered node
+  // Calculate high-lighted nodes & links based on active node (hovered or selected)
   const getLineageHighlightInfo = () => {
-    if (!hoveredNodeId) return { nodes: new Set<string>(), edges: new Set<string>() };
+    const activeNodeId = hoveredNodeId || selectedVariety?.id;
+    if (!activeNodeId) return { nodes: new Set<string>(), edges: new Set<string>() };
 
-    const highlightedNodes = new Set<string>([hoveredNodeId]);
+    const highlightedNodes = new Set<string>([activeNodeId]);
     const highlightedEdges = new Set<string>();
 
     // BFS or simple single-level trace to find direct ancestors (parents) and descendants (children)
     // 1. Direct parents (Incoming edges)
     edges.forEach((edge) => {
-      if (edge.target === hoveredNodeId) {
+      if (edge.target === activeNodeId) {
         highlightedNodes.add(edge.source);
         highlightedEdges.add(`${edge.source}->${edge.target}`);
       }
@@ -652,7 +653,7 @@ export default function VarietyTreeGraph({
 
     // 2. Direct children (Outgoing edges)
     edges.forEach((edge) => {
-      if (edge.source === hoveredNodeId) {
+      if (edge.source === activeNodeId) {
         highlightedNodes.add(edge.target);
         highlightedEdges.add(`${edge.source}->${edge.target}`);
       }
@@ -729,7 +730,7 @@ export default function VarietyTreeGraph({
   return (
     <div
       ref={containerRef}
-      className={`relative w-full h-[620px] rounded-2xl bg-white border border-slate-200 shadow-sm overflow-hidden select-none cursor-grab active:cursor-grabbing`}
+      className="relative w-full h-[620px] rounded-2xl bg-white border border-slate-200 shadow-sm overflow-hidden select-none cursor-grab active:cursor-grabbing touch-none"
       onMouseDown={handleMouseDown}
       onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUp}
@@ -863,10 +864,10 @@ export default function VarietyTreeGraph({
               if (!sourceNode || !targetNode) return null;
 
               const linkId = `${edge.source}->${edge.target}`;
-              const isHighlighted = hoveredNodeId ? highlight.edges.has(linkId) : false;
+              const isHighlighted = (hoveredNodeId || selectedVariety?.id) ? highlight.edges.has(linkId) : false;
               
-              // Faded link state
-              const isFaded = hoveredNodeId ? !isHighlighted : false;
+              // Faded link state (only when hovering something)
+              const isFaded = hoveredNodeId ? !highlight.edges.has(linkId) : false;
 
               // Check if target is selected to choose proper marker offset
               const isTargetSelected = selectedVariety?.id === edge.target;
@@ -902,10 +903,10 @@ export default function VarietyTreeGraph({
             {nodes.map((node) => {
               const isSelected = selectedVariety?.id === node.id;
               const isSearched = isNodeSearched(node);
-              const isHighlighted = hoveredNodeId ? highlight.nodes.has(node.id) : false;
+              const isHighlighted = (hoveredNodeId || selectedVariety?.id) ? highlight.nodes.has(node.id) : false;
               
-              // Faded node state
-              const isFaded = hoveredNodeId ? !isHighlighted : false;
+              // Faded node state (only when hovering something)
+              const isFaded = hoveredNodeId ? !highlight.nodes.has(node.id) : false;
 
               // Species styling
               let nodeFillColor = "fill-white";
@@ -956,6 +957,8 @@ export default function VarietyTreeGraph({
                     className={`${nodeFillColor} stroke-2 transition-all ${
                       isSelected
                         ? "stroke-blue-600 shadow-md stroke-[3]"
+                        : isHighlighted
+                        ? "stroke-blue-500 stroke-[2]"
                         : node.isVirtual
                         ? "stroke-slate-300 stroke-[1.5]"
                         : "stroke-slate-400 hover:stroke-blue-500 stroke-[1.5]"
@@ -988,6 +991,8 @@ export default function VarietyTreeGraph({
                       className={`text-[11px] transition-all select-none ${
                         isSelected
                           ? "fill-blue-700 font-black text-[12px]"
+                          : isHighlighted
+                          ? "fill-blue-600 font-bold"
                           : node.isVirtual
                           ? "fill-slate-400 font-medium italic"
                           : "fill-slate-700 font-bold hover:fill-blue-600"

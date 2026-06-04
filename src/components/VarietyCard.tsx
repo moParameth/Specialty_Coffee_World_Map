@@ -42,7 +42,7 @@ export default function VarietyCard({
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
             />
           ) : (
-            <div className="flex flex-col items-center justify-center text-slate-350 gap-1 select-none">
+            <div className="flex flex-col items-center justify-center text-slate-400 gap-1 select-none">
               <Coffee className="h-8 w-8 text-blue-200/60 group-hover:scale-110 transition-transform duration-300" />
               <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">No Photo</span>
             </div>
@@ -51,7 +51,7 @@ export default function VarietyCard({
 
         {/* Name and Species Badge */}
         <div className="flex items-start justify-between gap-2 mb-1.5">
-          <h3 className="text-lg font-black text-slate-800 tracking-tight transition-colors group-hover:text-blue-650">
+          <h3 className="text-lg font-black text-slate-800 tracking-tight transition-colors group-hover:text-blue-600">
             {variety.name}
           </h3>
           <span
@@ -74,11 +74,11 @@ export default function VarietyCard({
 
         {/* Lineage and Stature Info */}
         <div className="flex flex-wrap items-center gap-1.5 mb-3">
-          <span className="text-[10px] bg-slate-105 text-slate-500 px-2 py-0.5 rounded font-bold uppercase tracking-wider border border-slate-200">
+          <span className="text-[10px] bg-slate-100 text-slate-500 px-2 py-0.5 rounded font-bold uppercase tracking-wider border border-slate-200">
             {variety.lineage}
           </span>
           {variety.plantStature && variety.plantStature !== "Unknown" && (
-            <span className="text-[10px] bg-stone-105 text-stone-650 px-2 py-0.5 rounded font-bold uppercase tracking-wider border border-stone-200">
+            <span className="text-[10px] bg-stone-100 text-stone-600 px-2 py-0.5 rounded font-bold uppercase tracking-wider border border-stone-200">
               {variety.plantStature} Plant
             </span>
           )}
@@ -110,7 +110,7 @@ export default function VarietyCard({
       {/* Footer Details/Actions */}
       <div className="mt-4 pt-4 border-t border-slate-100 flex items-center justify-between gap-4">
         {/* Country Indicator */}
-        <div className="flex items-center gap-1 text-slate-550 text-xs font-semibold">
+        <div className="flex items-center gap-1 text-slate-500 text-xs font-semibold">
           <Globe className="h-3.5 w-3.5 text-slate-400" />
           <span>
             {countryCount} {countryCount === 1 ? "country" : "countries"}
@@ -127,8 +127,8 @@ export default function VarietyCard({
             }}
             className={`flex items-center gap-1 px-2.5 py-1.5 text-xs font-bold rounded-lg border transition-all ${
               isComparing
-                ? "bg-blue-650 border-blue-650 text-white shadow-sm hover:bg-blue-700"
-                : "bg-white border-slate-200 text-slate-650 hover:bg-slate-50 hover:border-slate-300"
+                ? "bg-blue-600 border-blue-600 text-white shadow-sm hover:bg-blue-700"
+                : "bg-white border-slate-200 text-slate-600 hover:bg-slate-50 hover:border-slate-300"
             }`}
           >
             <Scale className="h-3 w-3" />
@@ -141,7 +141,7 @@ export default function VarietyCard({
               e.stopPropagation();
               onViewDetails();
             }}
-            className="flex items-center gap-1 bg-slate-100 hover:bg-slate-205 border border-slate-200 text-slate-750 px-2.5 py-1.5 text-xs font-bold rounded-lg transition-all"
+            className="flex items-center gap-1 bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-700 px-2.5 py-1.5 text-xs font-bold rounded-lg transition-all"
           >
             <span>Details</span>
             <ArrowRight className="h-3 w-3" />

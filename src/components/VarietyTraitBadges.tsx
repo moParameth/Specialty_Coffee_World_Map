@@ -61,7 +61,7 @@ export default function VarietyTraitBadges({ variety, showSpecies = true }: Vari
   if (isCompactPlant(variety)) {
     badges.push({
       label: "Compact",
-      className: "bg-slate-100 border-slate-200 text-slate-650",
+      className: "bg-slate-100 border-slate-200 text-slate-600",
     });
   }
 

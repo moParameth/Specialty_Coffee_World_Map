@@ -109,7 +109,7 @@ export default function VarietyCompare({
                           {items.map((item: string) => (
                             <span
                               key={item}
-                              className="inline-flex rounded bg-slate-100 border border-slate-200 px-2 py-0.5 font-semibold text-slate-650"
+                              className="inline-flex rounded bg-slate-100 border border-slate-200 px-2 py-0.5 font-semibold text-slate-600"
                             >
                               {item}
                             </span>
