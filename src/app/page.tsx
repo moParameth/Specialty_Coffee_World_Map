@@ -43,9 +43,9 @@ function HomeContent() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen lg:h-screen lg:overflow-hidden bg-[#faf8f5] font-sans text-slate-800 selection:bg-amber-600 selection:text-white">
+    <div className="flex flex-col min-h-screen lg:h-screen lg:overflow-hidden bg-slate-50 font-sans text-slate-800 selection:bg-blue-500 selection:text-white">
       {/* Navigation Header */}
-      <header className="flex-none bg-white border-b border-amber-900/10 px-6 py-4 sticky top-0 z-20 shadow-sm bg-white/95 backdrop-blur">
+      <header className="flex-none bg-white border-b border-slate-200 px-6 py-4 sticky top-0 z-20 shadow-sm bg-white/95 backdrop-blur">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
             <h1 className="text-2xl font-black text-slate-900 tracking-tight">Specialty Coffee World Map</h1>
@@ -55,7 +55,7 @@ function HomeContent() {
             <Link
               id="nav-world-map"
               href="/"
-              className="flex items-center gap-1.5 px-4 py-2 text-sm font-bold bg-amber-900 border border-amber-900 text-white rounded-xl shadow-sm hover:bg-amber-950 transition-all"
+              className="flex items-center gap-1.5 px-4 py-2 text-sm font-bold bg-blue-600 border border-blue-600 text-white rounded-xl shadow-sm hover:bg-blue-700 transition-all"
             >
               <Map className="h-4 w-4" />
               <span>World Map</span>

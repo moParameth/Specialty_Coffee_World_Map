@@ -137,7 +137,7 @@ export default function CountryDetailPanel({ country, onClose }: CountryDetailPa
                   <span key={v} className="inline-flex items-center">
                     <Link
                       href={`/varieties?selected=${normId}`}
-                      className="text-amber-850 hover:text-amber-600 hover:underline font-bold text-xs"
+                      className="text-blue-600 hover:text-blue-800 hover:underline font-bold text-xs"
                     >
                       {v}
                     </Link>
