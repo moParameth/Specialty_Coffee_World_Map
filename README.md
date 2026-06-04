@@ -52,6 +52,29 @@ The application is a standard Next.js project and can be deployed easily to plat
 - **Vercel** (Recommended): Connect your GitHub repository and import the project. Vercel will automatically detect Next.js and configure the build settings.
 - **Netlify**: Connect your repository, set the build command to `npm run build`, and the publish directory to `.next`.
 
+## Coffee Variety Explorer
+
+A dedicated page at `/varieties` allows users to explore coffee cultivars and varieties, highlighting their species, lineage, agronomic traits, flavor expectations, disease resistance, and countries where they are commonly found.
+
+### MVP Features
+- **Search and Filters**: Filter varieties by text search, species (Arabica vs. Robusta), genetic lineage, and specific agronomic traits (High Quality, High Yield, Rust Resistance, Compact Stature, High Altitude).
+- **Comprehensive Detail Panel**: Show detailed information on plant stature, bean size, optimal altitude, disease resistance levels, flavor notes, and historical origins.
+- **Dynamic Country Mapping**: Click on common countries in the variety details to jump directly to the world map with that country automatically highlighted.
+- **Side-by-Side Comparison**: Select and compare up to 3 varieties simultaneously across species, lineage, parentage, yield/quality potential, optimal altitude, disease resistance, flavor notes, and common countries.
+
+### Data Sources
+- **World Coffee Research Coffee Varieties Catalog** & **Arabica and Robusta Coffee Varieties Poster** (Lineage, parentage, stature, yield, bean size, and disease resistance).
+- **Specialty Coffee Association (SCA) Coffee Value Assessment / Coffee Standards** (Sensory vocabulary context for expected flavor descriptors).
+
+### How to Extend the Dataset
+You can add more coffee varieties to the explorer by editing [coffeeVarieties.ts](file:///d:/Python%20Project/specialty-coffee-map/src/data/coffeeVarieties.ts). Simply append a new variety object matching the `CoffeeVariety` interface defined in [variety.ts](file:///d:/Python%20Project/specialty-coffee-map/src/types/variety.ts).
+
+### Notes on World Coffee Research Licensing
+Data concepts are based on publicly available World Coffee Research resources. If copying WCR catalog data directly, check and comply with WCR license terms, including attribution and non-commercial/no-derivatives restrictions where applicable.
+
+### Variety Dataset Disclaimer
+The variety dataset is curated for educational visualization. Agronomic traits are simplified from reputable public references and may vary by country, farm management, altitude, climate, and disease pressure. Flavor notes are representative expectations, not official SCA scores.
+
 ## Data Disclaimer
 
 The dataset included in this MVP is curated from reputable public sources (e.g., World Coffee Research, SCA, and national coffee boards). Sensory profile values are representative indicators for visualization purposes and not official cupping scores. Please validate data before using it for commercial or academic publication.

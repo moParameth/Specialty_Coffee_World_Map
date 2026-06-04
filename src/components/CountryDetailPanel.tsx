@@ -4,6 +4,8 @@ import { CoffeeCountry, ExternalCountryData } from "@/types/coffee";
 import SensoryChart from "./SensoryChart";
 import SourceList from "./SourceList";
 import { formatList, getFlavorEmoji } from "@/utils/countryUtils";
+import Link from "next/link";
+import { normalizeVarietyId } from "@/utils/varietyUtils";
 
 interface CountryDetailPanelProps {
   country: CoffeeCountry | null;
@@ -127,8 +129,25 @@ export default function CountryDetailPanel({ country, onClose }: CountryDetailPa
             </div>
           </div>
           <div className="rounded-xl bg-slate-50 p-4 border border-slate-200 shadow-sm">
-            <h4 className="text-[10px] font-bold text-slate-400 mb-1.5 uppercase tracking-wider">Varieties</h4>
-            <p className="text-slate-800 text-sm font-medium">{formatList(country.varieties)}</p>
+            <h4 className="text-[10px] font-bold text-slate-400 mb-2 uppercase tracking-wider">Varieties</h4>
+            <div className="flex flex-wrap gap-1.5">
+              {country.varieties.map((v, idx) => {
+                const normId = normalizeVarietyId(v);
+                return (
+                  <span key={v} className="inline-flex items-center">
+                    <Link
+                      href={`/varieties?selected=${normId}`}
+                      className="text-amber-850 hover:text-amber-600 hover:underline font-bold text-xs"
+                    >
+                      {v}
+                    </Link>
+                    {idx < country.varieties.length - 1 && (
+                      <span className="text-slate-350 ml-1.5 text-xs select-none">•</span>
+                    )}
+                  </span>
+                );
+              })}
+            </div>
           </div>
           <div className="rounded-xl bg-slate-50 p-4 border border-slate-200 shadow-sm">
             <h4 className="text-[10px] font-bold text-slate-400 mb-1.5 uppercase tracking-wider">Notable Farms/Estates</h4>
