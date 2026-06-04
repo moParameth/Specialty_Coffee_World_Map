@@ -34,7 +34,7 @@ export const coffeeVarieties: CoffeeVariety[] = [
         note: "Sensory descriptors context"
       }
     ],
-    imageUrl: "/images/varieties/geisha.png"
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/0/05/Geisha_Coffee.jpg"
   },
   {
     id: "typica",
@@ -63,7 +63,7 @@ export const coffeeVarieties: CoffeeVariety[] = [
         url: "https://varieties.worldcoffeeresearch.org/varieties/typica"
       }
     ],
-    imageUrl: "/images/varieties/typica.png"
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/c/c5/Coffea_arabica_with_red_coffee_berries.jpg"
   },
   {
     id: "bourbon",
@@ -92,7 +92,7 @@ export const coffeeVarieties: CoffeeVariety[] = [
         url: "https://varieties.worldcoffeeresearch.org/varieties/bourbon"
       }
     ],
-    imageUrl: "/images/varieties/bourbon.png"
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/a/ab/Coffea_arabica_Red_Bourbon_ripening_cherries.jpg"
   },
   {
     id: "caturra",
@@ -121,7 +121,7 @@ export const coffeeVarieties: CoffeeVariety[] = [
         url: "https://varieties.worldcoffeeresearch.org/varieties/caturra"
       }
     ],
-    imageUrl: "/images/varieties/bourbon.png"
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/2/23/Coffee_in_Colombia.jpg"
   },
   {
     id: "catuai",
@@ -149,8 +149,7 @@ export const coffeeVarieties: CoffeeVariety[] = [
         name: "World Coffee Research - Catuai",
         url: "https://varieties.worldcoffeeresearch.org/varieties/catuai"
       }
-    ],
-    imageUrl: "/images/varieties/bourbon.png"
+    ]
   },
   {
     id: "mundo-novo",
@@ -179,7 +178,7 @@ export const coffeeVarieties: CoffeeVariety[] = [
         url: "https://varieties.worldcoffeeresearch.org/varieties/mundo-novo"
       }
     ],
-    imageUrl: "/images/varieties/typica.png"
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/7/78/Coffee_berries.jpg"
   },
   {
     id: "pacamara",
@@ -207,8 +206,7 @@ export const coffeeVarieties: CoffeeVariety[] = [
         name: "World Coffee Research - Pacamara",
         url: "https://varieties.worldcoffeeresearch.org/varieties/pacamara"
       }
-    ],
-    imageUrl: "/images/varieties/pacamara.png"
+    ]
   },
   {
     id: "sl28",
@@ -227,7 +225,7 @@ export const coffeeVarieties: CoffeeVariety[] = [
     coffeeBerryDiseaseResistance: "Low",
     nematodeResistance: "Unknown",
     nutritionRequirement: "Medium",
-    commonCountries: ["Kenya", "Root-knot nematode (Unknown)", "Uganda", "Zimbabwe", "Tanzania"],
+    commonCountries: ["Kenya", "Uganda", "Zimbabwe", "Tanzania"],
     flavorNotes: ["blackcurrant", "grapefruit", "tomato-like acidity", "wine-like", "brown sugar"],
     summary: "One of the most famous African varieties, selected in Kenya in the 1930s. It has broad, copper-colored leaves and is renowned for its intense blackcurrant acidity, rich body, and exceptional flavor. While highly susceptible to rust and CBD, it thrives in high altitude with moderate rainfall.",
     relatedVarieties: ["bourbon", "sl34"],
@@ -236,8 +234,7 @@ export const coffeeVarieties: CoffeeVariety[] = [
         name: "World Coffee Research - SL28",
         url: "https://varieties.worldcoffeeresearch.org/varieties/sl28"
       }
-    ],
-    imageUrl: "/images/varieties/bourbon.png"
+    ]
   },
   {
     id: "sl34",
@@ -265,8 +262,7 @@ export const coffeeVarieties: CoffeeVariety[] = [
         name: "World Coffee Research - SL34",
         url: "https://varieties.worldcoffeeresearch.org/varieties/sl34"
       }
-    ],
-    imageUrl: "/images/varieties/typica.png"
+    ]
   },
   {
     id: "batian",
@@ -294,8 +290,7 @@ export const coffeeVarieties: CoffeeVariety[] = [
         name: "World Coffee Research - Batian",
         url: "https://varieties.worldcoffeeresearch.org/varieties/batian"
       }
-    ],
-    imageUrl: "/images/varieties/catimor.png"
+    ]
   },
   {
     id: "ruiru-11",
@@ -323,8 +318,7 @@ export const coffeeVarieties: CoffeeVariety[] = [
         name: "World Coffee Research - Ruiru 11",
         url: "https://varieties.worldcoffeeresearch.org/varieties/ruiru-11"
       }
-    ],
-    imageUrl: "/images/varieties/catimor.png"
+    ]
   },
   {
     id: "castillo",
@@ -352,8 +346,7 @@ export const coffeeVarieties: CoffeeVariety[] = [
         name: "World Coffee Research - Castillo",
         url: "https://varieties.worldcoffeeresearch.org/varieties/castillo"
       }
-    ],
-    imageUrl: "/images/varieties/catimor.png"
+    ]
   },
   {
     id: "colombia",
@@ -381,8 +374,7 @@ export const coffeeVarieties: CoffeeVariety[] = [
         name: "World Coffee Research - Colombia",
         url: "https://varieties.worldcoffeeresearch.org/varieties/colombia"
       }
-    ],
-    imageUrl: "/images/varieties/catimor.png"
+    ]
   },
   {
     id: "catimor",
@@ -410,8 +402,7 @@ export const coffeeVarieties: CoffeeVariety[] = [
         name: "World Coffee Research - Catimor",
         url: "https://varieties.worldcoffeeresearch.org/varieties/catimor"
       }
-    ],
-    imageUrl: "/images/varieties/catimor.png"
+    ]
   },
   {
     id: "s795",
@@ -439,8 +430,7 @@ export const coffeeVarieties: CoffeeVariety[] = [
         name: "World Coffee Research - S795",
         url: "https://varieties.worldcoffeeresearch.org/varieties/s795"
       }
-    ],
-    imageUrl: "/images/varieties/typica.png"
+    ]
   },
   {
     id: "java",
@@ -468,8 +458,7 @@ export const coffeeVarieties: CoffeeVariety[] = [
         name: "World Coffee Research - Java",
         url: "https://varieties.worldcoffeeresearch.org/varieties/java"
       }
-    ],
-    imageUrl: "/images/varieties/geisha.png"
+    ]
   },
   {
     id: "parainema",
@@ -497,8 +486,7 @@ export const coffeeVarieties: CoffeeVariety[] = [
         name: "World Coffee Research - Parainema",
         url: "https://varieties.worldcoffeeresearch.org/varieties/parainema"
       }
-    ],
-    imageUrl: "/images/varieties/catimor.png"
+    ]
   },
   {
     id: "anacafe-14",
@@ -526,8 +514,7 @@ export const coffeeVarieties: CoffeeVariety[] = [
         name: "ANACAFÉ Variety Catalog",
         url: "https://www.anacafe.org"
       }
-    ],
-    imageUrl: "/images/varieties/catimor.png"
+    ]
   },
   {
     id: "conilon",
@@ -557,7 +544,7 @@ export const coffeeVarieties: CoffeeVariety[] = [
         note: "Robusta genetic resources"
       }
     ],
-    imageUrl: "/images/varieties/robusta.png"
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/9/9f/Coffea_canephora_branches.jpg"
   },
   {
     id: "robusta-commercial-clones",
@@ -586,6 +573,6 @@ export const coffeeVarieties: CoffeeVariety[] = [
         url: "https://worldcoffeeresearch.org"
       }
     ],
-    imageUrl: "/images/varieties/robusta.png"
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/9/9f/Coffea_canephora_branches.jpg"
   }
 ];
