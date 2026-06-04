@@ -41,7 +41,7 @@ export const coffeeHistory: HistoryEvent[] = [
     varietyConnections: [],
     keyFigures: ["Sufi Monks"],
     stats: "Yemen remains the cradle of commercial coffee cultivation",
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/e/e0/Mocha_in_1692.jpg"
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/b/b5/Mocha_1692.jpg"
   },
   {
     id: "mecca-ban",
@@ -139,7 +139,7 @@ export const coffeeHistory: HistoryEvent[] = [
     varietyConnections: ["typica"],
     keyFigures: ["Adrian van Ommen", "Nicolaas Witsen"],
     stats: "Java becomes synonymous with global coffee trade",
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/7/76/Java_map_1718.jpg"
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/f/fb/Chatelain_-_Carte_de_l%27Isle_de_Java_1718.jpg"
   },
   {
     id: "paris-noble-tree",
@@ -181,7 +181,7 @@ export const coffeeHistory: HistoryEvent[] = [
     varietyConnections: ["typica"],
     keyFigures: ["Francisco de Melo Palheta"],
     stats: "Handful of seeds sparks Brazil's rise to produce 40%+ of global coffee",
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/0/07/Brazil_map_18th_century.jpg"
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/a/a9/Covens_%26_Mortier_-_Carte_du_Br%C3%A9sil_18th_century.jpg"
   },
   {
     id: "bach-cantata",
@@ -209,7 +209,7 @@ export const coffeeHistory: HistoryEvent[] = [
     varietyConnections: [],
     keyFigures: ["John Adams", "American Colonists"],
     stats: "342 chests of British tea dumped, triggering the patriotic switch to coffee",
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/5/52/The_Destruction_of_Tea_at_Boston_Harbor_proper.jpg"
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/5/52/The_Destruction_of_Tea_at_Boston_Harbor.jpg"
   },
   {
     id: "ceylon-leaf-rust",
