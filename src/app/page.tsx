@@ -9,7 +9,7 @@ import { CoffeeCountry } from "@/types/coffee";
 import { coffeeCountries } from "@/data/coffeeCountries";
 import { filterCoffeeCountries } from "@/utils/countryUtils";
 import Link from "next/link";
-import { Map, Coffee } from "lucide-react";
+import { Map, Coffee, History } from "lucide-react";
 
 function HomeContent() {
   const [selectedCountry, setSelectedCountry] = useState<CoffeeCountry | null>(null);
@@ -49,7 +49,7 @@ function HomeContent() {
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
             <h1 className="text-2xl font-black text-slate-900 tracking-tight">Specialty Coffee World Map</h1>
-            <p className="text-xs font-semibold text-slate-505 mt-1">Explore specialty coffee origins through an interactive flat 2D map</p>
+            <p className="text-xs font-semibold text-slate-500 mt-1">Explore specialty coffee origins through an interactive flat 2D map</p>
           </div>
           <nav className="flex items-center gap-2">
             <Link
@@ -63,10 +63,18 @@ function HomeContent() {
             <Link
               id="nav-coffee-varieties"
               href="/varieties"
-              className="flex items-center gap-1.5 px-4 py-2 text-sm font-bold text-slate-650 hover:text-slate-900 hover:bg-slate-50 rounded-xl transition-all"
+              className="flex items-center gap-1.5 px-4 py-2 text-sm font-bold text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-xl transition-all"
             >
               <Coffee className="h-4 w-4 text-slate-400" />
               <span>Coffee Varieties</span>
+            </Link>
+            <Link
+              id="nav-coffee-history"
+              href="/history"
+              className="flex items-center gap-1.5 px-4 py-2 text-sm font-bold text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-xl transition-all"
+            >
+              <History className="h-4 w-4 text-slate-400" />
+              <span>Coffee History</span>
             </Link>
           </nav>
         </div>
