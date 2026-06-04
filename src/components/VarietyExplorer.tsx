@@ -124,7 +124,7 @@ export default function VarietyExplorer() {
               <p className="text-sm font-bold text-slate-500">No varieties match your filters.</p>
               <button
                 onClick={handleResetFilters}
-                className="mt-4 inline-flex items-center rounded-xl bg-amber-50 hover:bg-amber-100 border border-amber-200 text-xs font-bold text-amber-900 px-4 py-2 transition-all shadow-sm"
+                className="mt-4 inline-flex items-center rounded-xl bg-slate-100 hover:bg-slate-200 border border-slate-200 text-xs font-bold text-slate-700 px-4 py-2 transition-all shadow-sm"
               >
                 Reset Filters
               </button>

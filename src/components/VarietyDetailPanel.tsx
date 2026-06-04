@@ -18,12 +18,19 @@ export default function VarietyDetailPanel({
 }: VarietyDetailPanelProps) {
   if (!variety) {
     return (
-      <div className="flex h-full flex-col items-center justify-center p-8 text-center bg-white/50 backdrop-blur rounded-2xl border border-amber-900/10 shadow-inner min-h-[400px]">
-        <div className="mb-4 rounded-full bg-amber-50 p-4 text-amber-600 shadow-sm border border-amber-200/50">
-          <Info className="h-8 w-8 animate-pulse" />
+      <div className="flex h-full flex-col items-center justify-center p-8 text-center bg-white rounded-2xl border border-slate-200 shadow-sm min-h-[400px]">
+        <div className="mb-5 max-w-xs overflow-hidden rounded-xl border border-slate-200 shadow-sm bg-slate-50">
+          <img 
+            src="/coffee_beans.png" 
+            alt="Coffee bean varieties" 
+            className="w-full h-auto object-cover hover:scale-102 transition-all duration-300"
+          />
         </div>
-        <p className="text-sm font-bold text-amber-900/60 uppercase tracking-wider">Select a variety</p>
-        <p className="text-sm text-slate-500 max-w-xs mt-1">
+        <div className="mb-4 rounded-full bg-blue-50 p-4 text-blue-600 shadow-sm border border-blue-200/50">
+          <Info className="h-7 w-7 animate-pulse" />
+        </div>
+        <p className="text-sm font-bold text-slate-800 uppercase tracking-wider">Select a variety</p>
+        <p className="text-xs text-slate-500 max-w-xs mt-1">
           Select a coffee variety to view its details.
         </p>
       </div>
@@ -57,27 +64,27 @@ export default function VarietyDetailPanel({
   ];
 
   return (
-    <div className="flex h-full flex-col bg-white border border-amber-900/10 rounded-2xl shadow-sm overflow-hidden">
+    <div className="flex h-full flex-col bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden">
       {/* Detail Header */}
       <div className="border-b border-slate-100 p-6 bg-slate-50/50">
         <div className="flex flex-wrap items-center justify-between gap-3 mb-2">
           <span
             className={`inline-flex items-center rounded-md border px-2.5 py-0.5 text-xs font-bold uppercase tracking-wider ${
               variety.species === "Arabica"
-                ? "bg-[#eef5ed] border-[#cce3cb] text-[#2c532c]"
-                : "bg-[#f5eeeb] border-[#ebdcd5] text-[#783c24]"
+                ? "bg-blue-50 border-blue-200 text-blue-700"
+                : "bg-slate-100 border-slate-300 text-slate-700"
             }`}
           >
             {variety.species}
           </span>
-          <span className="inline-flex items-center gap-1 text-xs font-bold text-slate-500 bg-slate-100 px-2.5 py-0.5 rounded uppercase tracking-wider">
+          <span className="inline-flex items-center gap-1 text-xs font-bold text-slate-500 bg-slate-100 px-2.5 py-0.5 rounded uppercase tracking-wider border border-slate-200">
             <GitBranch className="h-3 w-3" />
             {variety.lineage}
           </span>
         </div>
         <h2 className="text-2xl font-black text-slate-900 tracking-tight mb-1">{variety.name}</h2>
         {variety.alternativeNames && variety.alternativeNames.length > 0 && (
-          <p className="text-xs text-slate-500 font-semibold italic">
+          <p className="text-xs text-slate-505 font-semibold italic">
             Also known as: {variety.alternativeNames.join(", ")}
           </p>
         )}
@@ -94,7 +101,7 @@ export default function VarietyDetailPanel({
         </section>
 
         {/* Technical Origins */}
-        <section className="grid grid-cols-2 gap-4 rounded-xl bg-amber-50/30 p-4 border border-amber-900/5">
+        <section className="grid grid-cols-2 gap-4 rounded-xl bg-slate-50 p-4 border border-slate-200">
           <div>
             <p className="text-[10px] font-bold text-slate-450 uppercase tracking-wider mb-0.5">Genetic Parentage</p>
             <p className="text-sm font-medium text-slate-800">{variety.parentage || "Unknown"}</p>
@@ -146,7 +153,7 @@ export default function VarietyDetailPanel({
             {variety.flavorNotes.map((note) => (
               <span
                 key={note}
-                className="inline-flex items-center gap-1.5 rounded-lg bg-amber-50 border border-amber-200 px-3 py-1.5 text-xs font-medium text-amber-950 shadow-sm"
+                className="inline-flex items-center gap-1.5 rounded-lg bg-blue-50/40 border border-blue-100 px-3 py-1.5 text-xs font-medium text-blue-900 shadow-sm"
               >
                 <span>{getFlavorEmoji(note)}</span>
                 <span>{note}</span>
@@ -168,7 +175,7 @@ export default function VarietyDetailPanel({
                   <Link
                     key={country}
                     href={`/?country=${iso3}`}
-                    className="inline-flex items-center rounded-full bg-slate-100 hover:bg-amber-100 hover:text-amber-900 border border-slate-200 hover:border-amber-300 px-3 py-1 text-xs font-bold text-slate-700 shadow-sm transition-all"
+                    className="inline-flex items-center rounded-full bg-slate-100 hover:bg-blue-50 hover:text-blue-700 border border-slate-200 hover:border-blue-200 px-3 py-1 text-xs font-bold text-slate-700 shadow-sm transition-all"
                   >
                     {country}
                   </Link>
@@ -177,7 +184,7 @@ export default function VarietyDetailPanel({
               return (
                 <span
                   key={country}
-                  className="inline-flex items-center rounded-full bg-slate-100 border border-slate-200 px-3 py-1 text-xs font-bold text-slate-550 shadow-sm"
+                  className="inline-flex items-center rounded-full bg-slate-105 border border-slate-200 px-3 py-1 text-xs font-bold text-slate-550 shadow-sm"
                 >
                   {country}
                 </span>
@@ -200,7 +207,7 @@ export default function VarietyDetailPanel({
                   <button
                     key={relId}
                     onClick={() => onSelectVariety(info.id)}
-                    className="inline-flex items-center gap-1 rounded bg-amber-50/50 hover:bg-amber-50 border border-amber-900/10 hover:border-amber-950/20 px-2.5 py-1 text-xs font-semibold text-amber-950 transition-colors"
+                    className="inline-flex items-center gap-1 rounded bg-slate-100 hover:bg-slate-200 border border-slate-200 hover:border-slate-300 px-2.5 py-1 text-xs font-semibold text-slate-700 transition-colors"
                   >
                     {info.name}
                   </button>
@@ -227,7 +234,7 @@ export default function VarietyDetailPanel({
                     href={src.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-bold text-slate-700 hover:text-amber-900 hover:underline flex items-center gap-1 inline-flex"
+                    className="font-bold text-slate-700 hover:text-blue-650 hover:underline flex items-center gap-1 inline-flex"
                   >
                     <span>{src.name}</span>
                     <ExternalLink className="h-3 w-3" />
@@ -240,7 +247,7 @@ export default function VarietyDetailPanel({
         </section>
 
         {/* Disclaimer */}
-        <div className="rounded-xl border border-slate-200 bg-slate-50 p-4 text-[10px] text-slate-450 leading-relaxed font-medium">
+        <div className="rounded-xl border border-slate-200 bg-slate-50 p-4 text-[10px] text-slate-455 leading-relaxed font-medium">
           <strong>Disclaimer:</strong> This dataset is curated for educational visualization. Agronomic traits are simplified from reputable public references and may vary by country, farm management, altitude, climate, and disease pressure. Flavor notes are representative expectations, not official SCA scores.
         </div>
       </div>

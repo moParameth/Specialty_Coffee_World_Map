@@ -15,8 +15,8 @@ export default function VarietyCompare({
 }: VarietyCompareProps) {
   if (selectedVarieties.length < 2) {
     return (
-      <div className="rounded-2xl border border-amber-900/10 bg-amber-50/10 p-8 text-center border-dashed">
-        <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-amber-50 text-amber-800 border border-amber-200">
+      <div className="rounded-2xl border border-slate-200 bg-blue-50/10 p-8 text-center border-dashed">
+        <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-blue-50 text-blue-600 border border-blue-200">
           <Scale className="h-6 w-6" />
         </div>
         <h3 className="mt-4 text-sm font-bold text-slate-800 uppercase tracking-wider">Comparison Matrix</h3>
@@ -42,12 +42,12 @@ export default function VarietyCompare({
   ];
 
   return (
-    <div className="rounded-2xl border border-amber-900/10 bg-white p-6 shadow-sm overflow-hidden flex flex-col">
+    <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm overflow-hidden flex flex-col">
       {/* Header Info */}
       <div className="flex items-center justify-between border-b border-slate-100 pb-4 mb-4">
         <div>
           <h3 className="text-lg font-black text-slate-850 tracking-tight flex items-center gap-2">
-            <Scale className="h-5 w-5 text-amber-850" />
+            <Scale className="h-5 w-5 text-blue-600" />
             <span>Variety Comparison</span>
           </h3>
           <p className="text-xs text-slate-500">
@@ -56,7 +56,7 @@ export default function VarietyCompare({
         </div>
         <button
           onClick={onClear}
-          className="rounded-xl border border-amber-200 bg-amber-50 hover:bg-amber-100 active:scale-98 text-xs font-bold text-amber-955 px-3 py-2 transition-all"
+          className="rounded-xl border border-slate-200 bg-slate-100 hover:bg-slate-200 active:scale-98 text-xs font-bold text-slate-700 px-3 py-2 transition-all"
         >
           Clear Comparison
         </button>

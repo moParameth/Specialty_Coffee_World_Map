@@ -20,12 +20,12 @@ export default function VarietyTraitBadges({ variety, showSpecies = true }: Vari
     if (variety.species === "Arabica") {
       badges.push({
         label: "Arabica",
-        className: "bg-[#eef5ed] border-[#cce3cb] text-[#2c532c]",
+        className: "bg-blue-50 border-blue-200 text-blue-700",
       });
     } else if (variety.species === "Robusta") {
       badges.push({
         label: "Robusta",
-        className: "bg-[#f5eeeb] border-[#ebdcd5] text-[#783c24]",
+        className: "bg-slate-100 border-slate-300 text-slate-700",
       });
     }
   }
@@ -33,42 +33,42 @@ export default function VarietyTraitBadges({ variety, showSpecies = true }: Vari
   if (isHighQuality(variety)) {
     badges.push({
       label: "High Quality",
-      className: "bg-amber-50 border-amber-200 text-amber-800",
+      className: "bg-blue-50 border-blue-200 text-blue-700",
     });
   }
 
   if (isHighYield(variety)) {
     badges.push({
       label: "High Yield",
-      className: "bg-orange-50 border-orange-200 text-orange-800",
+      className: "bg-indigo-50 border-indigo-200 text-indigo-700",
     });
   }
 
   if (isLeafRustResistant(variety)) {
     badges.push({
       label: "Rust Resistant",
-      className: "bg-emerald-50 border-emerald-200 text-emerald-800",
+      className: "bg-emerald-50 border-emerald-200 text-emerald-700",
     });
   }
 
   if (isCoffeeBerryDiseaseResistant(variety)) {
     badges.push({
       label: "CBD Resistant",
-      className: "bg-teal-50 border-teal-200 text-teal-800",
+      className: "bg-teal-50 border-teal-200 text-teal-700",
     });
   }
 
   if (isCompactPlant(variety)) {
     badges.push({
       label: "Compact",
-      className: "bg-stone-100 border-stone-200 text-stone-700",
+      className: "bg-slate-100 border-slate-200 text-slate-650",
     });
   }
 
   if (isHighAltitudeSuitable(variety)) {
     badges.push({
       label: "High Altitude",
-      className: "bg-sky-50 border-sky-200 text-sky-850",
+      className: "bg-sky-50 border-sky-200 text-sky-700",
     });
   }
 

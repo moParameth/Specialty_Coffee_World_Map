@@ -25,21 +25,21 @@ export default function VarietyCard({
     <div
       className={`group flex flex-col justify-between rounded-2xl border bg-white p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-md ${
         isActive
-          ? "border-amber-500 ring-2 ring-amber-500/20 shadow-sm"
-          : "border-amber-900/10 hover:border-amber-900/20 shadow-sm"
+          ? "border-blue-500 ring-2 ring-blue-500/20 shadow-sm"
+          : "border-slate-200 hover:border-slate-300 shadow-sm"
       }`}
     >
       <div>
         {/* Name and Species Badge */}
         <div className="flex items-start justify-between gap-2 mb-1.5">
-          <h3 className="text-lg font-black text-slate-800 tracking-tight transition-colors group-hover:text-amber-900">
+          <h3 className="text-lg font-black text-slate-800 tracking-tight transition-colors group-hover:text-blue-650">
             {variety.name}
           </h3>
           <span
             className={`inline-flex items-center rounded-md border px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider ${
               variety.species === "Arabica"
-                ? "bg-[#eef5ed] border-[#cce3cb] text-[#2c532c]"
-                : "bg-[#f5eeeb] border-[#ebdcd5] text-[#783c24]"
+                ? "bg-blue-50 border-blue-200 text-blue-700"
+                : "bg-slate-100 border-slate-300 text-slate-700"
             }`}
           >
             {variety.species}
@@ -55,11 +55,11 @@ export default function VarietyCard({
 
         {/* Lineage and Stature Info */}
         <div className="flex flex-wrap items-center gap-1.5 mb-3">
-          <span className="text-[10px] bg-slate-100 text-slate-600 px-2 py-0.5 rounded font-bold uppercase tracking-wider">
+          <span className="text-[10px] bg-slate-105 text-slate-500 px-2 py-0.5 rounded font-bold uppercase tracking-wider border border-slate-200">
             {variety.lineage}
           </span>
           {variety.plantStature && variety.plantStature !== "Unknown" && (
-            <span className="text-[10px] bg-stone-100 text-stone-600 px-2 py-0.5 rounded font-bold uppercase tracking-wider">
+            <span className="text-[10px] bg-stone-105 text-stone-650 px-2 py-0.5 rounded font-bold uppercase tracking-wider border border-stone-200">
               {variety.plantStature} Plant
             </span>
           )}
@@ -75,7 +75,7 @@ export default function VarietyCard({
           {flavorTags.map((flavor) => (
             <span
               key={flavor}
-              className="inline-flex items-center rounded-full bg-amber-50/50 border border-amber-900/5 px-2.5 py-0.5 text-xs text-amber-900/80 font-medium"
+              className="inline-flex items-center rounded-full bg-blue-50/40 border border-blue-100 px-2.5 py-0.5 text-xs text-blue-900/70 font-semibold"
             >
               {flavor}
             </span>
@@ -108,8 +108,8 @@ export default function VarietyCard({
             }}
             className={`flex items-center gap-1 px-2.5 py-1.5 text-xs font-bold rounded-lg border transition-all ${
               isComparing
-                ? "bg-amber-900 border-amber-900 text-white shadow-sm"
-                : "bg-white border-slate-200 text-slate-600 hover:bg-slate-50 hover:border-slate-300"
+                ? "bg-blue-650 border-blue-650 text-white shadow-sm hover:bg-blue-700"
+                : "bg-white border-slate-200 text-slate-650 hover:bg-slate-50 hover:border-slate-300"
             }`}
           >
             <Scale className="h-3 w-3" />
@@ -122,7 +122,7 @@ export default function VarietyCard({
               e.stopPropagation();
               onViewDetails();
             }}
-            className="flex items-center gap-1 bg-amber-50 hover:bg-amber-100 border border-amber-200 text-amber-950 px-2.5 py-1.5 text-xs font-bold rounded-lg transition-all"
+            className="flex items-center gap-1 bg-slate-100 hover:bg-slate-205 border border-slate-200 text-slate-750 px-2.5 py-1.5 text-xs font-bold rounded-lg transition-all"
           >
             <span>Details</span>
             <ArrowRight className="h-3 w-3" />

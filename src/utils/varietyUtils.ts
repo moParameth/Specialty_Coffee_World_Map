@@ -61,9 +61,9 @@ export function getTraitColor(level: TraitLevel): { bg: string; text: string; bo
       };
     case "Medium":
       return {
-        bg: "bg-amber-50",
-        text: "text-amber-700",
-        border: "border-amber-200"
+        bg: "bg-blue-50/50",
+        text: "text-blue-700",
+        border: "border-blue-100"
       };
     case "Low":
     case "Very Low":
