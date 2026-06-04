@@ -1017,5 +1017,202 @@ export const coffeeVarieties: CoffeeVariety[] = [
       }
     ],
     "imageUrl": "https://optimise2.assets-servd.host/worldcoffee-research/production/images/Arabica/Tekisic-1.jpg?w=3000&h=2000&auto=compress%2Cformat&fit=crop&dm=1684915651&s=b0ca464581510aeceb39eea31b9852da"
+  },
+  {
+    "id": "sidra",
+    "name": "Sidra",
+    "alternativeNames": ["Cafe Sidra", "Sydra"],
+    "species": "Arabica",
+    "lineage": "Bourbon-Typica",
+    "parentage": "Cross of Red Bourbon and Typica",
+    "origin": "Ecuador (Pichincha)",
+    "plantStature": "Tall",
+    "beanSize": "High",
+    "yieldPotential": "Medium",
+    "qualityPotential": "Exceptional",
+    "optimalAltitude": "1500–2100 m",
+    "leafRustResistance": "Low",
+    "coffeeBerryDiseaseResistance": "Low",
+    "nematodeResistance": "Unknown",
+    "nutritionRequirement": "Medium",
+    "commonCountries": ["Ecuador", "Colombia"],
+    "flavorNotes": ["red apple", "jasmine", "apricot", "maple syrup", "cider", "creamy body"],
+    "summary": "An elite hybrid variety originating in Ecuador. It combines the sweetness and body of Bourbon with the bright, floral acidity of Typica. Sidra has gained massive acclaim in international barista competitions for its complex, fruity, and highly clean cup profile.",
+    "relatedVarieties": ["bourbon", "typica"],
+    "sources": [
+      {
+        "name": "Specialty Coffee Association (SCA)",
+        "url": "https://sca.coffee"
+      }
+    ]
+  },
+  {
+    "id": "pink-bourbon",
+    "name": "Pink Bourbon",
+    "alternativeNames": ["Bourbon Rosado"],
+    "species": "Arabica",
+    "lineage": "Bourbon",
+    "parentage": "Natural hybridization of Red and Yellow Bourbon",
+    "origin": "Colombia (Huila)",
+    "plantStature": "Tall",
+    "beanSize": "Medium",
+    "yieldPotential": "Medium",
+    "qualityPotential": "Exceptional",
+    "optimalAltitude": "1400–2000 m",
+    "leafRustResistance": "Low",
+    "coffeeBerryDiseaseResistance": "Low",
+    "nematodeResistance": "Low",
+    "nutritionRequirement": "Medium",
+    "commonCountries": ["Colombia"],
+    "flavorNotes": ["pink grapefruit", "honey", "floral", "peach", "mandarin orange", "delicate sweetness"],
+    "summary": "A highly coveted natural hybrid/mutation discovered in Huila, Colombia. It produces beautiful pink cherries when ripe, which genetically represent a cross of Red and Yellow Bourbon. It is highly prized for its exceptional sweetness, light floral notes, and elegant citrus profile.",
+    "relatedVarieties": ["bourbon"],
+    "sources": [
+      {
+        "name": "Café de Colombia",
+        "url": "https://www.cafedecolombia.com"
+      }
+    ]
+  },
+  {
+    "id": "laurina",
+    "name": "Laurina",
+    "alternativeNames": ["Bourbon Pointu", "Pointu"],
+    "species": "Arabica",
+    "lineage": "Bourbon",
+    "parentage": "Natural dwarf mutation of Bourbon",
+    "origin": "Réunion Island (Bourbon Island)",
+    "plantStature": "Dwarf",
+    "beanSize": "Low",
+    "yieldPotential": "Very Low",
+    "qualityPotential": "Very High",
+    "optimalAltitude": "1200–1800 m",
+    "leafRustResistance": "Low",
+    "coffeeBerryDiseaseResistance": "Low",
+    "nematodeResistance": "Low",
+    "nutritionRequirement": "Medium",
+    "commonCountries": ["Réunion", "Brazil", "Costa Rica"],
+    "flavorNotes": ["peach", "rosemary", "white chocolate", "clean sweetness", "very low bitterness"],
+    "summary": "A famous natural mutation of Bourbon first observed on Réunion Island in the 18th century. It features a unique compact Christmas-tree shape and produces pointed beans. Laurina is renowned for its naturally low caffeine content (around 0.5%–0.6%—half that of normal Arabica), giving it an exceptionally sweet, mild cup with almost no bitterness.",
+    "relatedVarieties": ["bourbon"],
+    "sources": [
+      {
+        "name": "World Coffee Research - Bourbon Pointu",
+        "url": "https://worldcoffeeresearch.org"
+      }
+    ]
+  },
+  {
+    "id": "wush-wush",
+    "name": "Wush Wush",
+    "alternativeNames": ["Wushwush"],
+    "species": "Arabica",
+    "lineage": "Ethiopian Landrace",
+    "parentage": "Selection from wild Ethiopian landraces",
+    "origin": "Ethiopia (Wushwush region)",
+    "plantStature": "Tall",
+    "beanSize": "Medium",
+    "yieldPotential": "Low",
+    "qualityPotential": "Exceptional",
+    "optimalAltitude": "1700–2200 m",
+    "leafRustResistance": "Low",
+    "coffeeBerryDiseaseResistance": "Low",
+    "nematodeResistance": "Unknown",
+    "nutritionRequirement": "Medium",
+    "commonCountries": ["Ethiopia", "Colombia"],
+    "flavorNotes": ["blueberry", "winey", "strawberry", "jasmine", "cacao nibs", "complex acidity"],
+    "summary": "A low-yielding heirloom landrace originating from the high-altitude forests of the Wushwush region in southwest Ethiopia. Prized for its intense cup profile, featuring deep berry notes, tropical fruits, and wine-like complexity, it has become a favorite in specialty competitions worldwide.",
+    "relatedVarieties": ["geisha"],
+    "sources": [
+      {
+        "name": "Royal Coffee - Wush Wush Profile",
+        "url": "https://royalcoffee.com"
+      }
+    ]
+  },
+  {
+    "id": "sudan-rume",
+    "name": "Sudan Rume",
+    "alternativeNames": ["Rume Sudan"],
+    "species": "Arabica",
+    "lineage": "Ethiopian Landrace",
+    "parentage": "Wild selection from South Sudan landraces",
+    "origin": "South Sudan (Boma Plateau)",
+    "plantStature": "Tall",
+    "beanSize": "Medium",
+    "yieldPotential": "Low",
+    "qualityPotential": "Exceptional",
+    "optimalAltitude": "1300–1900 m",
+    "leafRustResistance": "Medium",
+    "coffeeBerryDiseaseResistance": "High",
+    "nematodeResistance": "Unknown",
+    "nutritionRequirement": "Medium",
+    "commonCountries": ["South Sudan", "Colombia"],
+    "flavorNotes": ["cardamom", "eucalyptus", "black tea", "lemon zest", "ginger", "herbal sweetness"],
+    "summary": "A wild landrace variety collected from the Boma Plateau in South Sudan. It is genetically vital as a source of disease resistance, particularly to Coffee Berry Disease, and is a parent for breeding elite cultivars like Ruiru 11 and Centroamericano. On its own, it yields an incredibly unique, herbal, tea-like, and spicy cup.",
+    "relatedVarieties": ["centroamericano"],
+    "sources": [
+      {
+        "name": "World Coffee Research - Sudan Rume",
+        "url": "https://worldcoffeeresearch.org"
+      }
+    ]
+  },
+  {
+    "id": "eugenioides",
+    "name": "Eugenioides",
+    "alternativeNames": ["Coffea eugenioides"],
+    "species": "Eugenioides",
+    "lineage": "Eugenioides",
+    "parentage": "Wild diploid coffee species",
+    "origin": "East African Highlands (Uganda, Kenya, Rwanda)",
+    "plantStature": "Compact",
+    "beanSize": "Very Low",
+    "yieldPotential": "Very Low",
+    "qualityPotential": "Exceptional",
+    "optimalAltitude": "1000–1800 m",
+    "leafRustResistance": "Medium",
+    "coffeeBerryDiseaseResistance": "Medium",
+    "nematodeResistance": "Unknown",
+    "nutritionRequirement": "Low",
+    "commonCountries": ["Colombia", "Uganda"],
+    "flavorNotes": ["toasted marshmallow", "lemon drops", "sweet milk", "cereal", "extremely sweet", "no bitterness"],
+    "summary": "A distinct diploid coffee species native to the East African highlands. It is famous for being one of the two genetic parents of Coffea arabica (the other being Coffea canephora/Robusta). Grown in very small volumes in Colombia, it features extremely low caffeine and an astonishingly sweet, cereal-like cup profile with virtually no bitterness.",
+    "relatedVarieties": ["typica", "bourbon", "conilon"],
+    "sources": [
+      {
+        "name": "Kew Royal Botanic Gardens - Coffea eugenioides",
+        "url": "https://powo.science.kew.org"
+      }
+    ]
+  },
+  {
+    "id": "timor-hybrid",
+    "name": "Timor Hybrid",
+    "alternativeNames": ["Hibrido de Timor", "HDT"],
+    "species": "Arabica",
+    "lineage": "Introgressed",
+    "parentage": "Spontaneous natural cross between Typica (Arabica) and Robusta",
+    "origin": "Timor Island",
+    "plantStature": "Tall",
+    "beanSize": "High",
+    "yieldPotential": "High",
+    "qualityPotential": "Medium",
+    "optimalAltitude": "800–1500 m",
+    "leafRustResistance": "Very High",
+    "coffeeBerryDiseaseResistance": "High",
+    "nematodeResistance": "High",
+    "nutritionRequirement": "Medium",
+    "commonCountries": ["Timor-Leste", "Indonesia"],
+    "flavorNotes": ["herbal", "woody", "dark cocoa", "earthy", "bold body"],
+    "summary": "A spontaneous natural cross between Arabica and Robusta first discovered on Timor Island in 1917. It is genetically foundational to modern coffee breeding, as its Robusta parentage introduced complete resistance to Coffee Leaf Rust. It is the genetic ancestor of all Catimor and Sarchimor varieties.",
+    "relatedVarieties": ["typica", "catimor", "centroamericano", "marsellesa", "obata"],
+    "sources": [
+      {
+        "name": "World Coffee Research - Timor Hybrid",
+        "url": "https://varieties.worldcoffeeresearch.org/varieties/timor-hybrid"
+      }
+    ],
+    "imageUrl": "https://optimise2.assets-servd.host/worldcoffee-research/production/images/Arabica/Hibrido-de-Timor-1.jpg?w=640&h=480&auto=compress%2Cformat&fit=crop&dm=1684915621&s=4d0a927a421b446c6ea40a463eb4c134"
   }
 ];

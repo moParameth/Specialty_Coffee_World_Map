@@ -1,4 +1,4 @@
-export type VarietySpecies = "Arabica" | "Robusta";
+export type VarietySpecies = "Arabica" | "Robusta" | "Eugenioides" | "Other";
 
 export type VarietyLineage =
   | "Ethiopian Landrace"
@@ -10,6 +10,7 @@ export type VarietyLineage =
   | "Introgressed"
   | "F1 Hybrid"
   | "Robusta"
+  | "Eugenioides"
   | "Unknown";
 
 export type TraitLevel =

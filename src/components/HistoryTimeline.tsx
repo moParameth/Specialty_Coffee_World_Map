@@ -13,7 +13,9 @@ import {
   RefreshCw,
   Clock,
   Sparkles,
-  Link2
+  Link2,
+  User,
+  TrendingUp
 } from "lucide-react";
 
 type EraType = "all" | "origins" | "expansion" | "industrial" | "modern";
@@ -223,6 +225,24 @@ export default function HistoryTimeline() {
                       <h3 className="text-xl font-extrabold text-slate-950 tracking-tight group-hover:text-blue-600 transition-colors">
                         {event.title}
                       </h3>
+
+                      {/* Key Figures & Stats */}
+                      {(event.keyFigures && event.keyFigures.length > 0) || event.stats ? (
+                        <div className="flex flex-wrap items-center gap-1.5 mt-0.5 text-xs">
+                          {event.stats && (
+                            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-blue-50 text-blue-800 font-bold border border-blue-100 shadow-[0_1px_2px_rgba(59,130,246,0.05)]">
+                              <TrendingUp className="h-3.5 w-3.5 text-blue-500" />
+                              <span>{event.stats}</span>
+                            </span>
+                          )}
+                          {event.keyFigures && event.keyFigures.map((person) => (
+                            <span key={person} className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-slate-50 text-slate-700 font-bold border border-slate-200">
+                              <User className="h-3.5 w-3.5 text-slate-400" />
+                              <span>{person}</span>
+                            </span>
+                          ))}
+                        </div>
+                      ) : null}
 
                       {/* Summary */}
                       <p className="text-sm font-semibold text-slate-700 leading-relaxed">

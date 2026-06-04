@@ -9,7 +9,7 @@ interface Node {
   name: string;
   x: number;
   y: number;
-  species: "Arabica" | "Robusta" | "Liberica" | "Hybrid";
+  species: "Arabica" | "Robusta" | "Liberica" | "Hybrid" | "Eugenioides";
   isVirtual?: boolean;
   description?: string;
   lineage: string;
@@ -34,25 +34,43 @@ const nodes: Node[] = [
     "id": "geisha",
     "name": "Geisha",
     "x": 120,
-    "y": 80,
+    "y": 60,
     "species": "Arabica",
     "lineage": "Ethiopian Landrace",
     "description": "Wild Ethiopian landrace collection"
   },
   {
+    "id": "wush-wush",
+    "name": "Wush Wush",
+    "x": 120,
+    "y": 115,
+    "species": "Arabica",
+    "lineage": "Ethiopian Landrace",
+    "description": "Wild heirloom selection from Ethiopia"
+  },
+  {
     "id": "java",
     "name": "Java",
     "x": 120,
-    "y": 160,
+    "y": 170,
     "species": "Arabica",
     "lineage": "Ethiopian Landrace",
     "description": "Wild Ethiopian landrace via Java"
   },
   {
+    "id": "sudan-rume",
+    "name": "Sudan Rume",
+    "x": 120,
+    "y": 225,
+    "species": "Arabica",
+    "lineage": "Ethiopian Landrace",
+    "description": "Wild South Sudan landrace selection"
+  },
+  {
     "id": "typica",
     "name": "Typica",
     "x": 120,
-    "y": 250,
+    "y": 285,
     "species": "Arabica",
     "lineage": "Typica",
     "description": "Foundational early Arabica cultivar"
@@ -61,7 +79,7 @@ const nodes: Node[] = [
     "id": "bourbon",
     "name": "Bourbon",
     "x": 120,
-    "y": 380,
+    "y": 400,
     "species": "Arabica",
     "lineage": "Bourbon",
     "description": "Foundational early Arabica cultivar"
@@ -70,10 +88,19 @@ const nodes: Node[] = [
     "id": "conilon",
     "name": "Conilon",
     "x": 120,
-    "y": 560,
+    "y": 540,
     "species": "Robusta",
     "lineage": "Robusta",
     "description": "Coffea canephora group parent"
+  },
+  {
+    "id": "eugenioides",
+    "name": "Eugenioides",
+    "x": 120,
+    "y": 615,
+    "species": "Eugenioides",
+    "lineage": "Eugenioides",
+    "description": "Diploid parent species of Arabica"
   },
   {
     "id": "sl14",
@@ -162,9 +189,35 @@ const nodes: Node[] = [
     "x": 360,
     "y": 650,
     "species": "Hybrid",
-    "isVirtual": true,
     "lineage": "Introgressed",
     "description": "Natural Arabica-Robusta cross (rust resistant)"
+  },
+  {
+    "id": "sidra",
+    "name": "Sidra",
+    "x": 480,
+    "y": 230,
+    "species": "Arabica",
+    "lineage": "Bourbon-Typica",
+    "description": "Red Bourbon x Typica hybrid"
+  },
+  {
+    "id": "laurina",
+    "name": "Laurina",
+    "x": 480,
+    "y": 380,
+    "species": "Arabica",
+    "lineage": "Bourbon",
+    "description": "Natural Bourbon dwarf mutation"
+  },
+  {
+    "id": "pink-bourbon",
+    "name": "Pink Bourbon",
+    "x": 480,
+    "y": 480,
+    "species": "Arabica",
+    "lineage": "Bourbon",
+    "description": "Red x Yellow Bourbon natural cross"
   },
   {
     "id": "s795",
@@ -517,6 +570,51 @@ const edges: Edge[] = [
     "source": "conilon",
     "target": "robusta-commercial-clones",
     "type": "selection"
+  },
+  {
+    "source": "eugenioides",
+    "target": "typica",
+    "type": "hybrid"
+  },
+  {
+    "source": "eugenioides",
+    "target": "bourbon",
+    "type": "hybrid"
+  },
+  {
+    "source": "conilon",
+    "target": "typica",
+    "type": "hybrid"
+  },
+  {
+    "source": "conilon",
+    "target": "bourbon",
+    "type": "hybrid"
+  },
+  {
+    "source": "sudan-rume",
+    "target": "centroamericano",
+    "type": "hybrid"
+  },
+  {
+    "source": "bourbon",
+    "target": "laurina",
+    "type": "mutation"
+  },
+  {
+    "source": "bourbon",
+    "target": "pink-bourbon",
+    "type": "selection"
+  },
+  {
+    "source": "bourbon",
+    "target": "sidra",
+    "type": "hybrid"
+  },
+  {
+    "source": "typica",
+    "target": "sidra",
+    "type": "hybrid"
   }
 ];
 
@@ -816,6 +914,8 @@ export default function VarietyTreeGraph({
                 nodeFillColor = "fill-amber-50/20";
               } else if (node.species === "Hybrid") {
                 nodeFillColor = "fill-purple-50/20";
+              } else if (node.species === "Eugenioides") {
+                nodeFillColor = "fill-emerald-50/20";
               }
 
               return (
@@ -873,6 +973,8 @@ export default function VarietyTreeGraph({
                         ? "fill-amber-600"
                         : node.species === "Hybrid"
                         ? "fill-purple-500"
+                        : node.species === "Eugenioides"
+                        ? "fill-emerald-500"
                         : "fill-blue-500"
                     }`}
                   />
