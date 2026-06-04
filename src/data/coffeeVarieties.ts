@@ -34,7 +34,7 @@ export const coffeeVarieties: CoffeeVariety[] = [
         note: "Sensory descriptors context"
       }
     ],
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/0/05/Geisha_Coffee.jpg"
+    imageUrl: "https://optimise2.assets-servd.host/worldcoffee-research/production/images/Arabica/Geisha-1.jpg?w=2667&h=4000&auto=compress%2Cformat&fit=crop&dm=1684915617&s=e46a287f2b3a357774cb649b75db702d"
   },
   {
     id: "typica",
@@ -63,7 +63,7 @@ export const coffeeVarieties: CoffeeVariety[] = [
         url: "https://varieties.worldcoffeeresearch.org/varieties/typica"
       }
     ],
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/c/c5/Coffea_arabica_with_red_coffee_berries.jpg"
+    imageUrl: "https://optimise2.assets-servd.host/worldcoffee-research/production/images/Arabica/Typica-1.jpg?w=3000&h=2000&auto=compress%2Cformat&fit=crop&dm=1684915651&s=98587637e4eab0ceea12508cfbf4453d"
   },
   {
     id: "bourbon",
@@ -92,7 +92,7 @@ export const coffeeVarieties: CoffeeVariety[] = [
         url: "https://varieties.worldcoffeeresearch.org/varieties/bourbon"
       }
     ],
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/a/ab/Coffea_arabica_Red_Bourbon_ripening_cherries.jpg"
+    imageUrl: "https://optimise2.assets-servd.host/worldcoffee-research/production/images/Arabica/Bourbon-1.jpg?w=4000&h=2667&auto=compress%2Cformat&fit=crop&dm=1684915605&s=64849a4cf0a7ae2d049a630b4bdd73d1"
   },
   {
     id: "caturra",
@@ -121,7 +121,7 @@ export const coffeeVarieties: CoffeeVariety[] = [
         url: "https://varieties.worldcoffeeresearch.org/varieties/caturra"
       }
     ],
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/2/23/Coffee_in_Colombia.jpg"
+    imageUrl: "https://optimise2.assets-servd.host/worldcoffee-research/production/images/Arabica/Caturra-1.jpg?w=640&h=480&auto=compress%2Cformat&fit=crop&dm=1684915609&s=b16f5fc602cda33f02116250603f4a56"
   },
   {
     id: "catuai",
@@ -149,7 +149,8 @@ export const coffeeVarieties: CoffeeVariety[] = [
         name: "World Coffee Research - Catuai",
         url: "https://varieties.worldcoffeeresearch.org/varieties/catuai"
       }
-    ]
+    ],
+    imageUrl: "https://optimise2.assets-servd.host/worldcoffee-research/production/images/Arabica/Catuai-1.jpg?w=3000&h=2000&auto=compress%2Cformat&fit=crop&dm=1684915609&s=7d91cdabe5228796f6da14e6451fce35"
   },
   {
     id: "mundo-novo",
@@ -178,7 +179,7 @@ export const coffeeVarieties: CoffeeVariety[] = [
         url: "https://varieties.worldcoffeeresearch.org/varieties/mundo-novo"
       }
     ],
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/7/78/Coffee_berries.jpg"
+    imageUrl: "https://optimise2.assets-servd.host/worldcoffee-research/production/images/Arabica/Mundo-Novo-1.jpg?w=4000&h=2667&auto=compress%2Cformat&fit=crop&dm=1684915637&s=2cffc19913b97391c73172da992d0901"
   },
   {
     id: "pacamara",
@@ -206,7 +207,8 @@ export const coffeeVarieties: CoffeeVariety[] = [
         name: "World Coffee Research - Pacamara",
         url: "https://varieties.worldcoffeeresearch.org/varieties/pacamara"
       }
-    ]
+    ],
+    imageUrl: "https://optimise2.assets-servd.host/worldcoffee-research/production/images/Arabica/Pacamara-1.jpg?w=3000&h=2000&auto=compress%2Cformat&fit=crop&dm=1684915639&s=44d815150a587f0091b97ffb8b706329"
   },
   {
     id: "sl28",
@@ -234,7 +236,8 @@ export const coffeeVarieties: CoffeeVariety[] = [
         name: "World Coffee Research - SL28",
         url: "https://varieties.worldcoffeeresearch.org/varieties/sl28"
       }
-    ]
+    ],
+    imageUrl: "https://optimise2.assets-servd.host/worldcoffee-research/production/images/Arabica/SL28-3.jpg?w=3008&h=2000&auto=compress%2Cformat&fit=crop&dm=1684915644&s=5884bf0bc4510e826b10b8ef88097163"
   },
   {
     id: "sl34",
@@ -262,7 +265,8 @@ export const coffeeVarieties: CoffeeVariety[] = [
         name: "World Coffee Research - SL34",
         url: "https://varieties.worldcoffeeresearch.org/varieties/sl34"
       }
-    ]
+    ],
+    imageUrl: "https://optimise2.assets-servd.host/worldcoffee-research/production/images/Arabica/SL34-1.jpg?w=1000&h=625&auto=compress%2Cformat&fit=crop&dm=1684915645&s=46027d6387c52caa67a3584560356369"
   },
   {
     id: "batian",
@@ -290,7 +294,8 @@ export const coffeeVarieties: CoffeeVariety[] = [
         name: "World Coffee Research - Batian",
         url: "https://varieties.worldcoffeeresearch.org/varieties/batian"
       }
-    ]
+    ],
+    imageUrl: "https://optimise2.assets-servd.host/worldcoffee-research/production/images/Arabica/Batian-1.jpg?w=3984&h=2988&auto=compress%2Cformat&fit=crop&crop=focalpoint&fp-x=0.5149&fp-y=0.7925&dm=1684915603&s=72173f2aa1d08b200f475d357b280846"
   },
   {
     id: "ruiru-11",
@@ -318,7 +323,8 @@ export const coffeeVarieties: CoffeeVariety[] = [
         name: "World Coffee Research - Ruiru 11",
         url: "https://varieties.worldcoffeeresearch.org/varieties/ruiru-11"
       }
-    ]
+    ],
+    imageUrl: "https://optimise2.assets-servd.host/worldcoffee-research/production/images/Arabica/Ruiru-11-1.jpg?w=742&h=551&auto=compress%2Cformat&fit=crop&dm=1684915642&s=f046524d82f04175241236cadf1f3797"
   },
   {
     id: "castillo",
@@ -402,7 +408,8 @@ export const coffeeVarieties: CoffeeVariety[] = [
         name: "World Coffee Research - Catimor",
         url: "https://varieties.worldcoffeeresearch.org/varieties/catimor"
       }
-    ]
+    ],
+    imageUrl: "https://optimise2.assets-servd.host/worldcoffee-research/production/images/Arabica/Catimor-129-1.jpg?w=2448&h=3264&auto=compress%2Cformat&fit=crop&dm=1684915609&s=72e120d34a80d2c24a981284996873f0"
   },
   {
     id: "s795",
@@ -430,7 +437,8 @@ export const coffeeVarieties: CoffeeVariety[] = [
         name: "World Coffee Research - S795",
         url: "https://varieties.worldcoffeeresearch.org/varieties/s795"
       }
-    ]
+    ],
+    imageUrl: "https://optimise2.assets-servd.host/worldcoffee-research/production/images/DSCF9759.JPG?w=4000&h=2667&auto=compress%2Cformat&fit=crop&dm=1756755469&s=ff9bf7bd6abf289b27554cae299d2564"
   },
   {
     id: "java",
@@ -458,7 +466,8 @@ export const coffeeVarieties: CoffeeVariety[] = [
         name: "World Coffee Research - Java",
         url: "https://varieties.worldcoffeeresearch.org/varieties/java"
       }
-    ]
+    ],
+    imageUrl: "https://optimise2.assets-servd.host/worldcoffee-research/production/images/Arabica/Java.jpg?w=1200&h=800&auto=compress%2Cformat&fit=crop&dm=1684915623&s=cd95b22de3ab929eea9e66187d9d3d30"
   },
   {
     id: "parainema",
@@ -486,7 +495,8 @@ export const coffeeVarieties: CoffeeVariety[] = [
         name: "World Coffee Research - Parainema",
         url: "https://varieties.worldcoffeeresearch.org/varieties/parainema"
       }
-    ]
+    ],
+    imageUrl: "https://optimise2.assets-servd.host/worldcoffee-research/production/images/Arabica/Parainema-1.jpg?w=4000&h=2667&auto=compress%2Cformat&fit=crop&dm=1684915640&s=c64aff5c8d60da38695d31b760face09"
   },
   {
     id: "anacafe-14",
@@ -514,7 +524,8 @@ export const coffeeVarieties: CoffeeVariety[] = [
         name: "ANACAFÉ Variety Catalog",
         url: "https://www.anacafe.org"
       }
-    ]
+    ],
+    imageUrl: "https://optimise2.assets-servd.host/worldcoffee-research/production/images/Arabica/WCR_Guate180703_DSC8479.jpg?auto=compress%2Cformat&fit=crop&dm=1730752064&s=2ac95aa4b8ed41e04f0aae334b75fc07"
   },
   {
     id: "conilon",
@@ -543,8 +554,7 @@ export const coffeeVarieties: CoffeeVariety[] = [
         url: "https://worldcoffeeresearch.org",
         note: "Robusta genetic resources"
       }
-    ],
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/9/9f/Coffea_canephora_branches.jpg"
+    ]
   },
   {
     id: "robusta-commercial-clones",
@@ -572,7 +582,6 @@ export const coffeeVarieties: CoffeeVariety[] = [
         name: "World Coffee Research - Vietnam / Uganda",
         url: "https://worldcoffeeresearch.org"
       }
-    ],
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/9/9f/Coffea_canephora_branches.jpg"
+    ]
   }
 ];
