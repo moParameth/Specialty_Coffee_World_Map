@@ -1,8 +1,9 @@
+import { useState, useEffect } from "react";
 import { CoffeeVariety } from "@/types/variety";
 import { coffeeCountries } from "@/data/coffeeCountries";
 import { getTraitColor } from "@/utils/varietyUtils";
 import { getFlavorEmoji } from "@/utils/countryUtils";
-import { Info, Leaf, Award, ExternalLink, HelpCircle, GitBranch, ArrowUp } from "lucide-react";
+import { Info, Leaf, Award, ExternalLink, HelpCircle, GitBranch, ArrowUp, Coffee } from "lucide-react";
 import Link from "next/link";
 
 interface VarietyDetailPanelProps {
@@ -16,6 +17,12 @@ export default function VarietyDetailPanel({
   allVarieties,
   onSelectVariety,
 }: VarietyDetailPanelProps) {
+  const [imageError, setImageError] = useState(false);
+
+  useEffect(() => {
+    setImageError(false);
+  }, [variety?.id]);
+
   if (!variety) {
     return (
       <div className="flex h-full flex-col items-center justify-center p-8 text-center bg-white rounded-2xl border border-slate-200 shadow-sm min-h-[400px]">
@@ -66,15 +73,23 @@ export default function VarietyDetailPanel({
   return (
     <div className="flex h-full flex-col bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden">
       {/* Image Banner */}
-      {variety.imageUrl && (
-        <div className="w-full h-44 overflow-hidden bg-slate-50 border-b border-slate-100 relative">
+      <div className="w-full h-44 overflow-hidden bg-slate-50 border-b border-slate-100 relative flex items-center justify-center">
+        {variety.imageUrl && !imageError ? (
           <img
             src={variety.imageUrl}
             alt={variety.name}
+            onError={() => setImageError(true)}
             className="w-full h-full object-cover"
           />
-        </div>
-      )}
+        ) : (
+          <div className="w-full h-full bg-gradient-to-br from-blue-600 to-slate-800 flex flex-col items-center justify-center text-white/90 gap-1.5 select-none">
+            <div className="p-3 rounded-full bg-white/10 backdrop-blur-sm border border-white/20">
+              <Coffee className="h-8 w-8 text-blue-200" />
+            </div>
+            <span className="text-xs font-bold uppercase tracking-widest text-slate-350">Coffee Variety Profile</span>
+          </div>
+        )}
+      </div>
 
       {/* Detail Header */}
       <div className="border-b border-slate-100 p-6 bg-slate-50/50">

@@ -12,7 +12,8 @@ export const coffeeHistory: HistoryEvent[] = [
     description: "According to legend, Kaldi noticed his goats behaving unusually energetically and 'dancing' after eating red berries from a wild shrub. Intrigued, he tried them himself and experienced a rush of energy. Kaldi took the berries to a local monk, who initially threw them into a fire, calling them devil's work. The roasting beans produced a rich, enticing aroma, leading the monks to rake the embers, dissolve the beans in hot water, and drink the first cup of coffee to stay awake for nightly prayers.",
     varietyConnections: ["typica"],
     keyFigures: ["Kaldi"],
-    stats: "Earliest origin date recorded in folk legends"
+    stats: "Earliest origin date recorded in folk legends",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/c/c5/Coffee_berries_1.jpg"
   },
   {
     id: "avicenna-medical",
@@ -25,7 +26,8 @@ export const coffeeHistory: HistoryEvent[] = [
     description: "The renowned physician and philosopher Avicenna (Ibn Sina) documents the coffee bean under the name 'Bunchum' (bunchum) in his medical encyclopedia, The Canon of Medicine. He describes its medicinal characteristics, noting its ability to dry up bodily humidities, stimulate the mind, and purify the skin.",
     varietyConnections: [],
     keyFigures: ["Avicenna (Ibn Sina)"],
-    stats: "First clinical documentation of the coffee seed"
+    stats: "First clinical documentation of the coffee seed",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/f/f6/Avicenna_Portrait_1952.jpg"
   },
   {
     id: "yemen-sufi",
@@ -38,7 +40,8 @@ export const coffeeHistory: HistoryEvent[] = [
     description: "Sufi monks in Yemen begin cultivating coffee trees and brewing a drink called 'Qahwah' (an Arabic term representing its stimulating nature). They drink it to maintain alertness and deep concentration during nocturnal prayers and mystical dhikr rituals. This marks the earliest verified historical record of coffee drinking and cultivation in history.",
     varietyConnections: [],
     keyFigures: ["Sufi Monks"],
-    stats: "Yemen remains the cradle of commercial coffee cultivation"
+    stats: "Yemen remains the cradle of commercial coffee cultivation",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/e/e0/Mocha_in_1692.jpg"
   },
   {
     id: "mecca-ban",
@@ -51,7 +54,8 @@ export const coffeeHistory: HistoryEvent[] = [
     description: "Kha'ir Beg, the governor of Mecca, bans coffee and coffeehouses due to concerns over its stimulating properties and the political discussions held in the popular gathering spots. However, the Sultan of Cairo later repeals the ban, declaring coffee a wholesome beverage that is not intoxicating, allowing coffeehouses to expand throughout the Ottoman Empire.",
     varietyConnections: [],
     keyFigures: ["Kha'ir Beg", "Sultan of Cairo"],
-    stats: "First recorded legal challenge against coffee consumption"
+    stats: "First recorded legal challenge against coffee consumption",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/c/c2/Mecca_1850.jpg"
   },
   {
     id: "rauwolf-description",
@@ -64,7 +68,8 @@ export const coffeeHistory: HistoryEvent[] = [
     description: "German physician and botanist Leonhard Rauwolf travels through the Near East. Upon his return, he publishes a travelogue in which he describes coffee, noting: 'A beverage as black as ink, very good in illness, especially of the stomach... they drink it in early morning open places, without fear or modesty, out of small clay or porcelain cups.' This sparks European interest in the beverage.",
     varietyConnections: [],
     keyFigures: ["Leonhard Rauwolf"],
-    stats: "First published European account of coffee drinking"
+    stats: "First published European account of coffee drinking",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/2/23/Leonhard_Rauwolf.jpg"
   },
   {
     id: "baba-budan",
@@ -77,7 +82,8 @@ export const coffeeHistory: HistoryEvent[] = [
     description: "To protect their lucrative monopoly, Yemenite traders ban the export of fertile green coffee beans, exporting only roasted or boiled beans. Baba Budan, an Indian Sufi saint, smuggles seven green coffee beans by wrapping them around his belly on his return from Mecca. He plants them in the hills of Chikmagalur, breaking the Arab monopoly and establishing coffee cultivation in India.",
     varietyConnections: ["typica", "k7"],
     keyFigures: ["Baba Budan"],
-    stats: "7 seeds successfully smuggled to break the trade monopoly"
+    stats: "7 seeds successfully smuggled to break the trade monopoly",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/4/4e/Baba_Budangiri_hills.jpg"
   },
   {
     id: "venice-introduction",
@@ -90,7 +96,8 @@ export const coffeeHistory: HistoryEvent[] = [
     description: "Venetian merchants bring coffee to Europe, where it is initially met with suspicion as 'the bitter invention of Satan.' Pope Clement VIII decides to taste it himself. Finding it delicious, he famously declares, 'This Satan's drink is so delicious that it would be a pity to let the infidels have exclusive use of it. We shall fool Satan by baptizing it!' This papal blessing paves the way for coffee's acceptance across Christian Europe.",
     varietyConnections: [],
     keyFigures: ["Pope Clement VIII"],
-    stats: "First papal baptism of a commodity"
+    stats: "First papal baptism of a commodity",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/7/7b/Canaletto_-_The_Piazza_San_Marco%2C_Venice_-_WGA3919.jpg"
   },
   {
     id: "london-coffeehouse",
@@ -103,7 +110,8 @@ export const coffeeHistory: HistoryEvent[] = [
     description: "Pasqua Rosée, a Greek servant of a British merchant, opens London's first coffeehouse in St. Michael's Alley, Cornhill. Coffeehouses spread rapidly, becoming known as 'Penny Universities' because for the price of a penny, anyone could enter, buy coffee, and engage in high-level intellectual, political, and commercial discussions. These establishments directly foster the birth of major institutions like the London Stock Exchange and Lloyd's of London.",
     varietyConnections: [],
     keyFigures: ["Pasqua Rosée"],
-    stats: "Over 3,000 coffeehouses in London by 1700"
+    stats: "Over 3,000 coffeehouses in London by 1700",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/e/ea/London_coffeehouse_17th_century.JPG"
   },
   {
     id: "vienna-coffee",
@@ -116,7 +124,8 @@ export const coffeeHistory: HistoryEvent[] = [
     description: "Following the Siege of Vienna, the retreating Ottoman army leaves behind hundreds of sacks of mysterious green beans. Franz Georg Kolschitzky, a Polish-Austrian diplomat who spoke Turkish and played a heroic role as a spy during the siege, recognizes the beans as coffee. He claims the sacks as his reward, opens Vienna's first coffee house (Hof zur Blauen Flasche), and popularizes coffee by filtering it and adding milk and honey, establishing the classic Viennese café style.",
     varietyConnections: [],
     keyFigures: ["Franz Georg Kolschitzky"],
-    stats: "500+ bags of coffee left behind by the Ottoman army"
+    stats: "500+ bags of coffee left behind by the Ottoman army",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/e/e7/Kolschitzky_Statue_Wien.jpg"
   },
   {
     id: "java-dutch",
@@ -129,7 +138,8 @@ export const coffeeHistory: HistoryEvent[] = [
     description: "After a failed attempt in 1696 due to flooding, the Dutch governor Adrian van Ommen successfully establishes coffee cultivation in Java. Java becomes a primary supplier of coffee to Europe, making the word 'Java' a universal synonym for coffee. This marks the beginning of colonial plantation cultivation and the global trade of coffee beans.",
     varietyConnections: ["typica"],
     keyFigures: ["Adrian van Ommen", "Nicolaas Witsen"],
-    stats: "Java becomes synonymous with global coffee trade"
+    stats: "Java becomes synonymous with global coffee trade",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/7/76/Java_map_1718.jpg"
   },
   {
     id: "paris-noble-tree",
@@ -142,7 +152,8 @@ export const coffeeHistory: HistoryEvent[] = [
     description: "The Mayor of Amsterdam presents King Louis XIV of France with a healthy young coffee plant propagated from the Amsterdam botanical garden. Placed in the Jardin des Plantes, this single tree becomes known as the 'Noble Tree' and is the direct genetic ancestor of most Typica coffee trees subsequently planted in Central and South America.",
     varietyConnections: ["typica"],
     keyFigures: ["King Louis XIV", "Mayor of Amsterdam"],
-    stats: "1 single tree becomes genetic ancestor of millions"
+    stats: "1 single tree becomes genetic ancestor of millions",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/5/5f/Louis_XIV_of_France.jpg"
   },
   {
     id: "martinique-clieu",
@@ -155,7 +166,8 @@ export const coffeeHistory: HistoryEvent[] = [
     description: "French naval officer Gabriel de Clieu secures a seedling from the Noble Tree in Paris and transports it to Martinique. During the arduous sea voyage, the ship is attacked by pirates, suffers a storm, and runs low on water. De Clieu shares his precious daily water ration with the seedling. It survives, is planted, and reproduces millions of trees across the Caribbean and Americas.",
     varietyConnections: ["typica"],
     keyFigures: ["Gabriel de Clieu"],
-    stats: "1 seedling saved by water sharing sparks Caribbean coffee boom"
+    stats: "1 seedling saved by water sharing sparks Caribbean coffee boom",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/a/ad/French_ship_of_the_line_in_the_18th_century.jpg"
   },
   {
     id: "brazil-smuggling",
@@ -168,7 +180,8 @@ export const coffeeHistory: HistoryEvent[] = [
     description: "Eager to enter the lucrative coffee trade, the Portuguese governor of Brazil sends diplomat Francisco de Melo Palheta to French Guiana to settle a border dispute and smuggle coffee seeds. Under the guise of a diplomatic visit, Palheta charms the governor's wife. At his departure, she secretly presents him with a bouquet containing concealed fertile coffee seeds. He plants them in Pará, sparking Brazil's rise to become the world's largest coffee producer.",
     varietyConnections: ["typica"],
     keyFigures: ["Francisco de Melo Palheta"],
-    stats: "Handful of seeds sparks Brazil's rise to produce 40%+ of global coffee"
+    stats: "Handful of seeds sparks Brazil's rise to produce 40%+ of global coffee",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/0/07/Brazil_map_18th_century.jpg"
   },
   {
     id: "bach-cantata",
@@ -181,7 +194,8 @@ export const coffeeHistory: HistoryEvent[] = [
     description: "Johann Sebastian Bach composes the Coffee Cantata (Schweigt stille, plaudert nicht), a comic opera reflecting Leipzig's active coffee house culture. The story centers on a father trying to cure his daughter of her coffee obsession, to which she sings: 'If I can't drink my bowl of coffee three times a day, then in my torment I will shrivel up like a piece of roasted goat meat!' This highlights how deeply integrated coffee had become in European society.",
     varietyConnections: [],
     keyFigures: ["Johann Sebastian Bach"],
-    stats: "Cantata BWV 211, first performed at Zimmermann's Coffeehouse"
+    stats: "Cantata BWV 211, first performed at Zimmermann's Coffeehouse",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/6/6a/Johann_Sebastian_Bach.jpg"
   },
   {
     id: "boston-tea-party",
@@ -194,7 +208,8 @@ export const coffeeHistory: HistoryEvent[] = [
     description: "Following the Boston Tea Party, where colonists dump British tea into the harbor to protest taxes, drinking tea becomes viewed as unpatriotic in America. Coffee becomes the beverage of choice for the revolution, with leaders like John Adams writing to his wife that he must habituate himself to coffee as tea is forbidden. This event cements coffee as the dominant daily beverage in the United States.",
     varietyConnections: [],
     keyFigures: ["John Adams", "American Colonists"],
-    stats: "342 chests of British tea dumped, triggering the patriotic switch to coffee"
+    stats: "342 chests of British tea dumped, triggering the patriotic switch to coffee",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/5/52/The_Destruction_of_Tea_at_Boston_Harbor_proper.jpg"
   },
   {
     id: "ceylon-leaf-rust",
@@ -207,7 +222,8 @@ export const coffeeHistory: HistoryEvent[] = [
     description: "The outbreak of the fungal disease Hemileia vastatrix (Coffee Leaf Rust) devastates Ceylon's massive coffee plantations. Over the next decades, the entire coffee industry of the island is wiped out. This forces the British planters to clear their lands and plant tea instead, changing the global beverage landscape and triggering a search for rust-resistant coffee hybrids.",
     varietyConnections: ["catimor", "marsellesa", "centroamericano", "parainema", "obata", "timor-hybrid"],
     keyFigures: ["British planters", "Dr. H. Marshall Ward"],
-    stats: "Over 90% of Ceylon's coffee crop wiped out"
+    stats: "Over 90% of Ceylon's coffee crop wiped out",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/e/e0/Hemileia_vastatrix_on_Coffea_arabica.jpg"
   },
   {
     id: "moriondo-patent",
@@ -220,7 +236,8 @@ export const coffeeHistory: HistoryEvent[] = [
     description: "At the General Exhibition of Turin, Angelo Moriondo patents a machine designed for 'new steam machinery for the economic and instantaneous confection of coffee beverage.' His machine uses a bulk steam boiler to force hot water and steam through a large bed of coffee grounds. While it brews bulk quantities rather than individual cups, it is officially recognized as the earliest precursor to the espresso machine.",
     varietyConnections: [],
     keyFigures: ["Angelo Moriondo"],
-    stats: "First patent for bulk steam-powered rapid coffee brewing"
+    stats: "First patent for bulk steam-powered rapid coffee brewing",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/e/ea/Espresso-machine-first-patent-angelo-moriondo.jpg"
   },
   {
     id: "espresso-invention",
@@ -233,7 +250,8 @@ export const coffeeHistory: HistoryEvent[] = [
     description: "Luigi Bezzera patents an improvement to existing coffee machines: a device that uses steam and high pressure to force water through finely ground coffee directly into a cup. This drastically cuts brewing time from minutes to seconds, giving rise to 'espresso' (meaning fast or express) and forming the foundation of modern cafe culture.",
     varietyConnections: [],
     keyFigures: ["Luigi Bezzera", "Desiderio Pavoni"],
-    stats: "Steam pressure of 1.5 bars used to brew in 45 seconds"
+    stats: "Steam pressure of 1.5 bars used to brew in 45 seconds",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/7/73/Luigi_Bezzera_espresso_machine_patent_drawing.jpg"
   },
   {
     id: "decaf-invention",
@@ -246,7 +264,8 @@ export const coffeeHistory: HistoryEvent[] = [
     description: "German coffee merchant Ludwig Roselius receives a shipment of coffee beans that was accidentally soaked in seawater. Instead of throwing them away, he tests them and discovers they have lost their caffeine content while retaining flavor. He refines the process, patenting the first commercial decaffeination method (using benzene) in 1906 under the brand Kaffee HAG.",
     varietyConnections: ["laurina"],
     keyFigures: ["Ludwig Roselius"],
-    stats: "First industrial decaffeination using benzene solvent"
+    stats: "First industrial decaffeination using benzene solvent",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/b/b3/Ludwig_Roselius_portrait.jpg"
   },
   {
     id: "nescafe-instant",
@@ -259,7 +278,8 @@ export const coffeeHistory: HistoryEvent[] = [
     description: "Following the 1929 stock market crash, Brazil has a massive surplus of coffee beans. The Brazilian government asks Nestlé to create a soluble coffee product that retains flavor and dissolves in hot water. Chemist Max Morgenthaler spends seven years perfecting the process, leading to the launch of Nescafé, which becomes a staple for WWII soldiers and popularizes instant coffee globally.",
     varietyConnections: [],
     keyFigures: ["Max Morgenthaler"],
-    stats: "Developed over 7 years to absorb Brazil's massive surplus"
+    stats: "Developed over 7 years to absorb Brazil's massive surplus",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/1/1a/Nestle_Factory_in_Vevey_Switzerland_1910.jpg"
   },
   {
     id: "gaggia-crema",
@@ -272,7 +292,8 @@ export const coffeeHistory: HistoryEvent[] = [
     description: "Italian bartender Achille Gaggia patents a spring-piston lever mechanism that forces water through coffee grounds at much higher pressure than steam (8 to 10 bars instead of 1.5 bars). This high-pressure extraction coaxes out coffee oils, creating a thick foam on top. Gaggia calls this 'crema caffe' (cream coffee), marketing it as natural coffee cream. This marks the birth of modern espresso as we know it today.",
     varietyConnections: [],
     keyFigures: ["Achille Gaggia"],
-    stats: "Water pressure increased to 9 bars, reducing brew time to 25 seconds"
+    stats: "Water pressure increased to 9 bars, reducing brew time to 25 seconds",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/4/43/Gaggia_Classica_espresso_machine_1948.jpg"
   },
   {
     id: "peets-specialty",
@@ -285,7 +306,8 @@ export const coffeeHistory: HistoryEvent[] = [
     description: "Dutch immigrant Alfred Peet opens Peet's Coffee & Tea in Berkeley. Dismayed by the weak, low-quality coffee common in America, he imports high-quality specialty beans and roasts them dark and fresh. He mentors the founders of Starbucks, teaching them his roasting techniques and supplying them with beans during their first year of business.",
     varietyConnections: [],
     keyFigures: ["Alfred Peet"],
-    stats: "Brought high-quality Arabica to US commercial market"
+    stats: "Brought high-quality Arabica to US commercial market",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/a/ab/Peets_Coffee_and_Tea_Vine_Street_Berkeley.jpg"
   },
   {
     id: "starbucks-founding",
@@ -298,7 +320,8 @@ export const coffeeHistory: HistoryEvent[] = [
     description: "English teacher Jerry Baldwin, history teacher Zev Siegl, and writer Gordon Bowker open the first Starbucks store. They initially sell only high-quality roasted coffee beans, tea, and spices, rather than brewed drinks. In 1982, Howard Schultz joins and, inspired by Italian espresso bars, later buys the company to transform it into the global coffeehouse chain we know today.",
     varietyConnections: [],
     keyFigures: ["Jerry Baldwin", "Zev Siegl", "Gordon Bowker", "Howard Schultz"],
-    stats: "Grew from 1 store to over 30,000 stores globally"
+    stats: "Grew from 1 store to over 30,000 stores globally",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/a/a2/The_original_Starbucks_store_in_Pike_Place_Market_Seattle.jpg"
   },
   {
     id: "third-wave",
@@ -309,8 +332,9 @@ export const coffeeHistory: HistoryEvent[] = [
     era: "modern",
     summary: "Rise of specialty coffee, single-origins, and artisanal brewing.",
     description: "The term 'Third Wave' is coined to describe a movement that treats coffee as an artisanal foodstuff rather than a simple commodity. It emphasizes transparency in the supply chain (direct trade), light roasting profiles to highlight regional terroir, precise brewing methods (like pour-over, Chemex, and Aeropress), and appreciation of specific coffee varieties.",
-    varietyConnections: ["geisha", "pacamara", "sl28", "starmaya", "sidra", "pink-bourbon", "wush-wush", "sudan-rume", "eugenioides"],
+    varietyConnections: ["geisha", "pacamara", "sl28", "starmaya", "centroamericano", "marsellesa", "obata", "k7", "sidra", "pink-bourbon", "wush-wush", "sudan-rume", "eugenioides"],
     keyFigures: ["Trish Rothgeb", "Specialty Roasters"],
-    stats: "Appreciation of single-origins and farm traceability"
+    stats: "Appreciation of single-origins and farm traceability",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/d/da/V60_pour_over_brewing_third_wave.jpg"
   }
 ];

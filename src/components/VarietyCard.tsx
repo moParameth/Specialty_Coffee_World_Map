@@ -1,5 +1,6 @@
+import { useState } from "react";
 import { CoffeeVariety } from "@/types/variety";
-import { Globe, Scale, ArrowRight } from "lucide-react";
+import { Globe, Scale, ArrowRight, Coffee } from "lucide-react";
 import VarietyTraitBadges from "./VarietyTraitBadges";
 
 interface VarietyCardProps {
@@ -17,6 +18,7 @@ export default function VarietyCard({
   isComparing,
   onToggleCompare,
 }: VarietyCardProps) {
+  const [imageError, setImageError] = useState(false);
   // Take first 3 flavor notes as tags
   const flavorTags = variety.flavorNotes.slice(0, 3);
   const countryCount = variety.commonCountries.length;
@@ -31,15 +33,21 @@ export default function VarietyCard({
     >
       <div>
         {/* Image Thumbnail */}
-        {variety.imageUrl && (
-          <div className="w-full h-32 mb-4 overflow-hidden rounded-xl border border-slate-100 bg-slate-50 relative">
+        <div className="w-full h-32 mb-4 overflow-hidden rounded-xl border border-slate-100 bg-slate-50 relative flex items-center justify-center">
+          {variety.imageUrl && !imageError ? (
             <img
               src={variety.imageUrl}
               alt={variety.name}
+              onError={() => setImageError(true)}
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
             />
-          </div>
-        )}
+          ) : (
+            <div className="flex flex-col items-center justify-center text-slate-350 gap-1 select-none">
+              <Coffee className="h-8 w-8 text-blue-200/60 group-hover:scale-110 transition-transform duration-300" />
+              <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">No Photo</span>
+            </div>
+          )}
+        </div>
 
         {/* Name and Species Badge */}
         <div className="flex items-start justify-between gap-2 mb-1.5">

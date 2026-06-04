@@ -63,6 +63,15 @@ export default function HistoryTimeline() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedEra, setSelectedEra] = useState<EraType>("all");
   const [expandedEvents, setExpandedEvents] = useState<Record<string, boolean>>({});
+  const [failedImages, setFailedImages] = useState<Record<string, boolean>>({});
+
+  // Helper to handle image load failure
+  const handleImageError = (id: string) => {
+    setFailedImages((prev) => ({
+      ...prev,
+      [id]: true
+    }));
+  };
 
   // Helper to toggle event details collapse/expand
   const toggleExpand = (id: string) => {
@@ -202,6 +211,18 @@ export default function HistoryTimeline() {
                   {/* Right Column (Desktop: Card, Mobile: Full Width Card) */}
                   <div className="w-full lg:w-[calc(50%-2rem)] pl-16 lg:pl-0">
                     <div className="group bg-white border border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-md hover:border-slate-300 transition-all duration-300 flex flex-col gap-3 relative">
+                      {/* Event Image */}
+                      {event.imageUrl && !failedImages[event.id] && (
+                        <div className="w-full h-48 overflow-hidden rounded-xl border border-slate-100 bg-slate-50 relative">
+                          <img
+                            src={event.imageUrl}
+                            alt={event.title}
+                            onError={() => handleImageError(event.id)}
+                            className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500"
+                            loading="lazy"
+                          />
+                        </div>
+                      )}
                       {/* Mobile Header: Year and Location */}
                       <div className="flex flex-wrap items-center gap-2 text-xs font-semibold text-slate-400 uppercase tracking-wider lg:hidden">
                         <span className="text-slate-900 font-bold">{event.year}</span>
