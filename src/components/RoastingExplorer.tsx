@@ -227,10 +227,10 @@ export default function RoastingExplorer() {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           {/* Left Column: Interactive SVG Roasting Curve */}
-          <div className="lg:col-span-7 border border-slate-150 rounded-2xl p-4 bg-slate-50/50 relative">
+          <div className="lg:col-span-7 border border-slate-200 rounded-2xl p-4 bg-slate-50/50 relative">
             <h4 className="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-3 flex items-center justify-between">
               <span>Thermodynamic Roast Profile Graph</span>
-              <span className="font-semibold text-blue-600 text-[9px] bg-blue-50 border border-blue-150 px-2 py-0.5 rounded">
+              <span className="font-semibold text-blue-600 text-[9px] bg-blue-50 border border-blue-200 px-2 py-0.5 rounded">
                 Simulated Time: {activeTime.toFixed(1)} Min
               </span>
             </h4>
@@ -244,6 +244,11 @@ export default function RoastingExplorer() {
                 <line x1="50" y1="120" x2="470" y2="120" stroke="#e2e8f0" strokeDasharray="3 3" />
                 <line x1="50" y1="165" x2="470" y2="165" stroke="#e2e8f0" strokeDasharray="3 3" />
                 <line x1="50" y1="210" x2="470" y2="210" stroke="#e2e8f0" />
+
+                {/* Vertical Grid lines */}
+                <line x1="155" y1="30" x2="155" y2="210" stroke="#e2e8f0" strokeDasharray="3 3" />
+                <line x1="260" y1="30" x2="260" y2="210" stroke="#e2e8f0" strokeDasharray="3 3" />
+                <line x1="365" y1="30" x2="365" y2="210" stroke="#e2e8f0" strokeDasharray="3 3" />
 
                 {/* Y-Axis labels (Temps) */}
                 <text x="15" y="34" className="fill-slate-400 font-bold text-[9px]">250°C</text>
@@ -260,7 +265,6 @@ export default function RoastingExplorer() {
                 <text x="470" y="230" className="fill-slate-400 font-bold text-[9px]" textAnchor="middle">12 Min</text>
 
                 {/* Roasting Curve path (Charge -> TP -> Drying -> First Crack -> Dark) */}
-                {/* Bezier profile line */}
                 <path
                   d="M 50,75 C 60,180 90,185 102.5,174 C 130,150 180,135 225,120 C 300,95 330,85 365,78.6 C 400,72 420,60 435,53.4 C 450,47 465,38 470,34.5"
                   stroke="#3b82f6"
@@ -268,23 +272,112 @@ export default function RoastingExplorer() {
                   strokeLinecap="round"
                 />
 
-                {/* Key Phase Point Markers on the Graph */}
+                {/* Key Phase Point Markers on the Graph (Interactive Click Handlers) */}
                 {/* Charge */}
-                <circle cx="50" cy="75" r="4" className="fill-slate-400 stroke-white stroke-2 hover:r-5 cursor-pointer" />
+                <circle
+                  cx="50"
+                  cy="75"
+                  r="5.5"
+                  onClick={() => {
+                    setSimTemp(200);
+                    setActivePhaseId("charge");
+                  }}
+                  className="fill-slate-400 stroke-white stroke-2 cursor-pointer hover:fill-slate-500 transition-colors"
+                />
                 {/* Turning Point */}
-                <circle cx="102.5" cy="174" r="4" className="fill-blue-500 stroke-white stroke-2 hover:r-5 cursor-pointer" />
+                <circle
+                  cx="102.5"
+                  cy="174"
+                  r="5.5"
+                  onClick={() => {
+                    setSimTemp(90);
+                    setActivePhaseId("turning-point");
+                  }}
+                  className="fill-blue-500 stroke-white stroke-2 cursor-pointer hover:fill-blue-600 transition-colors"
+                />
                 {/* Drying (150C) */}
-                <circle cx="225" cy="120" r="4" className="fill-yellow-500 stroke-white stroke-2 hover:r-5 cursor-pointer" />
+                <circle
+                  cx="225"
+                  cy="120"
+                  r="5.5"
+                  onClick={() => {
+                    setSimTemp(150);
+                    setActivePhaseId("drying");
+                  }}
+                  className="fill-yellow-500 stroke-white stroke-2 cursor-pointer hover:fill-yellow-600 transition-colors"
+                />
                 {/* First Crack (196C) */}
-                <circle cx="365" cy="78.6" r="4" className="fill-orange-500 stroke-white stroke-2 hover:r-5 cursor-pointer" />
+                <circle
+                  cx="365"
+                  cy="78.6"
+                  r="5.5"
+                  onClick={() => {
+                    setSimTemp(196);
+                    setActivePhaseId("first-crack");
+                  }}
+                  className="fill-orange-500 stroke-white stroke-2 cursor-pointer hover:fill-orange-600 transition-colors"
+                />
                 {/* Second Crack (224C) */}
-                <circle cx="435" cy="53.4" r="4" className="fill-red-600 stroke-white stroke-2 hover:r-5 cursor-pointer" />
+                <circle
+                  cx="435"
+                  cy="53.4"
+                  r="5.5"
+                  onClick={() => {
+                    setSimTemp(224);
+                    setActivePhaseId("second-crack");
+                  }}
+                  className="fill-red-600 stroke-white stroke-2 cursor-pointer hover:fill-red-700 transition-colors"
+                />
 
-                {/* Phase labels floating */}
-                <text x="80" y="195" className="fill-blue-600 font-black text-[8px]" textAnchor="middle">Turning Pt</text>
-                <text x="225" y="140" className="fill-yellow-600 font-black text-[8px]" textAnchor="middle">Drying</text>
-                <text x="365" y="96" className="fill-orange-600 font-black text-[8px]" textAnchor="middle">1st Crack</text>
-                <text x="445" y="68" className="fill-red-600 font-black text-[8px]" textAnchor="middle">2nd Crack</text>
+                {/* Clickable Phase labels floating */}
+                <text
+                  x="102.5"
+                  y="194"
+                  onClick={() => {
+                    setSimTemp(90);
+                    setActivePhaseId("turning-point");
+                  }}
+                  className="fill-blue-600 font-black text-[8px] cursor-pointer hover:underline"
+                  textAnchor="middle"
+                >
+                  Turning Pt
+                </text>
+                <text
+                  x="225"
+                  y="138"
+                  onClick={() => {
+                    setSimTemp(150);
+                    setActivePhaseId("drying");
+                  }}
+                  className="fill-yellow-600 font-black text-[8px] cursor-pointer hover:underline"
+                  textAnchor="middle"
+                >
+                  Drying
+                </text>
+                <text
+                  x="365"
+                  y="94"
+                  onClick={() => {
+                    setSimTemp(196);
+                    setActivePhaseId("first-crack");
+                  }}
+                  className="fill-orange-600 font-black text-[8px] cursor-pointer hover:underline"
+                  textAnchor="middle"
+                >
+                  1st Crack
+                </text>
+                <text
+                  x="435"
+                  y="68"
+                  onClick={() => {
+                    setSimTemp(224);
+                    setActivePhaseId("second-crack");
+                  }}
+                  className="fill-red-600 font-black text-[8px] cursor-pointer hover:underline"
+                  textAnchor="middle"
+                >
+                  2nd Crack
+                </text>
 
                 {/* Active Dynamic Pointer (synchronised with the temp slider) */}
                 <g>
@@ -504,7 +597,7 @@ export default function RoastingExplorer() {
               {/* Illustration and swatch */}
               <div className="md:col-span-5 space-y-4">
                 {activeLevel.imageUrl && (
-                  <div className="w-full h-44 sm:h-52 overflow-hidden rounded-2xl border border-slate-200 bg-slate-55 relative flex items-center justify-center">
+                  <div className="w-full h-44 sm:h-52 overflow-hidden rounded-2xl border border-slate-200 bg-slate-50 relative flex items-center justify-center">
                     <img
                       src={activeLevel.imageUrl}
                       alt=""

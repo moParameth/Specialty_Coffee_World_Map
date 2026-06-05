@@ -563,37 +563,37 @@ export default function ProcessingExplorer() {
               <tr className="border-b border-slate-200 bg-slate-50/70 text-slate-400 uppercase tracking-wider text-[10px]">
                 <th
                   onClick={() => handleSortMatrix("name")}
-                  className="px-4 py-3.5 cursor-pointer hover:bg-slate-150 hover:text-slate-700 select-none transition-colors rounded-tl-xl"
+                  className="px-4 py-3.5 cursor-pointer hover:bg-slate-100 hover:text-slate-700 select-none transition-colors rounded-tl-xl"
                 >
                   Method {matrixSortKey === "name" && (matrixSortOrder === "asc" ? "▲" : "▼")}
                 </th>
                 <th
                   onClick={() => handleSortMatrix("flavorClarity")}
-                  className="px-4 py-3.5 cursor-pointer hover:bg-slate-150 hover:text-slate-700 select-none transition-colors"
+                  className="px-4 py-3.5 cursor-pointer hover:bg-slate-100 hover:text-slate-700 select-none transition-colors"
                 >
                   Clarity {matrixSortKey === "flavorClarity" && (matrixSortOrder === "asc" ? "▲" : "▼")}
                 </th>
                 <th
                   onClick={() => handleSortMatrix("body")}
-                  className="px-4 py-3.5 cursor-pointer hover:bg-slate-150 hover:text-slate-700 select-none transition-colors"
+                  className="px-4 py-3.5 cursor-pointer hover:bg-slate-100 hover:text-slate-700 select-none transition-colors"
                 >
                   Body {matrixSortKey === "body" && (matrixSortOrder === "asc" ? "▲" : "▼")}
                 </th>
                 <th
                   onClick={() => handleSortMatrix("sweetness")}
-                  className="px-4 py-3.5 cursor-pointer hover:bg-slate-150 hover:text-slate-700 select-none transition-colors"
+                  className="px-4 py-3.5 cursor-pointer hover:bg-slate-100 hover:text-slate-700 select-none transition-colors"
                 >
                   Sweetness {matrixSortKey === "sweetness" && (matrixSortOrder === "asc" ? "▲" : "▼")}
                 </th>
                 <th
                   onClick={() => handleSortMatrix("waterUsage")}
-                  className="px-4 py-3.5 cursor-pointer hover:bg-slate-150 hover:text-slate-700 select-none transition-colors"
+                  className="px-4 py-3.5 cursor-pointer hover:bg-slate-100 hover:text-slate-700 select-none transition-colors"
                 >
                   Water {matrixSortKey === "waterUsage" && (matrixSortOrder === "asc" ? "▲" : "▼")}
                 </th>
                 <th
                   onClick={() => handleSortMatrix("difficulty")}
-                  className="px-4 py-3.5 cursor-pointer hover:bg-slate-150 hover:text-slate-700 select-none transition-colors"
+                  className="px-4 py-3.5 cursor-pointer hover:bg-slate-100 hover:text-slate-700 select-none transition-colors"
                 >
                   Difficulty {matrixSortKey === "difficulty" && (matrixSortOrder === "asc" ? "▲" : "▼")}
                 </th>

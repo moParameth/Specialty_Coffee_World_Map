@@ -120,7 +120,7 @@ export default function VarietyDetailPanel({
       <div className="flex-1 overflow-y-auto p-6 space-y-6 max-h-[80vh] custom-scrollbar">
         {/* Summary */}
         <section>
-          <h3 className="mb-2 text-xs font-bold uppercase tracking-widest text-slate-400 border-b border-slate-150 pb-1.5">
+          <h3 className="mb-2 text-xs font-bold uppercase tracking-widest text-slate-400 border-b border-slate-200 pb-1.5">
             Variety Details
           </h3>
           <p className="text-slate-700 leading-relaxed text-sm">{variety.summary}</p>
@@ -140,7 +140,7 @@ export default function VarietyDetailPanel({
 
         {/* Agronomic Traits Grid */}
         <section>
-          <h3 className="mb-3 text-xs font-bold uppercase tracking-widest text-slate-400 border-b border-slate-150 pb-1.5">
+          <h3 className="mb-3 text-xs font-bold uppercase tracking-widest text-slate-400 border-b border-slate-200 pb-1.5">
             Agronomic Traits
           </h3>
           <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
@@ -172,7 +172,7 @@ export default function VarietyDetailPanel({
 
         {/* Flavor Profile */}
         <section>
-          <h3 className="mb-3 text-xs font-bold uppercase tracking-widest text-slate-400 border-b border-slate-150 pb-1.5">
+          <h3 className="mb-3 text-xs font-bold uppercase tracking-widest text-slate-400 border-b border-slate-200 pb-1.5">
             Flavor Expectations
           </h3>
           <div className="flex flex-wrap gap-2">
@@ -190,7 +190,7 @@ export default function VarietyDetailPanel({
 
         {/* Common Countries */}
         <section>
-          <h3 className="mb-3 text-xs font-bold uppercase tracking-widest text-slate-400 border-b border-slate-150 pb-1.5">
+          <h3 className="mb-3 text-xs font-bold uppercase tracking-widest text-slate-400 border-b border-slate-200 pb-1.5">
             Common Countries
           </h3>
           <div className="flex flex-wrap gap-2">
@@ -222,7 +222,7 @@ export default function VarietyDetailPanel({
         {/* Related Varieties */}
         {variety.relatedVarieties && variety.relatedVarieties.length > 0 && (
           <section>
-            <h3 className="mb-3 text-xs font-bold uppercase tracking-widest text-slate-400 border-b border-slate-150 pb-1.5">
+            <h3 className="mb-3 text-xs font-bold uppercase tracking-widest text-slate-400 border-b border-slate-200 pb-1.5">
               Related Varieties
             </h3>
             <div className="flex flex-wrap gap-2">
@@ -245,14 +245,14 @@ export default function VarietyDetailPanel({
 
         {/* Source List */}
         <section>
-          <h3 className="mb-3 text-xs font-bold uppercase tracking-widest text-slate-400 border-b border-slate-150 pb-1.5">
+          <h3 className="mb-3 text-xs font-bold uppercase tracking-widest text-slate-400 border-b border-slate-200 pb-1.5">
             Sources
           </h3>
           <ul className="space-y-2">
             {variety.sources.map((src, index) => (
               <li
                 key={index}
-                className="text-xs bg-slate-50 border border-slate-150 p-2.5 rounded-xl flex items-start gap-2.5"
+                className="text-xs bg-slate-50 border border-slate-200 p-2.5 rounded-xl flex items-start gap-2.5"
               >
                 <HelpCircle className="h-4 w-4 text-slate-400 mt-0.5 flex-shrink-0" />
                 <div className="flex-1">
@@ -273,7 +273,7 @@ export default function VarietyDetailPanel({
         </section>
 
         {/* Disclaimer */}
-        <div className="rounded-xl border border-slate-200 bg-slate-50 p-4 text-[10px] text-slate-455 leading-relaxed font-medium">
+        <div className="rounded-xl border border-slate-200 bg-slate-50 p-4 text-[10px] text-slate-500 leading-relaxed font-medium">
           <strong>Disclaimer:</strong> This dataset is curated for educational visualization. Agronomic traits are simplified from reputable public references and may vary by country, farm management, altitude, climate, and disease pressure. Flavor notes are representative expectations, not official SCA scores.
         </div>
       </div>
