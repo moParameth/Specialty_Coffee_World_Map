@@ -381,8 +381,8 @@ export default function RoastingExplorer() {
 
                 {/* Active Dynamic Pointer (synchronised with the temp slider) */}
                 <g>
-                  {/* Glowing outer aura */}
-                  <circle cx={activePointer.x} cy={activePointer.y} r="8" className="fill-orange-500/30 animate-ping" />
+                  {/* Static outer halo */}
+                  <circle cx={activePointer.x} cy={activePointer.y} r="8" className="fill-orange-500/20" />
                   {/* Outer ring */}
                   <circle cx={activePointer.x} cy={activePointer.y} r="6" className="stroke-orange-600 stroke-2 fill-none" />
                   {/* Inner solid dot */}
