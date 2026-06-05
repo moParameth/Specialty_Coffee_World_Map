@@ -9,7 +9,7 @@ import { CoffeeCountry } from "@/types/coffee";
 import { coffeeCountries } from "@/data/coffeeCountries";
 import { filterCoffeeCountries } from "@/utils/countryUtils";
 import Link from "next/link";
-import { Map, Coffee, History } from "lucide-react";
+import { Map, Coffee, History, Workflow } from "lucide-react";
 
 function HomeContent() {
   const [selectedCountry, setSelectedCountry] = useState<CoffeeCountry | null>(null);
@@ -75,6 +75,14 @@ function HomeContent() {
             >
               <History className="h-4 w-4 text-slate-400" />
               <span>Coffee History</span>
+            </Link>
+            <Link
+              id="nav-coffee-processing"
+              href="/processing"
+              className="flex items-center gap-1.5 px-4 py-2 text-sm font-bold text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-xl transition-all"
+            >
+              <Workflow className="h-4 w-4 text-slate-400" />
+              <span>Coffee Processing</span>
             </Link>
           </nav>
         </div>

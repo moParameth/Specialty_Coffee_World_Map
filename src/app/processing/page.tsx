@@ -1,15 +1,15 @@
 import { Suspense } from "react";
-import VarietyExplorer from "@/components/VarietyExplorer";
+import ProcessingExplorer from "@/components/ProcessingExplorer";
 import Link from "next/link";
 import { ArrowLeft, Map, Coffee, History, Workflow } from "lucide-react";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Coffee Variety Explorer - Specialty Coffee World Map",
-  description: "Browse coffee varieties, genetic lineages, agronomic traits, disease resistance, and flavor profiles.",
+  title: "Coffee Processing Methods - Specialty Coffee World Map",
+  description: "Learn how specialty coffee processing methods (Washed, Natural, Honey, Anaerobic, Carbonic Maceration, Wet Hulled, and Co-fermentation) shape the flavor profile, acidity, body, and sweetness.",
 };
 
-export default function VarietiesPage() {
+export default function ProcessingPage() {
   return (
     <div className="flex flex-col min-h-screen bg-slate-50 text-slate-800 font-sans selection:bg-blue-500 selection:text-white">
       {/* Header Bar */}
@@ -18,13 +18,13 @@ export default function VarietiesPage() {
           {/* Logo & Subtitle */}
           <div>
             <div className="flex items-center gap-2">
-              <Coffee className="h-6 w-6 text-blue-600" />
+              <Workflow className="h-6 w-6 text-blue-600" />
               <h1 id="page-title" className="text-2xl font-black text-slate-900 tracking-tight">
-                Coffee Variety Explorer
+                Coffee Processing Methods
               </h1>
             </div>
             <p className="text-xs font-semibold text-slate-500 mt-1 max-w-xl">
-              Explore coffee varieties, agronomic traits, genetic lineage, disease resistance, and flavor expectations.
+              Discover the chemistry and mechanics behind Washed, Natural, Honey, and modern fermentation styles.
             </p>
           </div>
 
@@ -41,9 +41,9 @@ export default function VarietiesPage() {
             <Link
               id="nav-coffee-varieties"
               href="/varieties"
-              className="flex items-center gap-1.5 px-4 py-2 text-sm font-bold bg-blue-600 border border-blue-600 text-white rounded-xl shadow-sm hover:bg-blue-700 transition-all"
+              className="flex items-center gap-1.5 px-4 py-2 text-sm font-bold text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-xl transition-all"
             >
-              <Coffee className="h-4 w-4" />
+              <Coffee className="h-4 w-4 text-slate-400" />
               <span>Coffee Varieties</span>
             </Link>
             <Link
@@ -57,9 +57,9 @@ export default function VarietiesPage() {
             <Link
               id="nav-coffee-processing"
               href="/processing"
-              className="flex items-center gap-1.5 px-4 py-2 text-sm font-bold text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-xl transition-all"
+              className="flex items-center gap-1.5 px-4 py-2 text-sm font-bold bg-blue-600 border border-blue-600 text-white rounded-xl shadow-sm hover:bg-blue-700 transition-all"
             >
-              <Workflow className="h-4 w-4 text-slate-400" />
+              <Workflow className="h-4 w-4" />
               <span>Coffee Processing</span>
             </Link>
           </nav>
@@ -80,23 +80,23 @@ export default function VarietiesPage() {
           </Link>
         </div>
 
-        {/* Explorer Wrapper (Suspended for useSearchParams) */}
+        {/* Explorer Wrapper (Suspended for any client hook triggers) */}
         <Suspense
           fallback={
             <div className="flex flex-col items-center justify-center min-h-[400px] py-12">
               <div className="h-10 w-10 animate-spin rounded-full border-4 border-blue-900/10 border-t-blue-600"></div>
-              <p className="mt-4 text-sm font-semibold text-slate-500">Loading varieties dataset...</p>
+              <p className="mt-4 text-sm font-semibold text-slate-500">Loading processing science...</p>
             </div>
           }
         >
-          <VarietyExplorer />
+          <ProcessingExplorer />
         </Suspense>
       </main>
 
       {/* Footer */}
       <footer className="bg-white border-t border-slate-200 py-4 px-6 text-center text-xs text-slate-500">
         <p className="max-w-4xl mx-auto font-medium">
-          Disclaimer: The variety dataset is curated for educational visualization. Agronomic traits are simplified from reputable public references and may vary by country, farm management, altitude, climate, and disease pressure. Flavor notes are representative expectations, not official SCA scores.
+          Disclaimer: Coffee processing definitions compile industry standard practices and academic science. Actual processing variables, fermentation times, and flavor profiles vary significantly depending on climatic factors, water quality, producer expertise, and equipment specifications.
         </p>
       </footer>
     </div>
