@@ -27,4 +27,5 @@ export interface CoffeeProcessingMethod {
   steps: ProcessingStep[];
   pros: string[];
   cons: string[];
+  imageUrl?: string;
 }

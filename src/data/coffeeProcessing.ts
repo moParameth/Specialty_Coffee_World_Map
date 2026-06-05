@@ -7,6 +7,7 @@ export const coffeeProcessingMethods: CoffeeProcessingMethod[] = [
     alternativeNames: ["Wet Process"],
     summary: "The outer skin and pulp are removed mechanically before the coffee is fermented in water to break down the mucilage, then washed clean and dried.",
     description: "Washed processing is the standard for specialty coffee focusing on origin representation. By stripping the fruit skin and pulp immediately after harvesting, and then fermenting and washing away the remaining sticky mucilage, the final flavor is driven purely by the bean's genetics, soil, and terroir. It requires a significant amount of water and mechanical equipment, making it a capital-intensive but reliable method.",
+    imageUrl: "/images/processing/washed.png",
     flavorProfile: {
       description: "Characterized by high flavor clarity, clean mouthfeel, and bright, pronounced acidity. It highlights delicate floral and bright citrus notes without fruit fermentation flavors.",
       descriptors: ["Citrus", "Jasmine", "Floral", "Clean", "Bright", "Black Tea"]
@@ -68,6 +69,7 @@ export const coffeeProcessingMethods: CoffeeProcessingMethod[] = [
     alternativeNames: ["Dry Process"],
     summary: "Whole coffee cherries are dried under the sun with skin and pulp intact, allowing fruit sugars and compounds to absorb directly into the seed.",
     description: "The natural process is the oldest and most traditional method of preparing coffee, common in regions with limited water access like Ethiopia and parts of Brazil. Ripe cherries are dried whole. Because the seed remains in contact with the fermenting fruit pulp for weeks, it absorbs sugars and organic compounds, resulting in intense fruit-forward flavors and a heavy, syrupy body.",
+    imageUrl: "/images/processing/natural.png",
     flavorProfile: {
       description: "Presents a heavy, winey mouthfeel, low to medium acidity, and intense sweetness. It often exhibits strong berry, tropical fruit, and chocolatey characteristics.",
       descriptors: ["Blueberry", "Strawberry", "Winey", "Chocolate", "Tropical Fruit", "Heavy Body"]
@@ -124,6 +126,7 @@ export const coffeeProcessingMethods: CoffeeProcessingMethod[] = [
     alternativeNames: ["Pulped Natural", "Semi-Washed"],
     summary: "The outer skin is removed, but a portion of sticky mucilage is left on the parchment during drying, oxidizing into a golden, reddish, or black sticky coating.",
     description: "Popularized in Costa Rica, Honey processing sits between washed and natural. The coffee skin is removed (pulped), but the sugary mucilage (referred to as honey or 'miel') is left on the bean. Depending on how much mucilage remains and how it is dried, it is categorized as White, Yellow, Red, or Black Honey. Less mucilage and faster drying yields White/Yellow; more mucilage and shaded, slower drying yields Red/Black.",
+    imageUrl: "/images/processing/honey.png",
     flavorProfile: {
       description: "Combines the clean profile of a washed coffee with the sweetness and body of a natural. Tends to showcase notes of stone fruits, honey, caramel, and a creamy mouthfeel.",
       descriptors: ["Honey", "Caramel", "Peach", "Plum", "Creamy", "Red Apple"]
@@ -158,7 +161,7 @@ export const coffeeProcessingMethods: CoffeeProcessingMethod[] = [
         description: "To prevent mold and fermentation rot, workers must rake the sticky beans constantly. Black honey is dried slowly under shade tarps, while White/Yellow honey is dried quickly in open sun."
       },
       {
-        name: "Dry Hulling",
+        name: "Dry Milling",
         duration: "Variable",
         description: "Once dried to 11% moisture, the sticky, hardened mucilage layer and parchment are milled off, exposing the polished green beans."
       }
@@ -180,6 +183,7 @@ export const coffeeProcessingMethods: CoffeeProcessingMethod[] = [
     alternativeNames: ["Anerobic Fermented", "Oxygen-Free Fermentation"],
     summary: "Coffee is sealed in airtight tanks, excluding oxygen to encourage anaerobic microbes to break down sugars, producing unique organic acids.",
     description: "Anaerobic fermentation is a modern specialty coffee technique. By sealing coffee (either whole cherries or depulped parchment) in oxygen-depleted stainless steel or plastic tanks, anaerobic microbes (like lactic acid bacteria) thrive. This leads to the production of high amounts of lactic and other organic acids, completely shifting the sensory profile toward exotic, intense, and spice-like notes.",
+    imageUrl: "/images/processing/anaerobic.png",
     flavorProfile: {
       description: "Boasts a highly complex, wild acidity, thick syrupy mouthfeel, and unusual spice and tropical notes. Expect intense aromas of cinnamon, cacao nibs, pineapple, and clove.",
       descriptors: ["Cinnamon", "Clove", "Pineapple", "Cacao Nibs", "Syrupy", "Rum"]
@@ -236,6 +240,7 @@ export const coffeeProcessingMethods: CoffeeProcessingMethod[] = [
     alternativeNames: ["CM Process"],
     summary: "Inspired by winemaking, whole cherries are placed in sealed tanks flushed with carbon dioxide gas, initiating fermentation from inside the fruit.",
     description: "Borrowed from the Beaujolais wine region, Carbonic Maceration involves placing intact, ripe coffee cherries into a sealed tank, which is then pressurized by injecting carbon dioxide (CO2) gas to purge all oxygen. This forces an intracellular fermentation, where the fruit cells break down sugars from the inside out, producing extremely clean, wine-like, and bubblegum-like flavor compounds.",
+    imageUrl: "/images/processing/carbonic-maceration.png",
     flavorProfile: {
       description: "Presents a sparkling, effervescent, wine-like acidity, highly intense red fruit flavors, and unique candy-like or floral aromas. Very distinct and structured.",
       descriptors: ["Red Wine", "Raspberry", "Bubblegum", "Effervescent", "Stone Fruit", "Florals"]
@@ -292,6 +297,7 @@ export const coffeeProcessingMethods: CoffeeProcessingMethod[] = [
     alternativeNames: ["Giling Basah"],
     summary: "A traditional Indonesian method where the parchment is mechanically hulled off the seed at a high moisture level of 30-40% before final drying.",
     description: "Wet hulling, locally known as 'Giling Basah,' is a unique method native to Indonesia, especially Sumatra. Due to the region's humid, rainy climate, coffee cannot dry in parchment without rotting. To speed up the process, farmers pulp the coffee, ferment it overnight, dry it for just a day, and then hull off the wet parchment shell when the bean is still soft (30-40% moisture). The naked beans are then dried directly on concrete patios, giving Sumatran coffee its signature dark green appearance and low-acid, earthy flavor.",
+    imageUrl: "/images/processing/wet-hulled.png",
     flavorProfile: {
       description: "Low in acidity and very heavy in body. It features bold, rustic, and complex savory notes of cedar wood, fresh tobacco, sweet herbs, and dark chocolate.",
       descriptors: ["Cedar Wood", "Tobacco", "Earthy", "Dark Chocolate", "Herbal", "Low Acidity"]
@@ -327,7 +333,7 @@ export const coffeeProcessingMethods: CoffeeProcessingMethod[] = [
       },
       {
         name: "Direct Sun Drying",
-        duration: "3-5 Days",
+        duration: "Day 3-5",
         description: "The naked green coffee seeds are spread directly onto concrete patios. Because there is no protective shell, the coffee dries very rapidly, taking only a few days."
       },
       {
@@ -353,6 +359,7 @@ export const coffeeProcessingMethods: CoffeeProcessingMethod[] = [
     alternativeNames: ["Infused Coffee", "Yeast Inoculated", "Koji Fermented"],
     summary: "During fermentation, specific wine yeasts, fruits, spices, or sugars are added to the tank to infuse intense, candy-like flavors into the seed.",
     description: "Yeast or Fruit Co-fermentation is a highly modern and controversial processing innovation. During the fermentation stage in sealed tanks, producers add specific commercial wine yeasts (like Lalvin), koji spores, or ingredients like sliced passion fruit, oranges, pineapples, cinnamon, or mint. The microbes ferment these added items, creating aromatic esters that are absorbed directly by the porous green coffee seed, leading to highly intense, exotic cup profiles.",
+    imageUrl: "/images/processing/co-fermentation.png",
     flavorProfile: {
       description: "Hyper-fruity, candy-like sweetness, and explosive aroma. The flavor directly mimics the added ingredient (e.g. peach, cinnamon, passion fruit) with an intense, long-lasting finish.",
       descriptors: ["Peach", "Passion Fruit", "Cinnamon", "Candy-like", "Effervescent", "Mint"]

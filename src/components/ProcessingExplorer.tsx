@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { coffeeProcessingMethods } from "@/data/coffeeProcessing";
-import { CoffeeProcessingMethod, ProcessingStep } from "@/types/processing";
+import { CoffeeProcessingMethod } from "@/types/processing";
 import {
   Droplets,
   Wrench,
@@ -13,45 +13,102 @@ import {
   CheckCircle,
   XCircle,
   Clock,
-  ArrowRight,
-  ChevronDown,
-  ChevronUp,
   Table,
   Workflow,
   Sparkles,
   Info,
-  SlidersHorizontal
+  SlidersHorizontal,
+  Filter,
+  Layers,
+  Activity,
+  Droplet,
+  Hammer,
+  Scale
 } from "lucide-react";
+
+type CupStyleFilter = "all" | "clean" | "sweet" | "earthy";
 
 export default function ProcessingExplorer() {
   const [activeMethodId, setActiveMethodId] = useState<string>("washed");
   const [activeStepIndex, setActiveStepIndex] = useState<number>(0);
   const [matrixSortKey, setMatrixSortKey] = useState<string>("name");
   const [matrixSortOrder, setMatrixSortOrder] = useState<"asc" | "desc">("asc");
+  const [styleFilter, setStyleFilter] = useState<CupStyleFilter>("all");
 
   // Get active method
   const activeMethod = coffeeProcessingMethods.find((m) => m.id === activeMethodId) || coffeeProcessingMethods[0];
+
+  // Helper to map methods to sensory cup styles
+  const getMethodStyle = (id: string): CupStyleFilter => {
+    if (id === "washed" || id === "carbonic-maceration") return "clean";
+    if (id === "natural" || id === "honey" || id === "anaerobic" || id === "co-fermentation") return "sweet";
+    if (id === "wet-hulled") return "earthy";
+    return "all";
+  };
+
+  // Filtered list of methods for the tabs
+  const filteredMethods = coffeeProcessingMethods.filter((method) => {
+    if (styleFilter === "all") return true;
+    return getMethodStyle(method.id) === styleFilter;
+  });
+
+  // Automatically select the first visible method if active is filtered out
+  const handleStyleFilterChange = (style: CupStyleFilter) => {
+    setStyleFilter(style);
+    const visible = coffeeProcessingMethods.filter((m) => {
+      if (style === "all") return true;
+      return getMethodStyle(m.id) === style;
+    });
+    if (visible.length > 0 && !visible.some((m) => m.id === activeMethodId)) {
+      setActiveMethodId(visible[0].id);
+      setActiveStepIndex(0);
+    }
+  };
 
   // Get flavor class/badge for tabs
   const getFlavorBadge = (id: string) => {
     switch (id) {
       case "washed":
-        return { text: "Bright & Clean", color: "bg-cyan-50 border-cyan-200 text-cyan-700" };
+        return { text: "Bright & Clean", color: "bg-cyan-50 border-cyan-200 text-cyan-700 font-bold" };
       case "natural":
-        return { text: "Sweet & Fruity", color: "bg-rose-50 border-rose-200 text-rose-700" };
+        return { text: "Sweet & Fruity", color: "bg-rose-50 border-rose-200 text-rose-700 font-bold" };
       case "honey":
-        return { text: "Honey & Body", color: "bg-amber-50 border-amber-200 text-amber-700" };
+        return { text: "Honey & Body", color: "bg-amber-50 border-amber-200 text-amber-700 font-bold" };
       case "anaerobic":
-        return { text: "Exotic & Spiced", color: "bg-purple-50 border-purple-200 text-purple-700" };
+        return { text: "Exotic & Spiced", color: "bg-purple-50 border-purple-200 text-purple-700 font-bold" };
       case "carbonic-maceration":
-        return { text: "Winey & Complex", color: "bg-indigo-50 border-indigo-200 text-indigo-700" };
+        return { text: "Winey & Complex", color: "bg-indigo-50 border-indigo-200 text-indigo-700 font-bold" };
       case "wet-hulled":
-        return { text: "Earthy & Cedar", color: "bg-emerald-50 border-emerald-200 text-emerald-700" };
+        return { text: "Earthy & Cedar", color: "bg-emerald-50 border-emerald-200 text-emerald-700 font-bold" };
       case "co-fermentation":
-        return { text: "Hyper-infused", color: "bg-pink-50 border-pink-200 text-pink-700" };
+        return { text: "Hyper-infused", color: "bg-pink-50 border-pink-200 text-pink-700 font-bold" };
       default:
-        return { text: "Balanced", color: "bg-slate-50 border-slate-200 text-slate-700" };
+        return { text: "Balanced", color: "bg-slate-50 border-slate-200 text-slate-700 font-bold" };
     }
+  };
+
+  // Step Icon Resolver
+  const getStepIcon = (stepName: string) => {
+    const name = stepName.toLowerCase();
+    if (name.includes("harvest") || name.includes("select") || name.includes("pick") || name.includes("prep")) {
+      return <Filter className="h-4 w-4" />;
+    }
+    if (name.includes("pulp") || name.includes("hull") || name.includes("mill") || name.includes("extraction")) {
+      return <Hammer className="h-4 w-4" />;
+    }
+    if (name.includes("ferment") || name.includes("maceration") || name.includes("tank") || name.includes("loading")) {
+      return <Activity className="h-4 w-4" />;
+    }
+    if (name.includes("wash") || name.includes("float") || name.includes("wet")) {
+      return <Droplet className="h-4 w-4" />;
+    }
+    if (name.includes("dry") || name.includes("sun") || name.includes("canopy") || name.includes("spread") || name.includes("raking")) {
+      return <Sun className="h-4 w-4" />;
+    }
+    if (name.includes("sort") || name.includes("defect") || name.includes("stabiliz") || name.includes("cure") || name.includes("bag")) {
+      return <Scale className="h-4 w-4" />;
+    }
+    return <Layers className="h-4 w-4" />;
   };
 
   // Render metric bars
@@ -122,14 +179,72 @@ export default function ProcessingExplorer() {
         </div>
       </div>
 
+      {/* Flavor Profile Filtering Controls */}
+      <div className="space-y-3 bg-white border border-slate-200 rounded-3xl p-5 shadow-sm">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-3">
+          <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5 px-1">
+            <Filter className="h-3.5 w-3.5" />
+            <span>Filter by Target Flavor Profile</span>
+          </h3>
+          <span className="text-[10px] text-slate-400 font-semibold italic">
+            Narrow down methods based on your favorite sensory cup style.
+          </span>
+        </div>
+        <div className="flex flex-wrap gap-2">
+          <button
+            onClick={() => handleStyleFilterChange("all")}
+            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all border ${
+              styleFilter === "all"
+                ? "bg-blue-600 border-blue-600 text-white shadow-sm"
+                : "bg-slate-50 border-slate-200 text-slate-600 hover:bg-slate-100"
+            }`}
+          >
+            All Methods ({coffeeProcessingMethods.length})
+          </button>
+          <button
+            onClick={() => handleStyleFilterChange("clean")}
+            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all border flex items-center gap-1.5 ${
+              styleFilter === "clean"
+                ? "bg-blue-600 border-blue-600 text-white shadow-sm"
+                : "bg-slate-50 border-slate-200 text-slate-600 hover:bg-slate-100"
+            }`}
+          >
+            <Compass className="h-3.5 w-3.5 text-cyan-500" />
+            <span>Clean & Acidic</span>
+          </button>
+          <button
+            onClick={() => handleStyleFilterChange("sweet")}
+            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all border flex items-center gap-1.5 ${
+              styleFilter === "sweet"
+                ? "bg-blue-600 border-blue-600 text-white shadow-sm"
+                : "bg-slate-50 border-slate-200 text-slate-600 hover:bg-slate-100"
+            }`}
+          >
+            <Heart className="h-3.5 w-3.5 text-rose-500" />
+            <span>Sweet & Fruity</span>
+          </button>
+          <button
+            onClick={() => handleStyleFilterChange("earthy")}
+            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all border flex items-center gap-1.5 ${
+              styleFilter === "earthy"
+                ? "bg-blue-600 border-blue-600 text-white shadow-sm"
+                : "bg-slate-50 border-slate-200 text-slate-600 hover:bg-slate-100"
+            }`}
+          >
+            <Coffee className="h-3.5 w-3.5 text-amber-700" />
+            <span>Heavy & Earthy</span>
+          </button>
+        </div>
+      </div>
+
       {/* Tabs Selector Navigation */}
       <div className="space-y-3">
         <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5 px-1">
           <SlidersHorizontal className="h-3.5 w-3.5" />
-          <span>Select Processing Method</span>
+          <span>Processing Methods ({filteredMethods.length} shown)</span>
         </h3>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-2">
-          {coffeeProcessingMethods.map((method) => {
+          {filteredMethods.map((method) => {
             const isActive = method.id === activeMethodId;
             const badge = getFlavorBadge(method.id);
             return (
@@ -162,6 +277,26 @@ export default function ProcessingExplorer() {
         {/* Left Hand: Overview & Flavor Profile */}
         <div className="lg:col-span-7 space-y-6">
           <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm space-y-6">
+            {/* Custom Generated Illustration Backdrop */}
+            {activeMethod.imageUrl && (
+              <div className="w-full h-56 sm:h-64 overflow-hidden rounded-2xl border border-slate-200 bg-slate-50 relative flex items-center justify-center">
+                {/* Blurred backdrop aspect filler */}
+                <img
+                  src={activeMethod.imageUrl}
+                  alt=""
+                  className="absolute inset-0 w-full h-full object-cover blur-md opacity-20 scale-105 pointer-events-none"
+                  aria-hidden="true"
+                />
+                {/* Crisp foreground illustration */}
+                <img
+                  src={activeMethod.imageUrl}
+                  alt={`${activeMethod.name} illustration`}
+                  className="relative z-10 max-h-[calc(100%-1.5rem)] max-w-[calc(100%-1.5rem)] object-contain rounded-xl shadow-sm transition-transform duration-500 hover:scale-[1.01]"
+                  loading="eager"
+                />
+              </div>
+            )}
+
             {/* Header info */}
             <div className="space-y-2 pb-4 border-b border-slate-100">
               <div className="flex flex-wrap items-center justify-between gap-3">
@@ -346,15 +481,15 @@ export default function ProcessingExplorer() {
                     : "bg-slate-50 border-slate-200 hover:bg-slate-100/80 text-slate-700"
                 }`}
               >
-                <span className={`flex items-center justify-center h-6 w-6 rounded-full text-xs font-black border ${
+                <span className={`flex items-center justify-center h-7 w-7 rounded-full text-xs font-black border transition-all duration-300 ${
                   isActive ? "bg-white text-blue-600 border-white" : "bg-slate-200 text-slate-600 border-slate-300"
                 }`}>
-                  {idx + 1}
+                  {getStepIcon(step.name)}
                 </span>
                 <div className="text-left">
                   <p className="text-xs font-bold tracking-tight whitespace-nowrap">{step.name}</p>
                   {step.duration && (
-                    <p className={`text-[9px] font-semibold flex items-center gap-0.5 mt-0.5 ${isActive ? "text-blue-150 text-blue-200" : "text-slate-400"}`}>
+                    <p className={`text-[9px] font-semibold flex items-center gap-0.5 mt-0.5 ${isActive ? "text-blue-200" : "text-slate-400"}`}>
                       <Clock className="h-2.5 w-2.5" /> {step.duration}
                     </p>
                   )}
@@ -370,8 +505,9 @@ export default function ProcessingExplorer() {
           
           <div className="space-y-3 relative z-10">
             <div className="flex items-center justify-between">
-              <span className="text-[10px] font-bold uppercase tracking-wider text-blue-600 bg-blue-50 border border-blue-200 px-2.5 py-0.5 rounded-full">
-                Step {activeStepIndex + 1} of {activeMethod.steps.length}
+              <span className="text-[10px] font-bold uppercase tracking-wider text-blue-600 bg-blue-50 border border-blue-200 px-2.5 py-0.5 rounded-full flex items-center gap-1">
+                {getStepIcon(activeMethod.steps[activeStepIndex].name)}
+                <span>Step {activeStepIndex + 1} of {activeMethod.steps.length}</span>
               </span>
               {activeMethod.steps[activeStepIndex].duration && (
                 <span className="text-xs text-slate-500 font-bold flex items-center gap-1">
