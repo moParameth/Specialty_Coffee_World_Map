@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import HistoryTimeline from "@/components/HistoryTimeline";
 import Link from "next/link";
-import { ArrowLeft, Map, Coffee, History, Workflow } from "lucide-react";
+import { ArrowLeft, Map, Coffee, History, Workflow, Flame } from "lucide-react";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -61,6 +61,14 @@ export default function HistoryPage() {
             >
               <Workflow className="h-4 w-4 text-slate-400" />
               <span>Coffee Processing</span>
+            </Link>
+            <Link
+              id="nav-coffee-roasting"
+              href="/roasting"
+              className="flex items-center gap-1.5 px-4 py-2 text-sm font-bold text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-xl transition-all"
+            >
+              <Flame className="h-4 w-4 text-slate-400" />
+              <span>Coffee Roasting</span>
             </Link>
           </nav>
         </div>
