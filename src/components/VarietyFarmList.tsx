@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { coffeeFarms, CoffeeFarm } from "@/data/coffeeFarms";
+import { coffeeCountries } from "@/data/coffeeCountries";
 import { 
   Search, 
   MapPin, 
@@ -23,43 +24,28 @@ interface VarietyFarmListProps {
 export default function VarietyFarmList({ onInspectVariety }: VarietyFarmListProps) {
   const [selectedId, setSelectedId] = useState<string>("hacienda-la-esmeralda");
   const [searchQuery, setSearchQuery] = useState("");
+  const [selectedRegion, setSelectedRegion] = useState<string>("All");
   const [selectedCountry, setSelectedCountry] = useState<string>("All");
 
-  const countries = [
-    "All",
-    "Panama",
-    "Ethiopia",
-    "Colombia",
-    "Guatemala",
-    "Kenya",
-    "Costa Rica",
-    "El Salvador",
-    "Brazil",
-    "Yemen",
-    "Honduras",
-    "Indonesia",
-    "Peru",
-    "Burundi",
-    "Rwanda",
-    "Nicaragua",
-    "Ecuador",
-    "Bolivia",
-    "Jamaica",
-    "United States",
-    "Mexico",
-    "Vietnam",
-    "Thailand",
-    "India",
-    "Papua New Guinea",
-    "Uganda",
-    "Tanzania",
-    "China",
-    "Malawi",
-    "Timor-Leste",
-    "Taiwan"
-  ];
+  // Map country name to its region group for fast lookup
+  const countryToRegion = new Map(coffeeCountries.map(c => [c.country, c.regionGroup]));
+
+  // Get list of sorted countries, optionally filtered by selected region
+  const allCountries = Array.from(new Set(coffeeCountries.map(c => c.country))).sort();
+  const countriesToShow = selectedRegion === "All"
+    ? allCountries
+    : coffeeCountries.filter(c => c.regionGroup === selectedRegion).map(c => c.country).sort();
+
+  const countries = ["All", ...countriesToShow];
+
+  const handleRegionChange = (region: string) => {
+    setSelectedRegion(region);
+    setSelectedCountry("All");
+  };
 
   const filteredFarms = coffeeFarms.filter(f => {
+    const regionGroup = countryToRegion.get(f.country) || "";
+    const matchesRegion = selectedRegion === "All" || regionGroup === selectedRegion;
     const matchesCountry = selectedCountry === "All" || f.country.toLowerCase() === selectedCountry.toLowerCase();
     const matchesSearch = 
       f.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -67,7 +53,7 @@ export default function VarietyFarmList({ onInspectVariety }: VarietyFarmListPro
       f.region.toLowerCase().includes(searchQuery.toLowerCase()) ||
       f.signatureProduct.toLowerCase().includes(searchQuery.toLowerCase()) ||
       f.keyVarieties.some(v => v.toLowerCase().includes(searchQuery.toLowerCase()));
-    return matchesCountry && matchesSearch;
+    return matchesRegion && matchesCountry && matchesSearch;
   });
 
   // Dynamically resolve the selected farm. If the current selectedId is not in the filtered list,
@@ -81,7 +67,8 @@ export default function VarietyFarmList({ onInspectVariety }: VarietyFarmListPro
     if (normalized.includes("sl28")) return "sl28";
     if (normalized.includes("sl34")) return "sl34";
     if (normalized.includes("pacamara")) return "pacamara";
-    if (normalized.includes("bourbon")) return "bourbon"; // maps Yellow/Pink Bourbon to bourbon
+    if (normalized.includes("pink bourbon") || normalized.includes("pink-bourbon")) return "pink-bourbon";
+    if (normalized.includes("bourbon")) return "bourbon"; 
     if (normalized.includes("typica")) return "typica";
     if (normalized.includes("caturra")) return "caturra";
     if (normalized.includes("mundo novo") || normalized.includes("mundo-novo")) return "mundo-novo";
@@ -95,6 +82,20 @@ export default function VarietyFarmList({ onInspectVariety }: VarietyFarmListPro
     if (normalized.includes("anacafé 14") || normalized.includes("anacafe-14")) return "anacafe-14";
     if (normalized.includes("java")) return "java";
     if (normalized.includes("parainema")) return "parainema";
+    if (normalized.includes("eugenioides")) return "eugenioides";
+    if (normalized.includes("sidra")) return "sidra";
+    if (normalized.includes("wush wush") || normalized.includes("wush-wush")) return "wush-wush";
+    if (normalized.includes("sudan rume") || normalized.includes("sudan-rume")) return "sudan-rume";
+    if (normalized.includes("centroamericano")) return "centroamericano";
+    if (normalized.includes("starmaya")) return "starmaya";
+    if (normalized.includes("maragogype")) return "maragogype";
+    if (normalized.includes("tekisic")) return "tekisic";
+    if (normalized.includes("villa sarchi") || normalized.includes("villa-sarchi") || normalized.includes("sarchi")) return "villa-sarchi";
+    if (normalized.includes("marsellesa")) return "marsellesa";
+    if (normalized.includes("obata") || normalized.includes("obatã")) return "obata";
+    if (normalized.includes("sl14")) return "sl14";
+    if (normalized.includes("k7")) return "k7";
+    if (normalized.includes("timor hybrid") || normalized.includes("timor-hybrid")) return "timor-hybrid";
     return "";
   };
 
@@ -118,7 +119,8 @@ export default function VarietyFarmList({ onInspectVariety }: VarietyFarmListPro
       case "ecuador": return "border-violet-200 bg-violet-50 text-violet-750";
       case "bolivia": return "border-zinc-200 bg-zinc-50 text-zinc-700";
       case "jamaica": return "border-amber-300 bg-amber-50 text-amber-850";
-      case "united states": return "border-slate-300 bg-slate-50 text-slate-800";
+      case "united states":
+      case "united states of america": return "border-slate-300 bg-slate-50 text-slate-800";
       case "mexico": return "border-emerald-200 bg-emerald-50 text-emerald-700";
       case "vietnam": return "border-teal-300 bg-teal-50 text-teal-800";
       case "thailand": return "border-orange-300 bg-orange-50/70 text-orange-850";
@@ -130,7 +132,17 @@ export default function VarietyFarmList({ onInspectVariety }: VarietyFarmListPro
       case "malawi": return "border-indigo-300 bg-indigo-50 text-indigo-850";
       case "timor-leste": return "border-teal-300 bg-teal-50 text-teal-900";
       case "taiwan": return "border-purple-300 bg-purple-50/60 text-purple-900";
-      default: return "border-slate-200 bg-slate-50 text-slate-700";
+      default: {
+        const region = countryToRegion.get(country) || "";
+        if (region === "Africa") {
+          return "border-emerald-200 bg-emerald-50 text-emerald-800";
+        } else if (region === "Latin America") {
+          return "border-amber-200 bg-amber-50 text-amber-800";
+        } else if (region === "Asia-Pacific") {
+          return "border-indigo-200 bg-indigo-50/80 text-indigo-800";
+        }
+        return "border-slate-200 bg-slate-50 text-slate-700";
+      }
     }
   };
 
@@ -167,6 +179,27 @@ export default function VarietyFarmList({ onInspectVariety }: VarietyFarmListPro
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full pl-10 pr-4 py-2.5 text-xs md:text-sm font-bold bg-white border border-slate-200 rounded-2xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500/10 focus:border-blue-500"
             />
+          </div>
+
+          {/* Region Selector Tabs */}
+          <div className="flex gap-2 overflow-x-auto border-b border-slate-100 pb-1 scrollbar-thin scrollbar-thumb-slate-100 scrollbar-track-transparent">
+            {["All", "Latin America", "Africa", "Asia-Pacific"].map((region) => {
+              const isActive = selectedRegion === region;
+              return (
+                <button
+                  key={region}
+                  type="button"
+                  onClick={() => handleRegionChange(region)}
+                  className={`px-4 py-1.5 text-xs font-black whitespace-nowrap cursor-pointer transition-all border-b-2 -mb-px ${
+                    isActive
+                      ? "text-slate-950 border-slate-950"
+                      : "text-slate-400 border-transparent hover:text-slate-600"
+                  }`}
+                >
+                  {region === "All" ? "All Regions" : region}
+                </button>
+              );
+            })}
           </div>
 
           {/* Country Pill Selector */}
