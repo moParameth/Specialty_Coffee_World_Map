@@ -46,7 +46,17 @@ export default function VarietyFarmList({ onInspectVariety }: VarietyFarmListPro
     "Bolivia",
     "Jamaica",
     "United States",
-    "Mexico"
+    "Mexico",
+    "Vietnam",
+    "Thailand",
+    "India",
+    "Papua New Guinea",
+    "Uganda",
+    "Tanzania",
+    "China",
+    "Malawi",
+    "Timor-Leste",
+    "Taiwan"
   ];
 
   const filteredFarms = coffeeFarms.filter(f => {
@@ -110,6 +120,16 @@ export default function VarietyFarmList({ onInspectVariety }: VarietyFarmListPro
       case "jamaica": return "border-amber-300 bg-amber-50 text-amber-850";
       case "united states": return "border-slate-300 bg-slate-50 text-slate-800";
       case "mexico": return "border-emerald-200 bg-emerald-50 text-emerald-700";
+      case "vietnam": return "border-teal-300 bg-teal-50 text-teal-800";
+      case "thailand": return "border-orange-300 bg-orange-50/70 text-orange-850";
+      case "india": return "border-amber-400 bg-amber-50/60 text-amber-900";
+      case "papua new guinea": return "border-rose-300 bg-rose-50/50 text-rose-800";
+      case "uganda": return "border-yellow-300 bg-yellow-50/70 text-yellow-900";
+      case "tanzania": return "border-sky-300 bg-sky-50 text-sky-850";
+      case "china": return "border-red-300 bg-red-50 text-red-800";
+      case "malawi": return "border-indigo-300 bg-indigo-50 text-indigo-850";
+      case "timor-leste": return "border-teal-300 bg-teal-50 text-teal-900";
+      case "taiwan": return "border-purple-300 bg-purple-50/60 text-purple-900";
       default: return "border-slate-200 bg-slate-50 text-slate-700";
     }
   };

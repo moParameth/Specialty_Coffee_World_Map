@@ -831,5 +831,415 @@ export const coffeeFarms: CoffeeFarm[] = [
     description: "Managed by the Perez family, Finca Las Delicias is situated in the highlands of Chiapas. Their shade canopy protects ancient varieties, and their slow-dried natural processing highlights intense tropical fruit, cocoa, and sweet hazelnut notes.",
     prestigeNotes: "Specialist in shade-grown traditional cultivars in Chiapas.",
     coeVictories: "Frequently places in the Mexico Cup of Excellence top 10"
+  },
+
+  // --- VIETNAM ---
+  {
+    id: "future-coffee-farm",
+    name: "Future Coffee Farm",
+    country: "Vietnam",
+    region: "Bao Loc, Lam Dong",
+    altitude: "900–1,100m",
+    signatureProduct: "Winey Natural Fine Robusta",
+    keyVarieties: ["Robusta"],
+    processingMethod: "Winey anaerobic natural (fermented in sealed tanks for 120 hours)",
+    description: "Founded by Toi Nguyen, Future Coffee Farm is leading the 'Fine Robusta' revolution in Vietnam. By utilizing ripe-cherry harvesting and controlled anaerobic fermentation, they produce Robustas with complex notes of dark chocolate, wine, pineapple, and rich spices, challenging the global stigma against the species.",
+    prestigeNotes: "Pioneer of Fine Robusta and experimental fermentations in Vietnam.",
+    coeVictories: "Multiple awards in the Vietnam Amazing Cup (Fine Robusta champion)"
+  },
+  {
+    id: "zanya-coffee",
+    name: "Zanya Coffee",
+    country: "Vietnam",
+    region: "Dalat, Lam Dong",
+    altitude: "1,400–1,600m",
+    signatureProduct: "Zanya Dalat Washed Catimor",
+    keyVarieties: ["Catimor"],
+    processingMethod: "Traditional washed, slow dry on raised beds",
+    description: "Operated by Marian Tacbado, Zanya Coffee focuses on specialty Arabica from the high-altitude volcanic region of Dalat. They work directly with local ethnic minority farmers (the K'Ho people) to establish selective harvesting and clean washing practices, producing balanced cups with orange blossom, caramel, and clean almond flavors.",
+    prestigeNotes: "Leading promoter of specialty Arabica and community development in Dalat.",
+    coeVictories: "Top scores in regional specialty evaluations"
+  },
+  {
+    id: "son-la-cooperatives",
+    name: "Son La Cooperatives",
+    country: "Vietnam",
+    region: "Son La Province",
+    altitude: "1,000–1,200m",
+    signatureProduct: "Son La Washed Catimor",
+    keyVarieties: ["Catimor"],
+    processingMethod: "Fully washed, mechanical and patio sun-dried",
+    description: "Located in northwestern Vietnam, Son La has a unique terroir with cold winters and rich soils. The local cooperatives process smallholder cherries under strict quality guidelines, yielding clean washed coffees with high sweetness, herbal notes, black tea, and citrus acidity.",
+    prestigeNotes: "Key Northern Vietnam origin focused on large-scale specialty Arabica development.",
+    coeVictories: "Prizewinner in national quality assessments"
+  },
+
+  // --- THAILAND ---
+  {
+    id: "nine-one-coffee",
+    name: "Nine One Coffee",
+    country: "Thailand",
+    region: "Mae On, Chiang Mai",
+    altitude: "1,200–1,400m",
+    signatureProduct: "Nine One Honey Typica",
+    keyVarieties: ["Typica", "Caturra"],
+    processingMethod: "Organic Red Honey, dried under partial forest canopy shade",
+    description: "Founded by Wallop Pasanasathian, Nine One Coffee is a fully organic, shade-grown forest coffee farm. Managed as a sustainable forest permaculture, the farm maintains high biodiversity. Their micro-lots show intense honey sweetness, citrus fruit, and jasmine tea complexity.",
+    prestigeNotes: "Benchmark for shade-grown organic permaculture coffee in Northern Thailand.",
+    coeVictories: "Regular finalist in the Thailand National Specialty Coffee Awards"
+  },
+  {
+    id: "doi-chang-estate-thai",
+    name: "Doi Chang Estate",
+    country: "Thailand",
+    region: "Doi Chang, Chiang Rai",
+    altitude: "1,200–1,500m",
+    signatureProduct: "Doi Chang Peaberry (Washed)",
+    keyVarieties: ["Catimor", "Typica", "Caturra"],
+    processingMethod: "Double-washed, mountain spring water fermented, sun-dried on patios",
+    description: "Doi Chang Estate has grown into a world-famous origin, run in partnership with the local Akha hill tribe. The estate operates under high-quality processing standards, yielding balanced coffees with herbal tea, chocolate, and clean lime acidity.",
+    prestigeNotes: "Landmark project that elevated Thai coffee to the international market.",
+    coeVictories: "Widely exported and recognized by the SCA for high specialty profiles"
+  },
+  {
+    id: "mae-jan-tai-coops",
+    name: "Mae Jan Tai Cooperatives",
+    country: "Thailand",
+    region: "Mae Suai, Chiang Rai",
+    altitude: "1,300–1,500m",
+    signatureProduct: "Mae Jan Tai Yeast Natural",
+    keyVarieties: ["Caturra", "Catuai", "Typica"],
+    processingMethod: "Yeast-inoculated anaerobic natural",
+    description: "Comprising smallholder families from the Akha community in Mae Jan Tai village. Guided by young local processors, the cooperative experiments with anaerobic natural and honey methods, yielding explosive cups with notes of tropical fruits, dried figs, and sweet black tea.",
+    prestigeNotes: "Renowned for youth-led processing innovations and micro-lot separation.",
+    coeVictories: "Regular top placements in Thailand's Cup of Excellence"
+  },
+
+  // --- INDIA ---
+  {
+    id: "araku-valley-cooperatives",
+    name: "Araku Valley Cooperatives",
+    country: "India",
+    region: "Araku Valley, Andhra Pradesh",
+    altitude: "900–1,100m",
+    signatureProduct: "Araku Grand Reserve (Washed/Natural)",
+    keyVarieties: ["S795"],
+    processingMethod: "Selective hand-picking, central micro-mill washed and natural",
+    description: "Araku Valley is a unique biodynamic social enterprise working with over 10,000 indigenous tribal farmers. The project has transformed the local economy and restored deforested lands. Their coffees are highly complex, displaying notes of red berries, dark chocolate, and black pepper.",
+    prestigeNotes: "The world's largest biodynamic coffee project, certified organic.",
+    coeVictories: "Winner of the Gold Medal at the Prix Epicures in Paris; prized in Europe"
+  },
+  {
+    id: "badra-estates",
+    name: "Badra Estates",
+    country: "India",
+    region: "Chikmagalur, Karnataka",
+    altitude: "1,100–1,300m",
+    signatureProduct: "Badra Balehonnur Washed Kent",
+    keyVarieties: ["Typica", "S795", "Robusta"],
+    processingMethod: "Pulped washed, slow sun-dried on raised beds",
+    description: "Owned by the Mammen family since 1943, Badra Estates is a historic farm located in the birthplace of Indian coffee (Chikmagalur). They separate block-by-block and are famous for preserving the heritage 'Kent' variety and producing clean, sweet washed coffees with cardamon, spice, and cocoa flavors.",
+    prestigeNotes: "Historic Chikmagalur estate known for varietal separation and premium washed lots.",
+    coeVictories: "Regularly wins Flavour of India Fine Cup Awards"
+  },
+  {
+    id: "sangameshwar-coffee-estates",
+    name: "Sangameshwar Estates",
+    country: "India",
+    region: "BR Hills, Karnataka",
+    altitude: "1,100–1,400m",
+    signatureProduct: "Karadykan Estate S795 (Washed)",
+    keyVarieties: ["S795"],
+    processingMethod: "Traditional fully washed, slow patio sun-dried",
+    description: "Sangameshwar Estates has been producing specialty coffee for generations. The BR Hills region is a protected wildlife sanctuary, and the coffee grows under dense native shade. Attikan lots are celebrated for their heavy body, mild sweetness, and notes of orange peel and milk chocolate.",
+    prestigeNotes: "Shade-grown within a wildlife sanctuary, famous for BR Hills terroir.",
+    coeVictories: "Multiple winner of the Flavour of India Fine Cup Competition"
+  },
+
+  // --- PAPUA NEW GUINEA ---
+  {
+    id: "sigri-estate",
+    name: "Sigri Estate",
+    country: "Papua New Guinea",
+    region: "Wahgi Valley, Western Highlands",
+    altitude: "1,500–1,600m",
+    signatureProduct: "Sigri AA (Classic Washed Typica)",
+    keyVarieties: ["Typica"],
+    processingMethod: "Traditional washed, fermented for 24 hours, sun-dried",
+    description: "Sigri Estate was established in the 1950s with Jamaica Blue Mountain Typica seeds. The volcanic soils of the Wahgi Valley and misty climate yield coffees with an extremely smooth, balanced body, clean chocolate sweetness, and a bright, refined citric acidity.",
+    prestigeNotes: "Historic estate preserving authentic Blue Mountain Typica seeds in PNG.",
+    coeVictories: "Recognized internationally as the premier PNG export benchmark"
+  },
+  {
+    id: "baroida-estate",
+    name: "Baroida Estate",
+    country: "Papua New Guinea",
+    region: "Kainantu, Eastern Highlands",
+    altitude: "1,700–1,850m",
+    signatureProduct: "Baroida Anaerobic Natural",
+    keyVarieties: ["Bourbon", "Typica"],
+    processingMethod: "Anaerobic cherry fermentation in sealed drums followed by bed drying",
+    description: "Founded by Ben Colbran in the 1960s and managed by his son Nichol, Baroida Estate is situated in the rugged Eastern Highlands. They have a state-of-the-art wet mill and focus on single-estate separation, producing incredibly clean naturals with sweet cherry, wine, and tropical fruit notes.",
+    prestigeNotes: "Pioneer of micro-lot separation and experimental processing in the PNG highlands.",
+    coeVictories: "Prized by boutique third-wave roasters worldwide; dominates export auctions"
+  },
+  {
+    id: "colbran-coop",
+    name: "Colbran Co-op",
+    country: "Papua New Guinea",
+    region: "Kainantu, Eastern Highlands",
+    altitude: "1,600–1,900m",
+    signatureProduct: "Colbran Washed AX",
+    keyVarieties: ["Typica"],
+    processingMethod: "Traditional community washed, eco-pulped, sun-dried",
+    description: "Operated by the Colbran family as a central processing station for local smallholders ('outgrowers'). The co-op provides agricultural training and premium payouts, gathering high-altitude cherries that yield a classic PNG cup: full body, complex herbal tones, and sweet citrus finish.",
+    prestigeNotes: "Central hub linking PNG smallholders to the global specialty market.",
+    coeVictories: "Commanded top premiums in European and US direct-trade sourcing programs"
+  },
+
+  // --- UGANDA ---
+  {
+    id: "sipi-falls-project",
+    name: "Sipi Falls Coffee Project",
+    country: "Uganda",
+    region: "Mount Elgon, Kapchorwa",
+    altitude: "1,600–2,000m",
+    signatureProduct: "Sipi Falls Organic Natural (SL28)",
+    keyVarieties: ["SL28"],
+    processingMethod: "Hand-sorted natural, dried on raised beds under solar dryers",
+    description: "Located on the slopes of Mount Elgon near the scenic Sipi Falls. The project works with thousands of organic-certified smallholders, paying quality premiums and improving community infrastructure. Their coffees show bright berry flavors, dark chocolate, and sweet, juicy acidity.",
+    prestigeNotes: "Landmark organic project on Mount Elgon transforming Ugandan Arabica quality.",
+    coeVictories: "High placing in East African fine coffee cuppings"
+  },
+  {
+    id: "kawacom-sipi-mill",
+    name: "Kawacom Sipi Mill",
+    country: "Uganda",
+    region: "Kapchorwa, Mount Elgon",
+    altitude: "1,800–2,200m",
+    signatureProduct: "Kawacom Double Washed SL28",
+    keyVarieties: ["SL28"],
+    processingMethod: "Double-washed, clean mountain water fermented, patio dried",
+    description: "Kawacom operates a central washing station on Mount Elgon, purchasing red cherries from local smallholders at high elevations. By implementing strict washing and sorting standards, they produce washed coffees with sparkling malic acidity, green apple, peach, and black tea notes.",
+    prestigeNotes: "State-of-the-art washing station driving high-specialty washed standards in Uganda.",
+    coeVictories: "Frequent participant and winner in local specialty auctions"
+  },
+  {
+    id: "great-lakes-coffee-uganda",
+    name: "Great Lakes Coffee (Kasiese)",
+    country: "Uganda",
+    region: "Rwenzori Mountains",
+    altitude: "1,400–1,800m",
+    signatureProduct: "Rwenzori Natural",
+    keyVarieties: ["Bourbon"],
+    processingMethod: "Sun-dried on raised African beds in cherry",
+    description: "Located in the high-altitude Rwenzori Mountains (Mountains of the Moon), this project focuses on upgrading the traditional dried Ugandan Arabica (Drugar) to specialty standards. By training farmers in cherry selection and supplying drying beds, they produce intense, sweet naturals with dark berry, cocoa, and winey tones.",
+    prestigeNotes: "Key project upgrading Rwenzori Mountain coffees from commercial to specialty.",
+    coeVictories: "Commanded high direct-trade interest for its unique dried fruit profile"
+  },
+
+  // --- TANZANIA ---
+  {
+    id: "acacia-hills-estate",
+    name: "Acacia Hills Estate",
+    country: "Tanzania",
+    region: "Karatu, Ngorongoro Crater",
+    altitude: "1,750–1,950m",
+    signatureProduct: "Acacia Hills Geisha (Washed)",
+    keyVarieties: ["Geisha", "Pacamara"],
+    processingMethod: "Traditional washed, mountain water fermented, and slow bed drying",
+    description: "Owned by Leon and Aida Christianakis, Acacia Hills is situated on the rim of the Ngorongoro Crater. They are pioneers in introducing Geisha and Pacamara to Tanzania. The rich volcanic soil and high altitude produce exceptionally clean, tea-like, jasmine-scented, and peach-forward coffees.",
+    prestigeNotes: "Tanzania's premier estate for exotic varietals, located next to Ngorongoro Conservation Area.",
+    coeVictories: "1st Place Winner in the inaugural Tanzania Cup of Excellence (2021)"
+  },
+  {
+    id: "blackburn-estate",
+    name: "Blackburn Estate",
+    country: "Tanzania",
+    region: "Karatu, Oldeani",
+    altitude: "1,600–1,800m",
+    signatureProduct: "Blackburn Washed Bourbon",
+    keyVarieties: ["Bourbon"],
+    processingMethod: "Double-washed, fermented in spring water, dried on raised beds",
+    description: "Managed by Michael Gehrken, Blackburn Estate is located on the slopes of Mount Oldeani. The farm operates with high environmental standards, dedicating over half the land to forest reserves for local wildlife (including elephants and leopards). The coffee has a distinct herbal, complex berry, and milk chocolate profile.",
+    prestigeNotes: "Landmark farm integrating wildlife conservation and high-end specialty coffee.",
+    coeVictories: "High-ranking finalist in Tanzania fine coffee auctions; highly prized in Germany and Japan"
+  },
+  {
+    id: "gombe-reserve-coffee",
+    name: "Gombe Reserve Coffee",
+    country: "Tanzania",
+    region: "Kigoma (Gombe Reserve border)",
+    altitude: "1,400–1,600m",
+    signatureProduct: "Kigoma Washed Bourbon",
+    keyVarieties: ["Bourbon"],
+    processingMethod: "Traditional washed, eco-pulped, sun-dried on beds",
+    description: "Grown by smallholders in Kigoma, bordering Jane Goodall's famous Gombe Stream chimpanzee reserve. The project operates under strict eco-friendly guidelines to protect local wildlife corridors and support community development, producing sweet, balanced coffees with notes of orange, brown sugar, and black tea.",
+    prestigeNotes: "Eco-reserve coffee supporting chimpanzee conservation and smallholders.",
+    coeVictories: "Recognized by conservation and specialty organizations; commands high premiums"
+  },
+
+  // --- CHINA ---
+  {
+    id: "torch-coffee-yunnan",
+    name: "Torch Coffee Yunnan",
+    country: "China",
+    region: "Pu'er, Yunnan",
+    altitude: "1,200–1,500m",
+    signatureProduct: "Yunnan Yeast Natural (Catimor)",
+    keyVarieties: ["Catimor", "Typica"],
+    processingMethod: "Yeast inoculated anaerobic natural in sealed barrels",
+    description: "Torch Coffee has been central to the specialty movement in Yunnan. They operate training labs, mills, and source farms, implementing yeast fermentations and varietal selections to elevate Yunnan Catimor to highly sweet, fruit-forward profiles containing notes of plum, cocoa, and spice.",
+    prestigeNotes: "Pioneer of specialty coffee training and yeast processing in Yunnan.",
+    coeVictories: "High-scoring lots in Yunnan Specialty Coffee Auctions"
+  },
+  {
+    id: "yunnan-coffee-traders",
+    name: "Yunnan Coffee Traders",
+    country: "China",
+    region: "Menglian, Pu'er, Yunnan",
+    altitude: "1,300–1,600m",
+    signatureProduct: "Menglian Double Fermented Honey",
+    keyVarieties: ["Catimor", "Bourbon"],
+    processingMethod: "Double anaerobic fermentation honey process",
+    description: "Yunnan Coffee Traders (YCT) works with smallholders and estates in Xishuangbanna and Pu'er. They operate central wet mills to guarantee quality, experimenting with honey and natural profiles, producing clean coffees with sweet red apple, black tea, and milk chocolate flavors.",
+    prestigeNotes: "Key exporter driving quality control and outgrower consistency in Menglian.",
+    coeVictories: "Regular top finalist in the Yunnan Specialty Coffee Competition"
+  },
+  {
+    id: "baoshan-dongka-farm",
+    name: "Baoshan Dongka Farm",
+    country: "China",
+    region: "Baoshan, Yunnan",
+    altitude: "1,400–1,700m",
+    signatureProduct: "Dongka Washed Typica",
+    keyVarieties: ["Typica", "Catimor"],
+    processingMethod: "Traditional washed, slow dried on raised beds",
+    description: "Baoshan is one of Yunnan's oldest coffee regions. Dongka Farm maintains historic Typica plantings alongside newer selections. Their high-altitude washed lots exhibit clean, balanced acidity, sweet sugarcane, and light herbal tea characteristics, showing Baoshan's classic terroir.",
+    prestigeNotes: "Preserver of historical Typica blocks in the high-altitude Baoshan region.",
+    coeVictories: "High placing in national green coffee quality reviews"
+  },
+
+  // --- MALAWI ---
+  {
+    id: "sable-farms-malawi",
+    name: "Sable Farms",
+    country: "Malawi",
+    region: "Thyolo & Mangochi Districts",
+    altitude: "1,100–1,300m",
+    signatureProduct: "Sable Farms Washed Geisha",
+    keyVarieties: ["Geisha", "Typica"],
+    processingMethod: "Traditional fully washed, slow patio dried",
+    description: "Sable Farms comprises two main estates (Mapanga and Chisambo) and is the premier exporter of specialty coffee in Malawi. They have invested heavily in high-altitude Geisha plantings and modern wet mills, producing clean, floral washed coffees with notes of bergamot, lemon tea, and caramel.",
+    prestigeNotes: "Malawi's flagship specialty estate, famous for high-quality washed Geisha.",
+    coeVictories: "Supplies top specialty roasters in the UK and Japan; commands elite prices"
+  },
+  {
+    id: "phoka-cooperative-malawi",
+    name: "Phoka Cooperative",
+    country: "Malawi",
+    region: "Phoka Hills, Northern Region",
+    altitude: "1,500–2,000m",
+    signatureProduct: "Phoka Hills Washed Typica",
+    keyVarieties: ["Typica", "Geisha"],
+    processingMethod: "Smallholder hand-pulped, fermented in communal tanks, sun-dried",
+    description: "Situated in the rugged Phoka Hills overlooking Lake Malawi. The cooperative collects high-altitude cherries from smallholder families, processing them with pure mountain spring water, yielding sweet washed coffees with bright citrus acidity, black tea, and honey tones.",
+    prestigeNotes: "High-altitude smallholder cooperative in the scenic Northern Phoka Hills.",
+    coeVictories: "Highly rated in regional African fine coffee competitions"
+  },
+  {
+    id: "misuku-hills-coop",
+    name: "Misuku Hills Co-op",
+    country: "Malawi",
+    region: "Misuku Hills, Chitipa",
+    altitude: "1,600–2,100m",
+    signatureProduct: "Misuku Peaberry Washed",
+    keyVarieties: ["Geisha", "Typica"],
+    processingMethod: "Traditional washed, mountain-water fermented, patio dried",
+    description: "Located on the remote northern border of Malawi next to Tanzania. The Misuku Hills cooperative features extremely high altitudes and rich soils, producing sweet, high-acid coffees with distinct notes of peach, red currant, and sweet spices.",
+    prestigeNotes: "Remote border cooperative producing Malawi's highest altitude coffees.",
+    coeVictories: "Frequent award winner in Malawi National Cupping evaluations"
+  },
+
+  // --- TIMOR-LESTE ---
+  {
+    id: "cooperativa-cafe-timor",
+    name: "Cooperativa Café Timor (CCT)",
+    country: "Timor-Leste",
+    region: "Ermera District",
+    altitude: "1,200–1,500m",
+    signatureProduct: "CCT Organic Washed (Hibrido de Timor)",
+    keyVarieties: ["Timor-Hybrid", "Typica"],
+    processingMethod: "Organic washed, fermented in small tanks, patio dried",
+    description: "CCT is the largest cooperative and employer in Timor-Leste, supporting tens of thousands of smallholder families. Grown under the shade of native Casuarina trees, the coffee is certified organic. Their washed lots show full body, low acidity, and deep herbal, dark chocolate, and cedar notes.",
+    prestigeNotes: "The largest organic coffee cooperative in the world, founded after independence.",
+    coeVictories: "Dominates Timor-Leste exports; prized in organic and Fair Trade markets"
+  },
+  {
+    id: "cafe-brisa-serena",
+    name: "Cafe Brisa Serena",
+    country: "Timor-Leste",
+    region: "Letefoho, Ermera",
+    altitude: "1,400–1,700m",
+    signatureProduct: "Letefoho Micro-lot Washed",
+    keyVarieties: ["Timor-Hybrid", "Typica"],
+    processingMethod: "Meticulous micro-lot washed, hand-sorted, dried on raised beds",
+    description: "Cafe Brisa Serena is a specialty-focused enterprise working with smallholders in the high-altitude Letefoho sub-district. By providing drying beds and training in cherry selection, they have elevated Timor coffee to specialty levels, producing cups with bright lemon-lime acidity, brown sugar, and herbal complexity.",
+    prestigeNotes: "Pioneer of specialty micro-lot processing and sorting standards in Letefoho.",
+    coeVictories: "High placing in the Timor-Leste National Quality Cup"
+  },
+  {
+    id: "ermera-village-coops",
+    name: "Ermera Village Cooperatives",
+    country: "Timor-Leste",
+    region: "Ermera Highlands",
+    altitude: "1,300–1,600m",
+    signatureProduct: "Ermera Honey Process",
+    keyVarieties: ["Timor-Hybrid"],
+    processingMethod: "Yellow/Red Honey, dried slowly under plastic canopies",
+    description: "Representing smallholder groups in the rugged Ermera highlands. By experimenting with honey processing, these cooperatives have unlocked new fruit and sugar complexity in the local Timor Hybrid variety, yielding sweet cups with distinct notes of black tea, red apple, and sweet cedar wood.",
+    prestigeNotes: "Leading local group experimenting with honey processing in Ermera.",
+    coeVictories: "Regular finalist in the Timor-Leste National Quality competitions"
+  },
+
+  // --- TAIWAN ---
+  {
+    id: "alishan-zouzhouyuan",
+    name: "Alishan Zouzhouyuan",
+    country: "Taiwan",
+    region: "Alishan, Chiayi County",
+    altitude: "1,200–1,300m",
+    signatureProduct: "Zouzhouyuan Washed Geisha",
+    keyVarieties: ["Geisha", "SL34", "Typica"],
+    processingMethod: "Meticulous washed, water temperature controlled, patio dried",
+    description: "Founded by Yu-Duan Lalauya, a member of the indigenous Tsou tribe, Zouzhouyuan is a legendary estate in Taiwan's Alishan mountains. Known for its cool climate, volcanic soils, and meticulous agronomy, the farm produces coffees with exceptional jasmine, peach, and citrus clarity.",
+    prestigeNotes: "Taiwan's most famous award-winning estate, operated by Tsou indigenous growers.",
+    coeVictories: "1st Place Winner in the Taiwan Specialty Coffee Evaluation; commands massive auction prices ($300+/lb)"
+  },
+  {
+    id: "zhuowu-mountain-coffee",
+    name: "Zhuowu Mountain Specialty Coffee",
+    country: "Taiwan",
+    region: "Alishan, Chiayi County",
+    altitude: "1,200m",
+    signatureProduct: "Zhuowu Sun-Dried purple Typica",
+    keyVarieties: ["Typica", "Geisha", "SL34"],
+    processingMethod: "Extended slow natural drying in whole cherry",
+    description: "Managed by Hsu Chun-jung, Zhuowu Mountain is famous for cultivating the rare 'Purple Bud' Typica mutation. Hsu's scientific approach to grafting, shade canopy management, and slow-drying produces coffees with deep floral rose, dark berry, and red wine profiles.",
+    prestigeNotes: "Cultivator of the extremely rare Purple Bud Typica mutation in Taiwan.",
+    coeVictories: "Regular champion in Taiwan Specialty Coffee Auctions; highly sought after in Asian markets"
+  },
+  {
+    id: "songboling-coffee-farm",
+    name: "Songboling Coffee Farm",
+    country: "Taiwan",
+    region: "Nantou County",
+    altitude: "800–1,000m",
+    signatureProduct: "Songboling Honey Caturra",
+    keyVarieties: ["Caturra"],
+    processingMethod: "Honey process, slow dried under shade beds",
+    description: "Located in the mist-shrouded hills of Nantou County, Songboling is an estate specializing in honey and anaerobic fermentations. The cooler climate and volcanic soil yield extremely sweet coffees with notes of Oolong tea, honey, and yellow plum.",
+    prestigeNotes: "Renowned Nantou estate blending traditional tea-processing knowledge with coffee fermentation.",
+    coeVictories: "Regular top placing in national specialty coffee evaluations"
   }
 ];
