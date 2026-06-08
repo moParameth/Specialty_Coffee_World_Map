@@ -8,8 +8,7 @@ import FilterBar from "@/components/FilterBar";
 import { CoffeeCountry } from "@/types/coffee";
 import { coffeeCountries } from "@/data/coffeeCountries";
 import { filterCoffeeCountries } from "@/utils/countryUtils";
-import Link from "next/link";
-import { Map, Coffee, History, Workflow, Flame } from "lucide-react";
+import Header from "@/components/Header";
 
 function HomeContent() {
   const [selectedCountry, setSelectedCountry] = useState<CoffeeCountry | null>(null);
@@ -45,56 +44,7 @@ function HomeContent() {
   return (
     <div className="flex flex-col min-h-screen lg:h-screen lg:overflow-hidden bg-slate-50 font-sans text-slate-800 selection:bg-blue-500 selection:text-white">
       {/* Navigation Header */}
-      <header className="flex-none bg-white border-b border-slate-200 px-6 py-4 sticky top-0 z-20 shadow-sm bg-white/95 backdrop-blur">
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <div>
-            <h1 className="text-2xl font-black text-slate-900 tracking-tight">Specialty Coffee World Map</h1>
-            <p className="text-xs font-semibold text-slate-500 mt-1">Explore specialty coffee origins through an interactive flat 2D map</p>
-          </div>
-          <nav className="flex items-center gap-2">
-            <Link
-              id="nav-world-map"
-              href="/"
-              className="flex items-center gap-1.5 px-4 py-2 text-sm font-bold bg-blue-600 border border-blue-600 text-white rounded-xl shadow-sm hover:bg-blue-700 transition-all"
-            >
-              <Map className="h-4 w-4" />
-              <span>World Map</span>
-            </Link>
-            <Link
-              id="nav-coffee-varieties"
-              href="/varieties"
-              className="flex items-center gap-1.5 px-4 py-2 text-sm font-bold text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-xl transition-all"
-            >
-              <Coffee className="h-4 w-4 text-slate-400" />
-              <span>Coffee Varieties</span>
-            </Link>
-            <Link
-              id="nav-coffee-history"
-              href="/history"
-              className="flex items-center gap-1.5 px-4 py-2 text-sm font-bold text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-xl transition-all"
-            >
-              <History className="h-4 w-4 text-slate-400" />
-              <span>Coffee History</span>
-            </Link>
-            <Link
-              id="nav-coffee-processing"
-              href="/processing"
-              className="flex items-center gap-1.5 px-4 py-2 text-sm font-bold text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-xl transition-all"
-            >
-              <Workflow className="h-4 w-4 text-slate-400" />
-              <span>Coffee Processing</span>
-            </Link>
-            <Link
-              id="nav-coffee-roasting"
-              href="/roasting"
-              className="flex items-center gap-1.5 px-4 py-2 text-sm font-bold text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-xl transition-all"
-            >
-              <Flame className="h-4 w-4 text-slate-400" />
-              <span>Coffee Roasting</span>
-            </Link>
-          </nav>
-        </div>
-      </header>
+      <Header />
 
       <div className="flex-none px-6 py-4 max-w-7xl mx-auto w-full z-10 relative">
         <FilterBar

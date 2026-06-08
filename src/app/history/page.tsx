@@ -1,8 +1,9 @@
 import { Suspense } from "react";
 import HistoryTimeline from "@/components/HistoryTimeline";
 import Link from "next/link";
-import { ArrowLeft, Map, Coffee, History, Workflow, Flame } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import type { Metadata } from "next";
+import Header from "@/components/Header";
 
 export const metadata: Metadata = {
   title: "Coffee History Timeline - Specialty Coffee World Map",
@@ -13,66 +14,7 @@ export default function HistoryPage() {
   return (
     <div className="flex flex-col min-h-screen bg-slate-50 text-slate-800 font-sans selection:bg-blue-500 selection:text-white">
       {/* Header Bar */}
-      <header className="flex-none bg-white border-b border-slate-200 px-6 py-4 sticky top-0 z-20 shadow-sm bg-white/95 backdrop-blur">
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          {/* Logo & Subtitle */}
-          <div>
-            <div className="flex items-center gap-2">
-              <History className="h-6 w-6 text-blue-600" />
-              <h1 id="page-title" className="text-2xl font-black text-slate-900 tracking-tight">
-                Coffee History
-              </h1>
-            </div>
-            <p className="text-xs font-semibold text-slate-500 mt-1 max-w-xl">
-              Trace coffee's journey from Ethiopian highlands to the global third-wave specialty movement.
-            </p>
-          </div>
-
-          {/* Primary Navigation Buttons */}
-          <nav className="flex items-center gap-2">
-            <Link
-              id="nav-world-map"
-              href="/"
-              className="flex items-center gap-1.5 px-4 py-2 text-sm font-bold text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-xl transition-all"
-            >
-              <Map className="h-4 w-4 text-slate-400" />
-              <span>World Map</span>
-            </Link>
-            <Link
-              id="nav-coffee-varieties"
-              href="/varieties"
-              className="flex items-center gap-1.5 px-4 py-2 text-sm font-bold text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-xl transition-all"
-            >
-              <Coffee className="h-4 w-4 text-slate-400" />
-              <span>Coffee Varieties</span>
-            </Link>
-            <Link
-              id="nav-coffee-history"
-              href="/history"
-              className="flex items-center gap-1.5 px-4 py-2 text-sm font-bold bg-blue-600 border border-blue-600 text-white rounded-xl shadow-sm hover:bg-blue-700 transition-all"
-            >
-              <History className="h-4 w-4" />
-              <span>Coffee History</span>
-            </Link>
-            <Link
-              id="nav-coffee-processing"
-              href="/processing"
-              className="flex items-center gap-1.5 px-4 py-2 text-sm font-bold text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-xl transition-all"
-            >
-              <Workflow className="h-4 w-4 text-slate-400" />
-              <span>Coffee Processing</span>
-            </Link>
-            <Link
-              id="nav-coffee-roasting"
-              href="/roasting"
-              className="flex items-center gap-1.5 px-4 py-2 text-sm font-bold text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-xl transition-all"
-            >
-              <Flame className="h-4 w-4 text-slate-400" />
-              <span>Coffee Roasting</span>
-            </Link>
-          </nav>
-        </div>
-      </header>
+      <Header />
 
       {/* Main Content Area */}
       <main className="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 py-6 space-y-6">
