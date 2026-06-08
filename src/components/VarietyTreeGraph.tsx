@@ -642,22 +642,36 @@ export default function VarietyTreeGraph({
     const highlightedNodes = new Set<string>([activeNodeId]);
     const highlightedEdges = new Set<string>();
 
-    // BFS or simple single-level trace to find direct ancestors (parents) and descendants (children)
-    // 1. Direct parents (Incoming edges)
-    edges.forEach((edge) => {
-      if (edge.target === activeNodeId) {
-        highlightedNodes.add(edge.source);
-        highlightedEdges.add(`${edge.source}->${edge.target}`);
-      }
-    });
+    // 1. Recursive trace for all ancestors (going up the tree)
+    const traceAncestors = (nodeId: string) => {
+      edges.forEach((edge) => {
+        if (edge.target === nodeId) {
+          const edgeId = `${edge.source}->${edge.target}`;
+          if (!highlightedEdges.has(edgeId)) {
+            highlightedNodes.add(edge.source);
+            highlightedEdges.add(edgeId);
+            traceAncestors(edge.source);
+          }
+        }
+      });
+    };
 
-    // 2. Direct children (Outgoing edges)
-    edges.forEach((edge) => {
-      if (edge.source === activeNodeId) {
-        highlightedNodes.add(edge.target);
-        highlightedEdges.add(`${edge.source}->${edge.target}`);
-      }
-    });
+    // 2. Recursive trace for all descendants (going down the tree)
+    const traceDescendants = (nodeId: string) => {
+      edges.forEach((edge) => {
+        if (edge.source === nodeId) {
+          const edgeId = `${edge.source}->${edge.target}`;
+          if (!highlightedEdges.has(edgeId)) {
+            highlightedNodes.add(edge.target);
+            highlightedEdges.add(edgeId);
+            traceDescendants(edge.target);
+          }
+        }
+      });
+    };
+
+    traceAncestors(activeNodeId);
+    traceDescendants(activeNodeId);
 
     return { nodes: highlightedNodes, edges: highlightedEdges };
   };
@@ -878,9 +892,19 @@ export default function VarietyTreeGraph({
 
               // Draw curved cubic bezier paths for premium visuals
               const dx = targetNode.x - sourceNode.x;
-              const controlX1 = sourceNode.x + dx * 0.4;
-              const controlX2 = sourceNode.x + dx * 0.6;
-              const pathData = `M ${sourceNode.x} ${sourceNode.y} C ${controlX1} ${sourceNode.y}, ${controlX2} ${targetNode.y}, ${targetNode.x} ${targetNode.y}`;
+              let pathData = "";
+              if (Math.abs(dx) < 1) {
+                // Same column link. Curve outwards symmetrically to bypass intermediate nodes.
+                const isLeft = sourceNode.x < 500;
+                const offset = isLeft ? -55 : 55;
+                const controlX = sourceNode.x + offset;
+                pathData = `M ${sourceNode.x} ${sourceNode.y} C ${controlX} ${sourceNode.y}, ${controlX} ${targetNode.y}, ${targetNode.x} ${targetNode.y}`;
+              } else {
+                // Normal horizontal flow
+                const controlX1 = sourceNode.x + dx * 0.4;
+                const controlX2 = sourceNode.x + dx * 0.6;
+                pathData = `M ${sourceNode.x} ${sourceNode.y} C ${controlX1} ${sourceNode.y}, ${controlX2} ${targetNode.y}, ${targetNode.x} ${targetNode.y}`;
+              }
 
               return (
                 <path
