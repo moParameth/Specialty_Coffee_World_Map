@@ -30,6 +30,21 @@ export default function VarietyTierList({ onInspectVariety }: VarietyTierListPro
     return variety.standardTier;
   };
 
+  const getSpeciesBadgeStyle = (species: string, isSelected: boolean) => {
+    if (isSelected) return "bg-white/20 text-white border-transparent";
+    const lower = species.toLowerCase();
+    if (lower.includes("arabica") && !lower.includes("robusta")) {
+      return "bg-amber-50 text-amber-800 border-amber-200/60";
+    }
+    if (lower.includes("robusta") && !lower.includes("arabica")) {
+      return "bg-indigo-50 text-indigo-800 border-indigo-200/60";
+    }
+    if (lower.includes("eugenioides")) {
+      return "bg-rose-50 text-rose-800 border-rose-200/60";
+    }
+    return "bg-purple-50 text-purple-800 border-purple-200/60";
+  };
+
   // Filter and group varieties
   const selectedVariety = coffeeVarietyTiers.find(v => v.id === selectedId) || coffeeVarietyTiers[0];
 
@@ -145,7 +160,7 @@ export default function VarietyTierList({ onInspectVariety }: VarietyTierListPro
               onClick={() => setPerspective("standard")}
               className={`px-4 py-2 rounded-xl text-xs font-extrabold transition-all duration-200 flex items-center gap-1.5 ${
                 perspective === "standard"
-                  ? "bg-white text-slate-950 shadow-sm border border-slate-200/50"
+                  ? "bg-white text-slate-955 shadow-sm border border-slate-200/50"
                   : "text-slate-500 hover:text-slate-800"
               }`}
             >
@@ -250,14 +265,8 @@ export default function VarietyTierList({ onInspectVariety }: VarietyTierListPro
                             }`}
                           >
                             <span className="text-xs font-black">{variety.name}</span>
-                            <span className={`text-[8px] font-extrabold uppercase px-1.5 py-0.5 rounded ${
-                              isSelected 
-                                ? "bg-white/20 text-white" 
-                                : variety.species === "Arabica" 
-                                ? "bg-amber-50 text-amber-800 border border-amber-100" 
-                                : "bg-purple-50 text-purple-700 border border-purple-100"
-                            }`}>
-                              {variety.species.split(" ")[0]}
+                            <span className={`text-[8px] font-extrabold uppercase px-1.5 py-0.5 rounded border ${getSpeciesBadgeStyle(variety.species, isSelected)}`}>
+                              {variety.species.includes("/") ? "Hybrid" : variety.species.split(" ")[0]}
                             </span>
                           </div>
                         );
