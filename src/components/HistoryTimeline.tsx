@@ -193,8 +193,8 @@ export default function HistoryTimeline() {
                     <span className={`h-4.5 w-4.5 rounded-full ring-4 ${config.dotClass} shadow-md transition-transform duration-300 hover:scale-125`}></span>
                   </div>
 
-                  {/* Left Column (Desktop: Event Card, Mobile: Content spacer) */}
-                  <div className={`w-full lg:w-[calc(50%-2rem)] pl-16 lg:pl-0 ${
+                  {/* Left Column (Desktop: Event Card, Mobile: Hidden spacer) */}
+                  <div className={`hidden lg:block lg:w-[calc(50%-2rem)] ${
                     isEven ? "lg:text-right" : ""
                   }`}>
                     {/* On Desktop, years can hover opposite the cards. Let's make an interactive side label! */}

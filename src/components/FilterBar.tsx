@@ -38,7 +38,7 @@ export default function FilterBar({
         />
       </div>
 
-      <div className="flex flex-1 gap-4 md:flex-none">
+      <div className="grid grid-cols-2 gap-3 w-full md:flex md:w-auto md:gap-3">
         <select
           value={region}
           onChange={(e) => setRegion(e.target.value)}

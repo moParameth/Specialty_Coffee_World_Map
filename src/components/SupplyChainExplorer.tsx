@@ -67,7 +67,15 @@ export default function SupplyChainExplorer() {
               <button
                 key={stage.id}
                 type="button"
-                onClick={() => setSelectedStageId(stage.id)}
+                onClick={() => {
+                  setSelectedStageId(stage.id);
+                  if (window.innerWidth < 1024) {
+                    const el = document.getElementById("supply-chain-stage-detail");
+                    if (el) {
+                      el.scrollIntoView({ behavior: "smooth", block: "start" });
+                    }
+                  }
+                }}
                 className={`flex items-center gap-3 px-4 py-3 rounded-2xl border transition-all cursor-pointer whitespace-nowrap ${
                   isSelected
                     ? "bg-slate-900 border-slate-900 text-white shadow-md scale-[1.01]"
@@ -89,7 +97,7 @@ export default function SupplyChainExplorer() {
         </div>
 
         {/* Phase Details Card */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 pt-4 items-start">
+        <div id="supply-chain-stage-detail" className="grid grid-cols-1 lg:grid-cols-12 gap-8 pt-4 items-start">
           {/* Column A: Metadata & Description */}
           <div className="lg:col-span-6 space-y-5">
             <div className="space-y-2">

@@ -570,7 +570,15 @@ export default function RoastingExplorer() {
               return (
                 <button
                   key={level.id}
-                  onClick={() => setActiveLevelId(level.id)}
+                  onClick={() => {
+                    setActiveLevelId(level.id);
+                    if (window.innerWidth < 1024) {
+                      const el = document.getElementById("roast-level-detail-panel");
+                      if (el) {
+                        el.scrollIntoView({ behavior: "smooth", block: "start" });
+                      }
+                    }
+                  }}
                   className={`flex items-center justify-between p-4 rounded-2xl border text-left transition-all duration-300 hover:shadow-sm ${
                     isActive
                       ? "border-blue-600 bg-white shadow-sm ring-2 ring-blue-500/15"
@@ -592,7 +600,7 @@ export default function RoastingExplorer() {
           </div>
 
           {/* Details Column */}
-          <div className="lg:col-span-8 bg-white border border-slate-200 rounded-3xl p-6 shadow-sm space-y-6">
+          <div id="roast-level-detail-panel" className="lg:col-span-8 bg-white border border-slate-200 rounded-3xl p-6 shadow-sm space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
               {/* Illustration and swatch */}
               <div className="md:col-span-5 space-y-4">

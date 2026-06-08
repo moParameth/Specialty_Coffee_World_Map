@@ -253,6 +253,12 @@ export default function ProcessingExplorer() {
                 onClick={() => {
                   setActiveMethodId(method.id);
                   setActiveStepIndex(0);
+                  if (window.innerWidth < 1024) {
+                    const el = document.getElementById("processing-method-detail-panel");
+                    if (el) {
+                      el.scrollIntoView({ behavior: "smooth", block: "start" });
+                    }
+                  }
                 }}
                 className={`flex flex-col text-left p-3.5 rounded-2xl border transition-all duration-300 hover:shadow-sm ${
                   isActive
@@ -273,7 +279,7 @@ export default function ProcessingExplorer() {
       </div>
 
       {/* Main Focus Detail Section */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <div id="processing-method-detail-panel" className="grid grid-cols-1 lg:grid-cols-12 gap-8">
         {/* Left Hand: Overview & Flavor Profile */}
         <div className="lg:col-span-7 space-y-6">
           <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm space-y-6">

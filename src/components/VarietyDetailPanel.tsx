@@ -3,19 +3,21 @@ import { CoffeeVariety } from "@/types/variety";
 import { coffeeCountries } from "@/data/coffeeCountries";
 import { getTraitColor } from "@/utils/varietyUtils";
 import { getFlavorEmoji } from "@/utils/countryUtils";
-import { Info, Leaf, Award, ExternalLink, HelpCircle, GitBranch, ArrowUp, Coffee } from "lucide-react";
+import { Info, Leaf, Award, ExternalLink, HelpCircle, GitBranch, ArrowUp, Coffee, X } from "lucide-react";
 import Link from "next/link";
 
 interface VarietyDetailPanelProps {
   variety: CoffeeVariety | null;
   allVarieties: CoffeeVariety[];
   onSelectVariety: (id: string) => void;
+  onClose?: () => void;
 }
 
 export default function VarietyDetailPanel({
   variety,
   allVarieties,
   onSelectVariety,
+  onClose,
 }: VarietyDetailPanelProps) {
   const [imageError, setImageError] = useState(false);
 
@@ -92,27 +94,38 @@ export default function VarietyDetailPanel({
       </div>
 
       {/* Detail Header */}
-      <div className="border-b border-slate-100 p-6 bg-slate-50/50">
-        <div className="flex flex-wrap items-center justify-between gap-3 mb-2">
-          <span
-            className={`inline-flex items-center rounded-md border px-2.5 py-0.5 text-xs font-bold uppercase tracking-wider ${
-              variety.species === "Arabica"
-                ? "bg-blue-50 border-blue-200 text-blue-700"
-                : "bg-slate-100 border-slate-300 text-slate-700"
-            }`}
-          >
-            {variety.species}
-          </span>
-          <span className="inline-flex items-center gap-1 text-xs font-bold text-slate-500 bg-slate-100 px-2.5 py-0.5 rounded uppercase tracking-wider border border-slate-200">
-            <GitBranch className="h-3 w-3" />
-            {variety.lineage}
-          </span>
+      <div className="border-b border-slate-100 p-6 bg-slate-50/50 flex items-start justify-between gap-4">
+        <div className="flex-1 min-w-0">
+          <div className="flex flex-wrap items-center gap-2 mb-2">
+            <span
+              className={`inline-flex items-center rounded-md border px-2.5 py-0.5 text-xs font-bold uppercase tracking-wider ${
+                variety.species === "Arabica"
+                  ? "bg-blue-50 border-blue-200 text-blue-700"
+                  : "bg-slate-100 border-slate-300 text-slate-700"
+              }`}
+            >
+              {variety.species}
+            </span>
+            <span className="inline-flex items-center gap-1 text-xs font-bold text-slate-500 bg-slate-100 px-2.5 py-0.5 rounded uppercase tracking-wider border border-slate-200">
+              <GitBranch className="h-3 w-3" />
+              {variety.lineage}
+            </span>
+          </div>
+          <h2 className="text-2xl font-black text-slate-900 tracking-tight mb-1 truncate">{variety.name}</h2>
+          {variety.alternativeNames && variety.alternativeNames.length > 0 && (
+            <p className="text-xs text-slate-500 font-semibold italic">
+              Also known as: {variety.alternativeNames.join(", ")}
+            </p>
+          )}
         </div>
-        <h2 className="text-2xl font-black text-slate-900 tracking-tight mb-1">{variety.name}</h2>
-        {variety.alternativeNames && variety.alternativeNames.length > 0 && (
-          <p className="text-xs text-slate-500 font-semibold italic">
-            Also known as: {variety.alternativeNames.join(", ")}
-          </p>
+        {onClose && (
+          <button
+            onClick={onClose}
+            className="rounded-full p-2 text-slate-400 hover:bg-slate-200 hover:text-slate-900 transition-colors flex-shrink-0"
+            aria-label="Close panel"
+          >
+            <X className="h-5 w-5" />
+          </button>
         )}
       </div>
 

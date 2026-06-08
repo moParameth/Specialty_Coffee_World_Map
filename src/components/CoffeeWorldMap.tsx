@@ -74,7 +74,7 @@ export default function CoffeeWorldMap({
       className="relative h-full w-full bg-slate-50 overflow-hidden rounded-2xl group"
       onMouseMove={handleMouseMove}
     >
-      <div className="absolute top-4 right-4 z-10 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+      <div className="absolute top-4 right-4 z-10 flex flex-col gap-2 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300">
         <button
           className="bg-white/90 hover:bg-slate-100 text-slate-700 p-2 rounded-lg shadow-md border border-slate-200 backdrop-blur transition-colors"
           onClick={handleZoomIn}

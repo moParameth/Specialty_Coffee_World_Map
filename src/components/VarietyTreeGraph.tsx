@@ -630,6 +630,10 @@ export default function VarietyTreeGraph({
   const [isDragging, setIsDragging] = useState<boolean>(false);
   const dragStart = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
   const containerRef = useRef<HTMLDivElement>(null);
+  
+  // Mobile touch scroll helpers
+  const touchStart = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
+  const touchDirection = useRef<"horizontal" | "vertical" | null>(null);
 
   // Hover states for lineage path highlighting
   const [hoveredNodeId, setHoveredNodeId] = useState<string | null>(null);
@@ -703,15 +707,42 @@ export default function VarietyTreeGraph({
   const handleTouchStart = (e: TouchEvent<HTMLDivElement>) => {
     if (e.touches.length === 1) {
       setIsDragging(true);
-      dragStart.current = { x: e.touches[0].clientX - pan.x, y: e.touches[0].clientY - pan.y };
+      const touch = e.touches[0];
+      touchStart.current = { x: touch.clientX, y: touch.clientY };
+      dragStart.current = { x: touch.clientX - pan.x, y: touch.clientY - pan.y };
+      touchDirection.current = null;
     }
   };
 
   const handleTouchMove = (e: TouchEvent<HTMLDivElement>) => {
     if (!isDragging || e.touches.length !== 1) return;
+    
+    const touch = e.touches[0];
+    const dx = touch.clientX - touchStart.current.x;
+    const dy = touch.clientY - touchStart.current.y;
+
+    if (touchDirection.current === null) {
+      // Threshold detection
+      if (Math.abs(dx) > 6 || Math.abs(dy) > 6) {
+        if (Math.abs(dy) > Math.abs(dx)) {
+          touchDirection.current = "vertical";
+          setIsDragging(false); // Let browser scroll
+          return;
+        } else {
+          touchDirection.current = "horizontal";
+        }
+      } else {
+        return;
+      }
+    }
+
+    if (touchDirection.current === "vertical") {
+      return;
+    }
+
     setPan({
-      x: e.touches[0].clientX - dragStart.current.x,
-      y: e.touches[0].clientY - dragStart.current.y
+      x: touch.clientX - dragStart.current.x,
+      y: touch.clientY - dragStart.current.y
     });
   };
 
@@ -744,7 +775,7 @@ export default function VarietyTreeGraph({
   return (
     <div
       ref={containerRef}
-      className="relative w-full h-[620px] rounded-2xl bg-white border border-slate-200 shadow-sm overflow-hidden select-none cursor-grab active:cursor-grabbing touch-none"
+      className="relative w-full h-[420px] md:h-[620px] rounded-2xl bg-white border border-slate-200 shadow-sm overflow-hidden select-none cursor-grab active:cursor-grabbing touch-pan-y"
       onMouseDown={handleMouseDown}
       onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUp}

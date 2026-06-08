@@ -240,7 +240,15 @@ export default function VarietyFarmList({ onInspectVariety }: VarietyFarmListPro
                 return (
                   <div
                     key={farm.id}
-                    onClick={() => setSelectedId(farm.id)}
+                    onClick={() => {
+                      setSelectedId(farm.id);
+                      if (window.innerWidth < 1024) {
+                        const el = document.getElementById("variety-farm-detail-panel");
+                        if (el) {
+                          el.scrollIntoView({ behavior: "smooth", block: "start" });
+                        }
+                      }
+                    }}
                     className={`p-4 border rounded-2xl cursor-pointer transition-all duration-300 flex flex-col justify-between gap-3 ${
                       isSelected
                         ? "bg-slate-900 border-slate-900 shadow-md text-white scale-[1.01]"
@@ -296,7 +304,7 @@ export default function VarietyFarmList({ onInspectVariety }: VarietyFarmListPro
         </div>
 
         {/* Right Side: Detailed Profile Dashboard */}
-        <div className="lg:col-span-5 bg-white border border-slate-200 rounded-3xl p-6 shadow-sm space-y-6 lg:sticky lg:top-24">
+        <div id="variety-farm-detail-panel" className="lg:col-span-5 bg-white border border-slate-200 rounded-3xl p-6 shadow-sm space-y-6 lg:sticky lg:top-24">
           
           {/* Header Title */}
           <div className="border-b border-slate-100 pb-4 space-y-1.5">

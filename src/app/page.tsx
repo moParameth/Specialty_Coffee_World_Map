@@ -76,7 +76,30 @@ function HomeContent() {
           />
         </div>
 
-        <div className="w-full lg:w-96 flex-none bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden flex flex-col transition-all duration-300">
+        {/* Mobile backdrop overlay */}
+        {selectedCountry && (
+          <div 
+            className="fixed inset-0 bg-slate-950/40 z-40 lg:hidden animate-in fade-in duration-200"
+            onClick={() => setSelectedCountry(null)}
+          />
+        )}
+
+        {/* Sidebar Panel (Desktop: inline, Mobile: Slide-up bottom sheet drawer) */}
+        <div 
+          className={`fixed inset-x-0 bottom-0 z-50 max-h-[85vh] rounded-t-3xl border-t border-slate-200/85 bg-white shadow-2xl transition-transform duration-300 ease-out flex flex-col
+            lg:static lg:w-96 lg:h-full lg:max-h-none lg:rounded-2xl lg:border lg:shadow-xl lg:translate-y-0
+            ${selectedCountry ? "translate-y-0" : "translate-y-full lg:translate-y-0"}`}
+        >
+          {/* Mobile top drag handle indicator */}
+          {selectedCountry && (
+            <div 
+              className="lg:hidden flex justify-center py-2.5 bg-slate-50/90 border-b border-slate-100 cursor-pointer flex-shrink-0"
+              onClick={() => setSelectedCountry(null)}
+            >
+              <div className="w-12 h-1.5 rounded-full bg-slate-300 hover:bg-slate-400 transition-colors"></div>
+            </div>
+          )}
+
           <CountryDetailPanel 
             country={selectedCountry} 
             onClose={() => setSelectedCountry(null)} 

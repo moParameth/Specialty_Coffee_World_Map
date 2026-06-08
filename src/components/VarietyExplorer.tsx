@@ -98,6 +98,12 @@ export default function VarietyExplorer() {
     });
   };
 
+  const handleCloseVarietyDetails = () => {
+    const params = new URLSearchParams(searchParams.toString());
+    params.delete("selected");
+    router.push(`/varieties?${params.toString()}`, { scroll: false });
+  };
+
   const comparedVarieties = coffeeVarieties.filter((v) => comparingIds.includes(v.id));
 
   return (
@@ -259,12 +265,36 @@ export default function VarietyExplorer() {
               )}
             </div>
 
-            {/* Right Side: Details Sticky Panel */}
-            <div id="variety-detail-panel" className="lg:col-span-1 lg:sticky lg:top-24">
+            {/* Mobile backdrop overlay */}
+            {selectedVariety && (
+              <div 
+                className="fixed inset-0 bg-slate-950/40 z-40 lg:hidden animate-in fade-in duration-200"
+                onClick={handleCloseVarietyDetails}
+              />
+            )}
+
+            {/* Right Side / Mobile Bottom Drawer */}
+            <div 
+              id="variety-detail-panel" 
+              className={`fixed inset-x-0 bottom-0 z-50 max-h-[85vh] rounded-t-3xl border-t border-slate-200/85 bg-white shadow-2xl transition-transform duration-300 ease-out flex flex-col
+                lg:static lg:col-span-1 lg:h-auto lg:max-h-none lg:rounded-2xl lg:border-none lg:shadow-none lg:translate-y-0 lg:sticky lg:top-24
+                ${selectedVariety ? "translate-y-0" : "translate-y-full lg:translate-y-0"}`}
+            >
+              {/* Mobile top drag handle indicator */}
+              {selectedVariety && (
+                <div 
+                  className="lg:hidden flex justify-center py-2.5 bg-slate-50/90 border-b border-slate-100 cursor-pointer flex-shrink-0"
+                  onClick={handleCloseVarietyDetails}
+                >
+                  <div className="w-12 h-1.5 rounded-full bg-slate-300 hover:bg-slate-400 transition-colors"></div>
+                </div>
+              )}
+
               <VarietyDetailPanel
                 variety={selectedVariety}
                 allVarieties={coffeeVarieties}
                 onSelectVariety={handleSelectVariety}
+                onClose={handleCloseVarietyDetails}
               />
             </div>
           </div>

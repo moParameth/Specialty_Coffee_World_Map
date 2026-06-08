@@ -257,7 +257,15 @@ export default function VarietyTierList({ onInspectVariety }: VarietyTierListPro
                         return (
                           <div
                             key={variety.id}
-                            onClick={() => setSelectedId(variety.id)}
+                            onClick={() => {
+                              setSelectedId(variety.id);
+                              if (window.innerWidth < 1024) {
+                                const el = document.getElementById("variety-tier-detail-panel");
+                                if (el) {
+                                  el.scrollIntoView({ behavior: "smooth", block: "start" });
+                                }
+                              }
+                            }}
                             className={`px-3 py-2 rounded-xl cursor-pointer transition-all duration-300 flex items-center gap-1.5 select-none hover:-translate-y-0.5 border ${
                               isSelected
                                 ? "bg-slate-900 text-white border-slate-900 shadow-md scale-102"
@@ -280,7 +288,7 @@ export default function VarietyTierList({ onInspectVariety }: VarietyTierListPro
         </div>
 
         {/* Right Columns: Analysis & Reasoning Panel */}
-        <div className="lg:col-span-5 bg-white border border-slate-200 rounded-3xl p-6 shadow-sm space-y-6 lg:sticky lg:top-24">
+        <div id="variety-tier-detail-panel" className="lg:col-span-5 bg-white border border-slate-200 rounded-3xl p-6 shadow-sm space-y-6 lg:sticky lg:top-24">
           
           {/* Header Title */}
           <div className="border-b border-slate-100 pb-4 space-y-1">
