@@ -23,16 +23,36 @@ interface VarietyFarmListProps {
 export default function VarietyFarmList({ onInspectVariety }: VarietyFarmListProps) {
   const [selectedId, setSelectedId] = useState<string>("hacienda-la-esmeralda");
   const [searchQuery, setSearchQuery] = useState("");
+  const [selectedCountry, setSelectedCountry] = useState<string>("All");
 
-  const selectedFarm = coffeeFarms.find(f => f.id === selectedId) || coffeeFarms[0];
+  const countries = [
+    "All",
+    "Panama",
+    "Ethiopia",
+    "Colombia",
+    "Guatemala",
+    "Kenya",
+    "Costa Rica",
+    "El Salvador",
+    "Brazil",
+    "Yemen",
+    "Honduras"
+  ];
 
-  const filteredFarms = coffeeFarms.filter(f => 
-    f.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    f.country.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    f.region.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    f.signatureProduct.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    f.keyVarieties.some(v => v.toLowerCase().includes(searchQuery.toLowerCase()))
-  );
+  const filteredFarms = coffeeFarms.filter(f => {
+    const matchesCountry = selectedCountry === "All" || f.country.toLowerCase() === selectedCountry.toLowerCase();
+    const matchesSearch = 
+      f.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      f.country.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      f.region.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      f.signatureProduct.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      f.keyVarieties.some(v => v.toLowerCase().includes(searchQuery.toLowerCase()));
+    return matchesCountry && matchesSearch;
+  });
+
+  // Dynamically resolve the selected farm. If the current selectedId is not in the filtered list,
+  // fall back to the first item of the filtered list, or the first overall farm.
+  const selectedFarm = filteredFarms.find(f => f.id === selectedId) || filteredFarms[0] || coffeeFarms[0];
 
   const mapVarietyNameToId = (name: string): string => {
     const normalized = name.toLowerCase().trim();
@@ -40,27 +60,21 @@ export default function VarietyFarmList({ onInspectVariety }: VarietyFarmListPro
     if (normalized.includes("catuai") || normalized.includes("catuaí")) return "catuai";
     if (normalized.includes("sl28")) return "sl28";
     if (normalized.includes("sl34")) return "sl34";
-    if (normalized.includes("laurina")) return "laurina";
     if (normalized.includes("pacamara")) return "pacamara";
-    if (normalized.includes("bourbon")) return "bourbon";
+    if (normalized.includes("bourbon")) return "bourbon"; // maps Yellow/Pink Bourbon to bourbon
     if (normalized.includes("typica")) return "typica";
-    if (normalized.includes("sudan rume")) return "sudan-rume";
-    if (normalized.includes("wush wush")) return "wush-wush";
-    if (normalized.includes("eugenioides")) return "eugenioides";
     if (normalized.includes("caturra")) return "caturra";
-    if (normalized.includes("mundo novo")) return "mundo-novo";
+    if (normalized.includes("mundo novo") || normalized.includes("mundo-novo")) return "mundo-novo";
     if (normalized.includes("castillo")) return "castillo";
+    if (normalized.includes("colombia")) return "colombia";
     if (normalized.includes("catimor")) return "catimor";
-    if (normalized.includes("parainema")) return "parainema";
     if (normalized.includes("ruiru 11") || normalized.includes("ruiru-11")) return "ruiru-11";
     if (normalized.includes("robusta")) return "robusta-commercial-clones";
-    if (normalized.includes("timor hybrid") || normalized.includes("timor-hybrid")) return "timor-hybrid";
     if (normalized.includes("batian")) return "batian";
-    if (normalized.includes("starmaya")) return "starmaya";
     if (normalized.includes("s795")) return "s795";
     if (normalized.includes("anacafé 14") || normalized.includes("anacafe-14")) return "anacafe-14";
-    if (normalized.includes("pacas")) return "pacas";
-    if (normalized.includes("villa sarchi") || normalized.includes("villa-sarchi")) return "villa-sarchi";
+    if (normalized.includes("java")) return "java";
+    if (normalized.includes("parainema")) return "parainema";
     return "";
   };
 
@@ -115,6 +129,27 @@ export default function VarietyFarmList({ onInspectVariety }: VarietyFarmListPro
             />
           </div>
 
+          {/* Country Pill Selector */}
+          <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-thin scrollbar-thumb-slate-200 scrollbar-track-transparent">
+            {countries.map((country) => {
+              const isActive = selectedCountry === country;
+              return (
+                <button
+                  key={country}
+                  type="button"
+                  onClick={() => setSelectedCountry(country)}
+                  className={`px-4 py-1.5 rounded-full text-xs font-black whitespace-nowrap cursor-pointer transition-all border ${
+                    isActive
+                      ? "bg-slate-900 border-slate-900 text-white shadow-sm"
+                      : "bg-white border-slate-200 text-slate-600 hover:bg-slate-50 hover:border-slate-300"
+                  }`}
+                >
+                  {country === "All" ? "All Countries" : country}
+                </button>
+              );
+            })}
+          </div>
+
           <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5 px-1">
             <SlidersHorizontal className="h-3.5 w-3.5" />
             <span>Farms ({filteredFarms.length} matches)</span>
@@ -128,7 +163,7 @@ export default function VarietyFarmList({ onInspectVariety }: VarietyFarmListPro
               </div>
             ) : (
               filteredFarms.map((farm) => {
-                const isSelected = selectedId === farm.id;
+                const isSelected = selectedFarm.id === farm.id;
                 return (
                   <div
                     key={farm.id}
