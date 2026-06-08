@@ -41,7 +41,7 @@ export const supplyChainStages: SupplyChainStage[] = [
       "Density float tanks to isolate low-density beans (floaters) from dense high-grade lots.",
       "Digital pin-meter moisture checks to verify the batch hits the target moisture level (ideal 10.5%)."
     ],
-    imageUrl: "/images/processing/natural.png"
+    imageUrl: "/images/supply-chain/processing.png"
   },
   {
     id: "milling",
@@ -104,7 +104,7 @@ export const supplyChainStages: SupplyChainStage[] = [
       "Batch data tracking: saving Rate of Rise (RoR) curves digitally to ensure consistent profiles.",
       "Strict batch QC cupping: roasting teams evaluate every single batch against sensory benchmarks before shipping."
     ],
-    imageUrl: "/images/roasting/medium.png"
+    imageUrl: "/images/supply-chain/roasting.png"
   },
   {
     id: "brewing",
