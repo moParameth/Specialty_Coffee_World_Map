@@ -11,15 +11,16 @@ import VarietyDetailPanel from "./VarietyDetailPanel";
 import VarietyCompare from "./VarietyCompare";
 import VarietyTreeGraph from "./VarietyTreeGraph";
 import VarietyTierList from "./VarietyTierList";
-import { AlertCircle, SlidersHorizontal, LayoutGrid, Network, Trophy } from "lucide-react";
+import VarietyFarmList from "./VarietyFarmList";
+import { AlertCircle, SlidersHorizontal, LayoutGrid, Network, Trophy, Award } from "lucide-react";
 
 export default function VarietyExplorer() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const selectedParam = searchParams.get("selected");
 
-  // Tab State: explorer vs tierlist
-  const [activeTab, setActiveTab] = useState<"explorer" | "tierlist">("explorer");
+  // Tab State: explorer vs tierlist vs farms
+  const [activeTab, setActiveTab] = useState<"explorer" | "tierlist" | "farms">("explorer");
 
   // Filter States
   const [filters, setFilters] = useState<VarietyFilters>({
@@ -103,7 +104,7 @@ export default function VarietyExplorer() {
     <div className="space-y-6">
       {/* Top View Mode Tabs */}
       <div className="flex border-b border-slate-200 pb-1">
-        <div className="flex gap-2">
+        <div className="flex flex-wrap gap-2">
           <button
             type="button"
             onClick={() => setActiveTab("explorer")}
@@ -128,11 +129,36 @@ export default function VarietyExplorer() {
             <Trophy className="h-4.5 w-4.5" />
             <span>Cultivar Tier List & Analysis</span>
           </button>
+          <button
+            type="button"
+            onClick={() => setActiveTab("farms")}
+            className={`flex items-center gap-2 px-5 py-3 border-b-2 text-sm font-extrabold transition-all duration-300 cursor-pointer ${
+              activeTab === "farms"
+                ? "border-emerald-600 text-emerald-700 font-extrabold"
+                : "border-transparent text-slate-500 hover:text-slate-800"
+            }`}
+          >
+            <Award className="h-4.5 w-4.5" />
+            <span>Elite Micro-Lots & Farms</span>
+          </button>
         </div>
       </div>
 
       {activeTab === "tierlist" ? (
         <VarietyTierList
+          onInspectVariety={(id) => {
+            setActiveTab("explorer");
+            handleSelectVariety(id);
+            setTimeout(() => {
+              const el = document.getElementById("variety-detail-panel");
+              if (el) {
+                el.scrollIntoView({ behavior: "smooth", block: "start" });
+              }
+            }, 100);
+          }}
+        />
+      ) : activeTab === "farms" ? (
+        <VarietyFarmList
           onInspectVariety={(id) => {
             setActiveTab("explorer");
             handleSelectVariety(id);
