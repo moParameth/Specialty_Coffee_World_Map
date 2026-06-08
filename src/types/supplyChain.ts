@@ -9,6 +9,7 @@ export interface SupplyChainStage {
   keyActivities: string[];
   detailedDescription: string;
   qualityControls: string[];
+  imageUrl?: string;
 }
 
 export interface EconomicCostItem {

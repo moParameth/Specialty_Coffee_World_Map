@@ -133,6 +133,17 @@ export default function SupplyChainExplorer() {
               <span>{activeStage.physicalTransition.split(" -> ").slice(-1)[0]}</span>
             </div>
 
+            {/* Phase Illustration */}
+            {activeStage.imageUrl && (
+              <div className="relative h-44 w-full rounded-2xl overflow-hidden border border-slate-200 shadow-sm group">
+                <img 
+                  src={activeStage.imageUrl} 
+                  alt={activeStage.name}
+                  className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-[1.03]"
+                />
+              </div>
+            )}
+
             {/* Deep Description */}
             <div className="space-y-1.5">
               <h5 className="text-[10px] font-black uppercase tracking-wider text-slate-400">Scientific & Physical Context</h5>

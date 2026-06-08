@@ -19,7 +19,8 @@ export const supplyChainStages: SupplyChainStage[] = [
       "Refractometer (Brix) testing of raw cherry pulp to ensure optimum sugar concentrations.",
       "Strict sorting at collection stations to filter out green (unripe), black (over-ripe), or hollow cherries.",
       "Preventive agronomy monitoring to protect crops from Coffee Leaf Rust (Hemileia vastatrix) using organic sprays and shade canopy humidity control."
-    ]
+    ],
+    imageUrl: "/images/supply-chain/cultivation.png"
   },
   {
     id: "processing",
@@ -39,7 +40,8 @@ export const supplyChainStages: SupplyChainStage[] = [
       "pH-meter tracking during fermentation (target range 4.5 - 3.8 to prevent acetic sourness).",
       "Density float tanks to isolate low-density beans (floaters) from dense high-grade lots.",
       "Digital pin-meter moisture checks to verify the batch hits the target moisture level (ideal 10.5%)."
-    ]
+    ],
+    imageUrl: "/images/processing/natural.png"
   },
   {
     id: "milling",
@@ -59,7 +61,8 @@ export const supplyChainStages: SupplyChainStage[] = [
       "Manual screen-sizing to classify bean sizes (e.g. Screen 17/18 for large beans, Screen 15 for smaller).",
       "Pneumatic optical sorting calibration to filter out visual, insect-damaged, and mold defects.",
       "Sealing lots in hermetic bags inside thick woven jute sacks to prevent moisture re-absorption."
-    ]
+    ],
+    imageUrl: "/images/supply-chain/milling.png"
   },
   {
     id: "logistics",
@@ -79,7 +82,8 @@ export const supplyChainStages: SupplyChainStage[] = [
       "Lining ocean containers with thick cardboard insulation kraft-paper to prevent thermal shocks.",
       "Stowing coffee containers below deck or away from the ship's engine room to avoid baking.",
       "Destination arrival cupping: pulling samples immediately to verify that the flavor matches the original Pre-Shipment Sample (PSS) without degradation."
-    ]
+    ],
+    imageUrl: "/images/supply-chain/logistics.png"
   },
   {
     id: "roasting",
@@ -99,7 +103,8 @@ export const supplyChainStages: SupplyChainStage[] = [
       "Spectrophotometer color analysis (Agtron scale) to check roast depth uniformity of bean exterior and interior.",
       "Batch data tracking: saving Rate of Rise (RoR) curves digitally to ensure consistent profiles.",
       "Strict batch QC cupping: roasting teams evaluate every single batch against sensory benchmarks before shipping."
-    ]
+    ],
+    imageUrl: "/images/roasting/medium.png"
   },
   {
     id: "brewing",
@@ -119,7 +124,8 @@ export const supplyChainStages: SupplyChainStage[] = [
       "Water testing: ensuring brewing water matches Specialty Coffee Association (SCA) specs (approx. 150 mg/L TDS, pH 7.0).",
       "TDS Refractometer analysis: measuring the refractive index of the brewed cup to verify it hits the extraction yield (18% to 22%).",
       "Daily grinder recalibration: adjusting burr spacing to compensate for changes in ambient humidity and bean degassing age."
-    ]
+    ],
+    imageUrl: "/images/supply-chain/brewing.png"
   }
 ];
 
