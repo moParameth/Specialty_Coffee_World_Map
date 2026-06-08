@@ -349,7 +349,7 @@ export const coffeeFarms: CoffeeFarm[] = [
     region: "Haraz Mountains",
     altitude: "1,800–2,400m",
     signatureProduct: "Haraaz Red (Ancient Natural)",
-    keyVarieties: ["Heirloom"], // maps to landraces
+    keyVarieties: ["Heirloom"],
     processingMethod: "Traditional dry-natural, rooftop sun-dried",
     description: "Grown on historic stone terraces carved into the steep vertical cliffs of the Haraz Mountains. Yemen's unique high-altitude, arid climate forces coffee plants to concentrate sugars in the cherries, yielding natural coffees with complex spices (cardamom, cinnamon), dark chocolate, and heavy wine-like complexity. Farms are organized into local cooperatives that protect ancestral varieties.",
     prestigeNotes: "Terraced mountain agriculture dating back over 500 years. Extreme dry-grown terroir.",
@@ -421,5 +421,415 @@ export const coffeeFarms: CoffeeFarm[] = [
     description: "Operated by the Martinez family, Finca Los Robles is celebrated for its mastery of the 'Parainema' variety (a Sarchimor selection resistant to coffee leaf rust). This farm showcases Parainema's capacity to produce high-specialty cups with distinct eucalyptus, lemongrass, and bright green apple notes.",
     prestigeNotes: "Benchmark farm for specialty Parainema production in Honduras.",
     coeVictories: "Multiple Cup of Excellence national winner"
+  },
+
+  // --- INDONESIA ---
+  {
+    id: "frinsa-collective",
+    name: "Frinsa Collective (Java Frinsa Estate)",
+    country: "Indonesia",
+    region: "Pangalengan, West Java",
+    altitude: "1,400–1,700m",
+    signatureProduct: "Frinsa Manis (Anaerobic Natural with Lactobacillus)",
+    keyVarieties: ["Andungsari", "Kartika"],
+    processingMethod: "Anaerobic fermentation with selected local bacteria/yeast cultures",
+    description: "Managed by Wildan Mustofa, Frinsa Estate is a pioneer of clean, washed, and experimentally fermented coffees in Indonesia, moving away from traditional wet-hulling. Their anaerobic fermentation lots show exceptional clarity, presenting bright tropical fruit, lactic sweetness, and complex berries.",
+    prestigeNotes: "Pioneers of clean processing and lactic/yeast inoculations in Indonesia.",
+    coeVictories: "Multiple entries in Indonesia's Cup of Excellence Top 10"
+  },
+  {
+    id: "wahana-estate",
+    name: "Wahana Estate",
+    country: "Indonesia",
+    region: "Sidikalang, North Sumatra",
+    altitude: "1,200–1,500m",
+    signatureProduct: "Wahana Rasuna (Natural)",
+    keyVarieties: ["Toraja", "Andungsari"],
+    processingMethod: "Pulped natural and full natural, dried on patio",
+    description: "Wahana Estate is one of the largest single specialty estates in Sumatra. It features a dedicated R&D center, a free clinic for workers, and focuses on shade-grown, ecological agriculture, producing incredibly clean, sweet, and low-acid coffees that display complex herbal and chocolate tones.",
+    prestigeNotes: "Sumatran estate leading the transition to single-varietal separation and clean processing.",
+    coeVictories: "Prized by international roasting corporations; regularly wins local quality championships"
+  },
+  {
+    id: "pantan-musara",
+    name: "Pantan Musara Cooperative",
+    country: "Indonesia",
+    region: "Aceh Gayo, Sumatra",
+    altitude: "1,550–1,700m",
+    signatureProduct: "Pantan Musara Honey (Red Honey)",
+    keyVarieties: ["Catimor"],
+    processingMethod: "Clean pulped honey and slow-dried natural",
+    description: "Situated in the high elevations of the Aceh Gayo highlands, Pantan Musara is a processing mill led by local smallholders. By utilizing raised beds and plastic dome drying structures to combat Sumatra's high humidity, they produce exceptionally clean, sweet coffees with cherry, apple, and black tea notes.",
+    prestigeNotes: "Benchmark for Aceh Gayo clean honey and natural micro-lots.",
+    coeVictories: "1st Place Winner in the inaugural Indonesia Cup of Excellence (2021)"
+  },
+
+  // --- PERU ---
+  {
+    id: "finca-el-cedro",
+    name: "Finca El Cedro",
+    country: "Peru",
+    region: "Colasay, Cajamarca",
+    altitude: "1,850–1,950m",
+    signatureProduct: "Finca El Cedro Washed Caturra",
+    keyVarieties: ["Caturra"],
+    processingMethod: "36-hour dry fermentation, traditional washed, dried on raised beds",
+    description: "Operated by Franklin Alarcón, Finca El Cedro is located in the high cloud forests of Cajamarca. Franklin's meticulous sorting and slow fermentation processes bring out sparkling malic acidity, green apple, peach, and floral jasmine notes that are highly prized in European specialty markets.",
+    prestigeNotes: "Micro-lot benchmark for Cajamarca's high-altitude cloud forest terroir.",
+    coeVictories: "1st Place Winner in the Peru Cup of Excellence (2020)"
+  },
+  {
+    id: "finca-tasta",
+    name: "Finca Tasta",
+    country: "Peru",
+    region: "Llaylla, Satipo, Junín",
+    altitude: "1,450–1,650m",
+    signatureProduct: "Tasta Honey Gesha",
+    keyVarieties: ["Geisha", "Caturra", "Typica"],
+    processingMethod: "Double anaerobic fermentation Red Honey",
+    description: "Run by sibling duo Edith and Ivan Meza, Finca Tasta is a modern, eco-friendly estate that implements organic and regenerative farming. Edith is a Q-grader and uses her expertise to design precise fermentation profiles, yielding highly complex cups with honey, ginger, and citrus tones.",
+    prestigeNotes: "Led by young siblings pioneering micro-mill and Q-grading standards in Junín.",
+    coeVictories: "Regular finalist in Peru Cup of Excellence; high specialty exporter favorite"
+  },
+  {
+    id: "finca-churupampa",
+    name: "Finca Churupampa",
+    country: "Peru",
+    region: "Chirinos, San Ignacio, Cajamarca",
+    altitude: "1,600–1,900m",
+    signatureProduct: "Churupampa Organic Natural (Caturra)",
+    keyVarieties: ["Caturra", "Typica"],
+    processingMethod: "Suspended raised bed natural, slow-dry",
+    description: "Owned by the Tocto family, Finca Churupampa operates both as a single estate and a cooperative hub. It provides agricultural training, soil analysis, and organic composting support to hundreds of surrounding smallholders, proving that community-driven quality leads to world-class sweet, chocolate, and stone-fruit profiles.",
+    prestigeNotes: "Model farm for community organic training and specialty micro-milling.",
+    coeVictories: "Highly respected social enterprise with multiple top-tier places in national competitions"
+  },
+
+  // --- BURUNDI ---
+  {
+    id: "kibingo-washing-station",
+    name: "Kibingo Washing Station",
+    country: "Burundi",
+    region: "Kayanza Province",
+    altitude: "1,700–1,900m",
+    signatureProduct: "Kibingo Yeast Inoculated Natural",
+    keyVarieties: ["Bourbon"],
+    processingMethod: "Fermentation inoculated with specialty yeasts (e.g. Lalcafe Oro)",
+    description: "Kibingo serves over 3,000 local smallholders, providing organic fertilizer from coffee pulp and young seedlings. The station is equipped with water treatment systems and utilizes double-fermentation methods and yeast fermentations to yield clean, juicy coffees with pineapple, black tea, and citrus complexity.",
+    prestigeNotes: "Famous Kayanza washing station demonstrating yeast fermentation excellence.",
+    coeVictories: "Multiple Cup of Excellence national awards, including Top 5 placements"
+  },
+  {
+    id: "heza-washing-station",
+    name: "Heza Washing Station (Long Miles)",
+    country: "Burundi",
+    region: "Kayanza Province (Mutana Hill)",
+    altitude: "1,900–2,100m",
+    signatureProduct: "Heza Natural (Bourbon)",
+    keyVarieties: ["Bourbon"],
+    processingMethod: "Hand-sorted dry natural, dried on elevated African beds under canopy",
+    description: "Established by Ben and Kristy Carlson of the Long Miles Coffee Project, Heza is built on the side of a steep hill. It bridges the gap between wild smallholder farming and direct-trade roasters, protecting ancestral Bourbon varieties and producing coffees with wild red fruit, currant, and baking spice profiles.",
+    prestigeNotes: "Part of the visionary Long Miles Coffee Project. Focuses on smallholder traceability.",
+    coeVictories: "High-ranking Cup of Excellence places and regular choice for World Barista competition"
+  },
+  {
+    id: "bukeye-washing-station",
+    name: "Bukeye Washing Station (Long Miles)",
+    country: "Burundi",
+    region: "Muramvya Province",
+    altitude: "1,750–1,850m",
+    signatureProduct: "Bukeye Washed Bourbon",
+    keyVarieties: ["Bourbon"],
+    processingMethod: "Double-washed (dry ferment, wet ferment, then mountain water soak)",
+    description: "Bukeye was the first washing station built by the Long Miles Coffee Project. Located near the forest reserves, it processes cherries from nearby hills (Gaharo, Ninga). The double-washed method produces classic Burundian clarity with sparkling phosphoric acidity, blackcurrant, and maple sweetness.",
+    prestigeNotes: "The founding station of the Long Miles Coffee Project. High social impact.",
+    coeVictories: "Highly prized by leading specialty roasters in the US, Europe, and Japan"
+  },
+
+  // --- RWANDA ---
+  {
+    id: "mahembe-washing-station",
+    name: "Mahembe Washing Station",
+    country: "Rwanda",
+    region: "Nyamasheke, Western Province",
+    altitude: "1,700–1,900m",
+    signatureProduct: "Mahembe Washed Double Ferment",
+    keyVarieties: ["Bourbon"],
+    processingMethod: "Wet-fermented twice, soaked in clean spring water, sun-dried on beds",
+    description: "Owned by Justin Musabyiama, Mahembe processes cherries from his 8-hectare farm and small outgrowers in Nyamasheke near Lake Kivu. Justin's obsessive attention to detail in sorting and floating cherries yields washed Bourbons with immense lime acidity, black tea structure, and floral honey sweetness.",
+    prestigeNotes: "Family-owned washing station representing Nyamasheke's ultimate quality standards.",
+    coeVictories: "Multiple Cup of Excellence winning lots (including Top 10 finishes)"
+  },
+  {
+    id: "gasharu-coffee",
+    name: "Gasharu Coffee",
+    country: "Rwanda",
+    region: "Macuba, Nyamasheke",
+    altitude: "1,600–2,100m",
+    signatureProduct: "Gasharu Intego (Anaerobic Natural)",
+    keyVarieties: ["Bourbon"],
+    processingMethod: "60-hour anaerobic fermentation in sealed tanks before slow drying",
+    description: "Operated by the Celestin Rumashana family, Gasharu Coffee has supported local communities since the 1980s. Their 'Intego' experimental process mimics traditional banana wine fermentation, producing a highly complex cup with intense blackberry, passionfruit, and dark chocolate flavor notes.",
+    prestigeNotes: "Generational farm focused on local community welfare and fermentation innovations.",
+    coeVictories: "Highly rated in Rwanda Cup of Excellence and specialty auction programs"
+  },
+  {
+    id: "kinini-washing-station",
+    name: "Kinini Washing Station",
+    country: "Rwanda",
+    region: "Rulindo District",
+    altitude: "1,800–2,200m",
+    signatureProduct: "Kinini Natural Bourbon",
+    keyVarieties: ["Bourbon"],
+    processingMethod: "Raised African bed dry natural, covered during midday heat",
+    description: "Kinini is a cooperative station formed by Jacquie Turner and Malcolm Clear. It works with local smallholders, returning 100% of profits back to community development, school construction, and health services. The high altitude of Rulindo results in slow cherry development, yielding sweet, complex cups with black tea, orange peel, and raspberry notes.",
+    prestigeNotes: "100% community development reinvestment model with high-altitude Rulindo terroir.",
+    coeVictories: "Regularly scores high in the Rwanda Cup of Excellence national jury evaluations"
+  },
+
+  // --- NICARAGUA ---
+  {
+    id: "finca-limoncillo",
+    name: "Finca Limoncillo",
+    country: "Nicaragua",
+    region: "Yasica del Sur, Matagalpa",
+    altitude: "1,200–1,350m",
+    signatureProduct: "Limoncillo Funky Natural (Java)",
+    keyVarieties: ["Java", "Pacamara"],
+    processingMethod: "Extended 'Funky' natural (prolonged cherry fermentation in thick piles)",
+    description: "Operated by the legendary Mierisch family, Finca Limoncillo is famous for its steep terrain, heavy shade canopy, and waterfalls. They are pioneers in cultivating exotic varieties in Nicaragua, particularly the long-bean Java, and are known for precise experimental drying methods.",
+    prestigeNotes: "Pioneered the cultivation of Java variety in Central America.",
+    coeVictories: "Multiple Cup of Excellence Top 10 awards (including 2nd Place)"
+  },
+  {
+    id: "finca-los-delirios",
+    name: "Finca Los Delirios",
+    country: "Nicaragua",
+    region: "Lipululo, Madriz",
+    altitude: "1,250–1,550m",
+    signatureProduct: "Los Delirios Anaerobic Java",
+    keyVarieties: ["Java", "Bourbon", "Caturra"],
+    processingMethod: "72-hour anaerobic fermentation in sealed bags",
+    description: "Owned by master producer Eleanor de Jesus Blandon, Finca Los Delirios is a model of environmental conservation and shade-grown agriculture. Eleanor's anaerobic Javas are prized for their jasmine, lemongrass, and clean grape acidity, demonstrating the high-elevation potential of the Madriz region.",
+    prestigeNotes: "Renowned for environmental conservation and clean anaerobic micro-lots.",
+    coeVictories: "Consistent Cup of Excellence finalist; wins high premiums in direct-trade markets"
+  },
+  {
+    id: "finca-san-jose",
+    name: "Finca San Jose",
+    country: "Nicaragua",
+    region: "Jinotega",
+    altitude: "1,250–1,400m",
+    signatureProduct: "San Jose Miel (Red Honey Pacamara)",
+    keyVarieties: ["Pacamara", "Caturra", "Java"],
+    processingMethod: "Red Honey, slow-dry on shade beds",
+    description: "Another flagship estate of the Mierisch family, Finca San Jose was where they developed many of their signature honey processing techniques. The volcanic soils and consistent mist (bajareque) yield highly sweet Pacamaras with intense red apple, caramel, and floral honey characteristics.",
+    prestigeNotes: "Pioneer of honey processing and varietal separation in Jinotega.",
+    coeVictories: "High placements in Nicaragua Cup of Excellence; partner farm to global champions"
+  },
+
+  // --- ECUADOR ---
+  {
+    id: "finca-soledad",
+    name: "Finca Soledad",
+    country: "Ecuador",
+    region: "Intag Valley, Imbabura",
+    altitude: "1,515m",
+    signatureProduct: "Soledad Wave (Synergistic Anaerobic Typica Mejorada)",
+    keyVarieties: ["Typica", "Sidra", "Geisha"],
+    processingMethod: "Anaerobic fermentation in cherry followed by carbonic maceration",
+    description: "Owned by Pepe Jijón, Finca Soledad is a biodiverse forest farm situated in the remote Intag Valley. Pepe, a former explorer, operates the farm as a sanctuary for Typica Mejorada and Sidra. His highly conceptualized fermentations yield incredibly complex coffees with jasmine, white tea, ginger, and distinct tropical notes.",
+    prestigeNotes: "Globally famous benchmark for Typica Mejorada and Sidra.",
+    coeVictories: "WBC favorite lot; 1st Place Winner in regional Ecuador auctions and top COE ranks"
+  },
+  {
+    id: "hacienda-la-papaya",
+    name: "Hacienda La Papaya",
+    country: "Ecuador",
+    region: "Saraguro, Loja",
+    altitude: "2,000–2,100m",
+    signatureProduct: "La Papaya Typica Mejorada (Washed / Oak Fermented)",
+    keyVarieties: ["Typica", "Sidra"],
+    processingMethod: "Controlled temperature tank fermentation, washed, finished in oak barrels",
+    description: "Owned by Juan Peña, Hacienda La Papaya is a highly scientific research farm. Juan, a former flower exporter, utilizes precise agricultural sensors, leaf analysis, and tailored nutrient schedules. His Typica Mejorada lots exhibit sparkling phosphoric acidity, bergamot, and heavy peach sweetness.",
+    prestigeNotes: "Super-high altitude scientific farming. Source farm for multiple World Barista competitors.",
+    coeVictories: "1st Place Winner in the Ecuador Cup of Excellence; commands elite auction premiums"
+  },
+  {
+    id: "finca-cruz-verde",
+    name: "Finca Cruz Verde",
+    country: "Ecuador",
+    region: "Pichincha",
+    altitude: "1,600–1,750m",
+    signatureProduct: "Cruz Verde Sidra (Double Anaerobic Natural)",
+    keyVarieties: ["Sidra", "Typica"],
+    processingMethod: "Double anaerobic fermentation in cherry, slow-dry under shade",
+    description: "Managed by the Gallegos family, Finca Cruz Verde is located on the volcanic slopes of Pichincha. Specializing in the Ecuador-native Sidra variety, their natural lots yield sparkling tropical fruit, red wine, and floral jasmine profiles, exemplifying Pichincha's rich volcanic terroir.",
+    prestigeNotes: "Specialty hub for high-end Sidra micro-lots.",
+    coeVictories: "High placing in Ecuador's Cup of Excellence"
+  },
+
+  // --- BOLIVIA ---
+  {
+    id: "finca-takesi",
+    name: "Finca Takesi",
+    country: "Bolivia",
+    region: "Yanacachi, Yungas",
+    altitude: "1,900–2,600m",
+    signatureProduct: "Finca Takesi Geisha (Washed)",
+    keyVarieties: ["Geisha", "Typica", "Caturra"],
+    processingMethod: "Mountain-water washed, slow patio dried",
+    description: "Finca Takesi is widely considered one of the highest coffee farms in the world, growing coffee at altitudes up to 2,600 meters. The freezing nights and thin air force the coffee cherries to mature extremely slowly, concentrating sugars and producing an unbelievably elegant cup with intense peach, jasmine, and sparkling citric acidity.",
+    prestigeNotes: "The highest commercial coffee farm in the world. Exceptional bean density.",
+    coeVictories: "Multiple Bolivia Cup of Excellence 1st Place awards; commands record global prices"
+  },
+  {
+    id: "finca-alasitas",
+    name: "Finca Alasitas",
+    country: "Bolivia",
+    region: "Caranavi, Yungas",
+    altitude: "1,500–1,700m",
+    signatureProduct: "Alasitas Coco Natural (Geisha)",
+    keyVarieties: ["Geisha", "Sidra", "Batian"],
+    processingMethod: "Coco Natural (dried slowly on raised beds in whole cherry, under plastic domes)",
+    description: "Owned by the Rodriguez family (Agricafe Bolivia), Finca Alasitas was established to revitalize Bolivian specialty coffee after a production decline. Alasitas is a model farm testing advanced drying techniques and exotic varieties, producing coffees with intense stone fruit, vanilla, and floral honey profiles.",
+    prestigeNotes: "Model farm for Bolivian coffee restoration led by the Rodriguez family.",
+    coeVictories: "Multiple Cup of Excellence finalist and WBC competitor favorite"
+  },
+  {
+    id: "finca-floripondio",
+    name: "Finca Floripondio",
+    country: "Bolivia",
+    region: "Samaipata, Santa Cruz",
+    altitude: "1,700m",
+    signatureProduct: "Floripondio Batian (Natural)",
+    keyVarieties: ["Batian", "Sidra", "Geisha", "Caturra"],
+    processingMethod: "Slow dry natural on raised beds",
+    description: "Also owned by the Rodriguez family, Floripondio is located in a unique microclimate in Samaipata, surrounded by native forest and ferns. The farm acts as a trial estate where over 50 different coffee varieties are tested to see how they adapt to Samaipata's cooler, humid climate.",
+    prestigeNotes: "Global experimental varietal research center in Samaipata.",
+    coeVictories: "Prized by boutique roasters worldwide for its rare varietal separations (like Batian)"
+  },
+
+  // --- JAMAICA ---
+  {
+    id: "clifton-mount",
+    name: "Clifton Mount Coffee Estate",
+    country: "Jamaica",
+    region: "Blue Mountains",
+    altitude: "1,300–1,400m",
+    signatureProduct: "Clifton Mount Blue Mountain (Washed Typica)",
+    keyVarieties: ["Typica"],
+    processingMethod: "Traditional washed, patio sun-dried, rested in wooden barrels",
+    description: "Clifton Mount is the oldest continuously functioning coffee estate in Jamaica, dating back to the 1750s. Located on the cool, misty slopes of Catherine's Peak, the farm is Rainforest Alliance certified. Their washed Typicas represent the classic Blue Mountain cup: mild acidity, exceptionally smooth body, and clean cocoa sweetness.",
+    prestigeNotes: "The oldest active estate in Jamaica and the first Rainforest Alliance certified Blue Mountain farm.",
+    coeVictories: "Commands extremely high global export premiums, particularly in Japan"
+  },
+  {
+    id: "wallenford-estate",
+    name: "Wallenford Estate",
+    country: "Jamaica",
+    region: "Blue Mountains",
+    altitude: "1,100–1,350m",
+    signatureProduct: "Wallenford Blue Mountain Typica",
+    keyVarieties: ["Typica"],
+    processingMethod: "Traditional washed, rested in white oak barrels before shipping",
+    description: "Wallenford is a historic estate in the heart of the Blue Mountains. Known for mist-covered volcanic soils and slow growth, it produces coffees characterized by a smooth, balanced body, sweet herbal notes, and a clean finish without bitterness.",
+    prestigeNotes: "Historic state-associated benchmark for authentic Blue Mountain certification.",
+    coeVictories: "Renowned globally; highly sought after in premium auction markets"
+  },
+  {
+    id: "sherwood-forest-estate",
+    name: "Sherwood Forest Estate",
+    country: "Jamaica",
+    region: "Blue Mountains",
+    altitude: "1,000–1,200m",
+    signatureProduct: "Sherwood Forest Estate Washed",
+    keyVarieties: ["Typica"],
+    processingMethod: "Traditional washed, dried on historic stone barbecues (patios)",
+    description: "Sherwood Forest Estate is a historic plantation with processing facilities dating back to the early 19th century. Known for its rich heritage and cool mountain microclimate, the estate produces classic washed Typica with notes of hazelnut, milk chocolate, and sweet orange.",
+    prestigeNotes: "Historic estate featuring 19th-century stone drying patios.",
+    coeVictories: "Prized by traditional connoisseurs for its classic, defect-free cleanliness"
+  },
+
+  // --- UNITED STATES ---
+  {
+    id: "monarch-coffee",
+    name: "Monarch Coffee",
+    country: "United States",
+    region: "Kona, Big Island, Hawaii",
+    altitude: "600–900m",
+    signatureProduct: "Monarch Kona Gesha (Champagne Yeast Natural)",
+    keyVarieties: ["Geisha", "Typica"],
+    processingMethod: "Champagne yeast inoculated natural fermentation",
+    description: "Owned by Greg and Susannah Payne, Monarch Coffee is located in the high-elevation Holualoa region of the Kona coffee belt. Monarch is famous for bringing Geisha to Kona and applying advanced wine-yeast fermentations, resulting in high-specialty cups with sparkling raspberry, wine, and tropical notes.",
+    prestigeNotes: "Pioneers of Geisha cultivation and advanced yeast fermentation in the Kona region.",
+    coeVictories: "1st Place Winner in the Hawaii Coffee Association cupping competition"
+  },
+  {
+    id: "greenwell-farms",
+    name: "Greenwell Farms",
+    country: "United States",
+    region: "Kealakekua, Kona, Hawaii",
+    altitude: "450–600m",
+    signatureProduct: "Greenwell Elizabeth J (Kona Typica Natural)",
+    keyVarieties: ["Typica", "Bourbon"],
+    processingMethod: "Full natural, slow-dried on raised deck structures (hoshidanas)",
+    description: "Established in 1850 by Henry Nicholas Greenwell, this is one of Kona's oldest and most historic coffee estates. The farm utilizes volcanic soils, shade trees, and traditional hoshidana drying beds. Their 'Elizabeth J' natural Typica lot shows intense sweetness, cherry, and vanilla notes.",
+    prestigeNotes: "One of the oldest continuously operated coffee farms in the United States.",
+    coeVictories: "Multi-year champion in Hawaii Coffee Association cupping competitions"
+  },
+  {
+    id: "kona-farm-direct",
+    name: "Kona Farm Direct",
+    country: "United States",
+    region: "Kona, Big Island, Hawaii",
+    altitude: "500–750m",
+    signatureProduct: "Kona Typica Double Washed",
+    keyVarieties: ["Typica"],
+    processingMethod: "Double-washed (fermented twice with spring water)",
+    description: "Managed by the Krahe family, this estate is dedicated to high-density organic farming and single-origin Kona Typica. By employing organic composts and double-washing techniques, they produce exceptionally clean, sweet coffees with notes of macadamia nut, honey, and citrus.",
+    prestigeNotes: "Focuses on high-density organic farming and clean double-washing in Kona.",
+    coeVictories: "High placing in Hawaii Coffee Association awards; supplies top US boutique roasters"
+  },
+
+  // --- MEXICO ---
+  {
+    id: "finca-santa-cruz",
+    name: "Finca Santa Cruz",
+    country: "Mexico",
+    region: "La Concordia, Chiapas",
+    altitude: "1,400–1,700m",
+    signatureProduct: "Santa Cruz Geisha (Double Anaerobic Natural)",
+    keyVarieties: ["Geisha", "Bourbon", "Typica"],
+    processingMethod: "Double anaerobic fermentation in sealed barrels",
+    description: "Owned by José Arguello, Finca Santa Cruz has put Mexico on the map for high-end specialty coffee. Jose's dedication to organic fertilizer, forest conservation, and advanced anaerobic fermentations yields Geishas with explosive jasmine, raspberry, and clean honey profiles.",
+    prestigeNotes: "Benchmark farm for modern anaerobic fermentation in Chiapas.",
+    coeVictories: "1st Place Winner in the Mexico Cup of Excellence (multiple years, including 2019 and 2021)"
+  },
+  {
+    id: "finca-el-estribo-mexico",
+    name: "Finca El Estribo",
+    country: "Mexico",
+    region: "Coatepec, Veracruz",
+    altitude: "1,200–1,400m",
+    signatureProduct: "El Estribo Typica (Washed)",
+    keyVarieties: ["Typica", "Bourbon"],
+    processingMethod: "Traditional washed, fermented in concrete tanks, patio dried",
+    description: "Managed by the Landa family, Finca El Estribo is located in the historic Coatepec region of Veracruz. The farm maintains old-growth Typica plants under a dense native forest canopy. Their traditional washed process highlights sparkling red apple acidity, caramel, and chocolate sweetness.",
+    prestigeNotes: "Historic Veracruz farm preserving old-growth Typica and native forest cover.",
+    coeVictories: "Consistent Cup of Excellence top 10 finalist"
+  },
+  {
+    id: "finca-las-delicias",
+    name: "Finca Las Delicias",
+    country: "Mexico",
+    region: "Jaltenango, Chiapas",
+    altitude: "1,300–1,500m",
+    signatureProduct: "Las Delicias Natural Bourbon",
+    keyVarieties: ["Bourbon", "Caturra"],
+    processingMethod: "Natural, slow-dried on raised beds",
+    description: "Managed by the Perez family, Finca Las Delicias is situated in the highlands of Chiapas. Their shade canopy protects ancient varieties, and their slow-dried natural processing highlights intense tropical fruit, cocoa, and sweet hazelnut notes.",
+    prestigeNotes: "Specialist in shade-grown traditional cultivars in Chiapas.",
+    coeVictories: "Frequently places in the Mexico Cup of Excellence top 10"
   }
 ];

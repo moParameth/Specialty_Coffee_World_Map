@@ -36,7 +36,17 @@ export default function VarietyFarmList({ onInspectVariety }: VarietyFarmListPro
     "El Salvador",
     "Brazil",
     "Yemen",
-    "Honduras"
+    "Honduras",
+    "Indonesia",
+    "Peru",
+    "Burundi",
+    "Rwanda",
+    "Nicaragua",
+    "Ecuador",
+    "Bolivia",
+    "Jamaica",
+    "United States",
+    "Mexico"
   ];
 
   const filteredFarms = coffeeFarms.filter(f => {
@@ -90,6 +100,16 @@ export default function VarietyFarmList({ onInspectVariety }: VarietyFarmListPro
       case "brazil": return "border-green-200 bg-green-50 text-green-700";
       case "yemen": return "border-purple-200 bg-purple-50 text-purple-700";
       case "honduras": return "border-teal-200 bg-teal-50 text-teal-700";
+      case "indonesia": return "border-indigo-200 bg-indigo-50 text-indigo-700";
+      case "peru": return "border-sky-200 bg-sky-50 text-sky-700";
+      case "burundi": return "border-yellow-200 bg-yellow-50 text-yellow-850";
+      case "rwanda": return "border-lime-200 bg-lime-50 text-lime-800";
+      case "nicaragua": return "border-fuchsia-200 bg-fuchsia-50 text-fuchsia-700";
+      case "ecuador": return "border-violet-200 bg-violet-50 text-violet-750";
+      case "bolivia": return "border-zinc-200 bg-zinc-50 text-zinc-700";
+      case "jamaica": return "border-amber-300 bg-amber-50 text-amber-850";
+      case "united states": return "border-slate-300 bg-slate-50 text-slate-800";
+      case "mexico": return "border-emerald-200 bg-emerald-50 text-emerald-700";
       default: return "border-slate-200 bg-slate-50 text-slate-700";
     }
   };
