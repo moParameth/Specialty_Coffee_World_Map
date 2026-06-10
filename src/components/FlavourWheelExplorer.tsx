@@ -18,7 +18,10 @@ import {
   ExternalLink,
   BookOpen,
   HelpCircle,
-  Sparkles
+  Sparkles,
+  Flower,
+  Leaf,
+  Flame
 } from "lucide-react";
 
 interface PlacedNode extends FlavourNode {
@@ -26,17 +29,82 @@ interface PlacedNode extends FlavourNode {
   endAngle: number;
 }
 
+function isMatchedBySearch(node: FlavourNode, query: string): boolean {
+  if (!query) return false;
+  const q = query.toLowerCase().trim();
+  
+  if (node.name.toLowerCase().includes(q)) return true;
+  if (node.description.toLowerCase().includes(q)) return true;
+  if (node.chemicalCompounds && node.chemicalCompounds.some(c => c.toLowerCase().includes(q))) return true;
+  if (node.brewingImpact && node.brewingImpact.toLowerCase().includes(q)) return true;
+  
+  if (node.linkedVarieties && node.linkedVarieties.some(varId => {
+    if (varId.toLowerCase().includes(q)) return true;
+    const matchingVar = coffeeVarieties.find(v => v.id === varId);
+    if (matchingVar) {
+      if (matchingVar.name.toLowerCase().includes(q)) return true;
+      if (matchingVar.alternativeNames && matchingVar.alternativeNames.some(alt => alt.toLowerCase().includes(q))) return true;
+    }
+    return false;
+  })) return true;
+
+  if (node.linkedCountries && node.linkedCountries.some(iso3 => {
+    if (iso3.toLowerCase().includes(q)) return true;
+    const matchingCountry = coffeeCountries.find(c => c.iso3 === iso3);
+    if (matchingCountry && matchingCountry.country.toLowerCase().includes(q)) return true;
+    return false;
+  })) return true;
+
+  return false;
+}
+
+function getSensoryProfileForNode(node: FlavourNode): { acidity: number; sweetness: number; body: number; intensity: number } {
+  let rootNode = node;
+  if (node.level === 3) {
+    const parent = coffeeFlavourWheel.find((n) => n.id === node.parent);
+    if (parent) {
+      const grandParent = coffeeFlavourWheel.find((n) => n.id === parent.parent);
+      if (grandParent) {
+        rootNode = grandParent;
+      } else {
+        rootNode = parent;
+      }
+    }
+  } else if (node.level === 2) {
+    const parent = coffeeFlavourWheel.find((n) => n.id === node.parent);
+    if (parent) {
+      rootNode = parent;
+    }
+  }
+
+  const profiles: Record<string, { acidity: number; sweetness: number; body: number; intensity: number }> = {
+    fruity: { acidity: 9, sweetness: 8, body: 5, intensity: 9 },
+    floral: { acidity: 8, sweetness: 7, body: 4, intensity: 10 },
+    sweet: { acidity: 5, sweetness: 10, body: 7, intensity: 8 },
+    "nutty-cocoa": { acidity: 4, sweetness: 8, body: 8, intensity: 7 },
+    spices: { acidity: 6, sweetness: 6, body: 6, intensity: 8 },
+    roasted: { acidity: 2, sweetness: 4, body: 9, intensity: 7 },
+    "green-vegetative": { acidity: 5, sweetness: 3, body: 5, intensity: 6 },
+    "sour-fermented": { acidity: 10, sweetness: 6, body: 6, intensity: 9 },
+    other: { acidity: 4, sweetness: 2, body: 6, intensity: 5 },
+  };
+
+  return profiles[rootNode.id] || { acidity: 5, sweetness: 5, body: 5, intensity: 5 };
+}
+
 export default function FlavourWheelExplorer() {
+  const [zoomNode, setZoomNode] = useState<FlavourNode | null>(null);
   const [hoveredNode, setHoveredNode] = useState<PlacedNode | null>(null);
   const [selectedNode, setSelectedNode] = useState<PlacedNode | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
+  const [hoveredCenter, setHoveredCenter] = useState(false);
 
   // Dimensions of the SVG Sunburst Wheel
   const size = 600;
   const center = size / 2;
-  const R0 = 80;  // Center circle radius
-  const R1 = 150; // Level 1 outer radius
-  const R2 = 220; // Level 2 outer radius
+  const R0 = 85;  // Center circle radius
+  const R1 = 153; // Level 1 outer radius
+  const R2 = 221; // Level 2 outer radius
   const R3 = 290; // Level 3 outer radius
 
   // Precompute weights based on Level 3 leaf count
@@ -59,72 +127,236 @@ export default function FlavourWheelExplorer() {
     return weights;
   }, []);
 
-  // Compute start and end angles for all sectors in standard radian coordinates
+  // Compute start and end angles for all visible sectors in the active zoom view
   const placedNodes = useMemo<PlacedNode[]>(() => {
     const list: PlacedNode[] = [];
-    const level1Nodes = coffeeFlavourWheel.filter((n) => !n.parent);
-    const totalWeight = level1Nodes.reduce((sum, n) => sum + weightMap[n.id], 0);
 
-    let currentAngle = -Math.PI / 2; // Start at 12 o'clock
+    if (!zoomNode) {
+      // DEFAULT FULL WHEEL LAYOUT
+      const level1Nodes = coffeeFlavourWheel.filter((n) => !n.parent);
+      const totalWeight = level1Nodes.reduce((sum, n) => sum + weightMap[n.id], 0);
 
-    const placeChildren = (parentId: string, startA: number, endA: number) => {
-      const children = coffeeFlavourWheel.filter((n) => n.parent === parentId);
-      if (children.length === 0) return;
+      let currentAngle = -Math.PI / 2; // Start at 12 o'clock
 
-      const parentWeight = weightMap[parentId];
-      const parentSpan = endA - startA;
+      const placeChildren = (parentId: string, startA: number, endA: number) => {
+        const children = coffeeFlavourWheel.filter((n) => n.parent === parentId);
+        if (children.length === 0) return;
 
-      let currentChildAngle = startA;
-      children.forEach((child) => {
-        const childWeight = weightMap[child.id];
-        const childSpan = (childWeight / parentWeight) * parentSpan;
-        const childEndAngle = currentChildAngle + childSpan;
+        const parentWeight = weightMap[parentId];
+        const parentSpan = endA - startA;
+
+        let currentChildAngle = startA;
+        children.forEach((child) => {
+          const childWeight = weightMap[child.id];
+          const childSpan = (childWeight / parentWeight) * parentSpan;
+          const childEndAngle = currentChildAngle + childSpan;
+
+          list.push({
+            ...child,
+            startAngle: currentChildAngle,
+            endAngle: childEndAngle,
+          });
+
+          placeChildren(child.id, currentChildAngle, childEndAngle);
+          currentChildAngle = childEndAngle;
+        });
+      };
+
+      level1Nodes.forEach((node) => {
+        const nodeWeight = weightMap[node.id];
+        const span = (nodeWeight / totalWeight) * 2 * Math.PI;
+        const endAngle = currentAngle + span;
 
         list.push({
-          ...child,
-          startAngle: currentChildAngle,
-          endAngle: childEndAngle,
+          ...node,
+          startAngle: currentAngle,
+          endAngle: endAngle,
         });
 
-        placeChildren(child.id, currentChildAngle, childEndAngle);
-        currentChildAngle = childEndAngle;
+        placeChildren(node.id, currentAngle, endAngle);
+        currentAngle = endAngle;
       });
-    };
 
-    level1Nodes.forEach((node) => {
-      const nodeWeight = weightMap[node.id];
-      const span = (nodeWeight / totalWeight) * 2 * Math.PI;
-      const endAngle = currentAngle + span;
+      return list;
+    }
 
+    // ZOOMED INTO LEVEL 1 CATEGORY
+    if (zoomNode.level === 1) {
+      // 1. Placed node itself fills center circle border area
       list.push({
-        ...node,
-        startAngle: currentAngle,
-        endAngle: endAngle,
+        ...zoomNode,
+        startAngle: -Math.PI / 2,
+        endAngle: 3 * Math.PI / 2,
       });
 
-      placeChildren(node.id, currentAngle, endAngle);
-      currentAngle = endAngle;
-    });
+      // 2. Place Level 2 children of zoomNode over the 360° span
+      const childrenL2 = coffeeFlavourWheel.filter((n) => n.parent === zoomNode.id);
+      const totalWeightL2 = childrenL2.reduce((sum, n) => sum + weightMap[n.id], 0);
+
+      let currentAngleL2 = -Math.PI / 2;
+      childrenL2.forEach((childL2) => {
+        const childWeight = weightMap[childL2.id];
+        const spanL2 = (childWeight / totalWeightL2) * 2 * Math.PI;
+        const endAngleL2 = currentAngleL2 + spanL2;
+
+        list.push({
+          ...childL2,
+          startAngle: currentAngleL2,
+          endAngle: endAngleL2,
+        });
+
+        // 3. Place Level 3 grandchildren of zoomNode (children of childL2) within the parent slice
+        const grandchildrenL3 = coffeeFlavourWheel.filter((n) => n.parent === childL2.id);
+        const totalWeightL3 = grandchildrenL3.reduce((sum, n) => sum + weightMap[n.id], 0);
+
+        let currentAngleL3 = currentAngleL2;
+        grandchildrenL3.forEach((gc) => {
+          const gcWeight = weightMap[gc.id];
+          const spanL3 = (gcWeight / totalWeightL3) * spanL2;
+          const endAngleL3 = currentAngleL3 + spanL3;
+
+          list.push({
+            ...gc,
+            startAngle: currentAngleL3,
+            endAngle: endAngleL3,
+          });
+
+          currentAngleL3 = endAngleL3;
+        });
+
+        currentAngleL2 = endAngleL2;
+      });
+    } 
+    // ZOOMED INTO LEVEL 2 SUBCATEGORY
+    else if (zoomNode.level === 2) {
+      // 1. Placed node itself fills center circle border area
+      list.push({
+        ...zoomNode,
+        startAngle: -Math.PI / 2,
+        endAngle: 3 * Math.PI / 2,
+      });
+
+      // 2. Place Level 3 children of zoomNode over the 360° span
+      const childrenL3 = coffeeFlavourWheel.filter((n) => n.parent === zoomNode.id);
+      const k = childrenL3.length;
+
+      let currentAngleL3 = -Math.PI / 2;
+      childrenL3.forEach((childL3) => {
+        const spanL3 = (2 * Math.PI) / k;
+        const endAngleL3 = currentAngleL3 + spanL3;
+
+        list.push({
+          ...childL3,
+          startAngle: currentAngleL3,
+          endAngle: endAngleL3,
+        });
+
+        currentAngleL3 = endAngleL3;
+      });
+    }
 
     return list;
-  }, [weightMap]);
+  }, [zoomNode, weightMap]);
 
-  // Handle search checks
-  const isMatchedBySearch = (node: PlacedNode, query: string) => {
-    if (!query) return false;
-    const q = query.toLowerCase();
-    return (
-      node.name.toLowerCase().includes(q) ||
-      node.description.toLowerCase().includes(q) ||
-      node.chemicalCompounds.some((c) => c.toLowerCase().includes(q))
-    );
+  // Compute radii dynamically based on active zoom depth
+  const getRadii = (node: PlacedNode) => {
+    if (!zoomNode) {
+      // Default concentric ring widths
+      const rIn = node.level === 1 ? R0 : node.level === 2 ? R1 : R2;
+      const rOut = node.level === 1 ? R1 : node.level === 2 ? R2 : R3;
+      return { rIn, rOut };
+    }
+
+    // Zoomed into Level 1 node
+    if (zoomNode.level === 1) {
+      if (node.id === zoomNode.id) {
+        return { rIn: R0, rOut: R1 };
+      }
+      if (node.level === 2) {
+        return { rIn: R1, rOut: R2 };
+      }
+      // Level 3
+      return { rIn: R2, rOut: R3 };
+    }
+
+    // Zoomed into Level 2 node
+    if (node.id === zoomNode.id) {
+      return { rIn: R0, rOut: R1 };
+    }
+    // Level 3 children of the zoomed subcategory occupy the rest of the canvas (R1 to R3)
+    return { rIn: R1, rOut: R3 };
   };
 
-  // Compute highlighted nodes
+  const matchedSearchResults = useMemo(() => {
+    if (!searchQuery.trim()) return [];
+    return coffeeFlavourWheel.filter((node) => isMatchedBySearch(node, searchQuery));
+  }, [searchQuery]);
+
+  const handleSelectNode = (node: FlavourNode) => {
+    if (node.level === 1) {
+      setZoomNode(node);
+    } else if (node.level === 2) {
+      setZoomNode(node);
+    } else if (node.level === 3) {
+      const parentNode = coffeeFlavourWheel.find((n) => n.id === node.parent);
+      if (parentNode) {
+        setZoomNode(parentNode);
+      }
+    }
+
+    // Since changing zoomNode triggers a recalculation of placedNodes,
+    // we'll defer matching selectedNode or set it manually.
+    const globalPlaced = coffeeFlavourWheel.find((n) => n.id === node.id);
+    if (globalPlaced) {
+      setSelectedNode({
+        ...globalPlaced,
+        startAngle: 0,
+        endAngle: 0,
+      } as PlacedNode);
+    }
+  };
+
+  // Click on the center circle: zooms back out
+  const handleCenterClick = () => {
+    if (!zoomNode) return;
+
+    if (zoomNode.level === 2) {
+      // Zoom out to Level 1 parent
+      const parentNode = coffeeFlavourWheel.find((n) => n.id === zoomNode.parent);
+      setZoomNode(parentNode || null);
+      if (parentNode) {
+        setSelectedNode({
+          ...parentNode,
+          startAngle: 0,
+          endAngle: 0,
+        } as PlacedNode);
+      } else {
+        setSelectedNode(null);
+      }
+    } else {
+      // Level 1: Zoom out to full wheel
+      setZoomNode(null);
+      setSelectedNode(null);
+    }
+    setHoveredCenter(false);
+  };
+
+  // Search filter matching
+  const isSearchActive = searchQuery.trim().length > 0;
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const val = e.target.value;
+    setSearchQuery(val);
+    if (val.trim()) {
+      setZoomNode(null); // Reset zoom layout to show search matches globally
+    }
+  };
+
+  // Compute active highlight IDs
   const activeHighlight = useMemo(() => {
     const activeNode = hoveredNode || selectedNode;
 
-    if (searchQuery) {
+    if (isSearchActive) {
       const matched = placedNodes.filter((n) => isMatchedBySearch(n, searchQuery));
       const highlighted = new Set<string>();
 
@@ -153,12 +385,10 @@ export default function FlavourWheelExplorer() {
       }
     } else if (activeNode.level === 2) {
       highlighted.add(activeNode.parent!);
-      // Children
       coffeeFlavourWheel
         .filter((n) => n.parent === activeNode.id)
         .forEach((c) => highlighted.add(c.id));
     } else if (activeNode.level === 1) {
-      // Children & Grandchildren
       const children = coffeeFlavourWheel.filter((n) => n.parent === activeNode.id);
       children.forEach((c) => {
         highlighted.add(c.id);
@@ -169,11 +399,10 @@ export default function FlavourWheelExplorer() {
     }
 
     return highlighted;
-  }, [hoveredNode, selectedNode, searchQuery, placedNodes]);
+  }, [hoveredNode, selectedNode, searchQuery, isSearchActive, placedNodes]);
 
   // Convert polar coordinates to SVG Cartesian paths
   const getArcPath = (startAngle: number, endAngle: number, rIn: number, rOut: number) => {
-    // Outer points
     const xOutStart = center + rOut * Math.cos(startAngle);
     const yOutStart = center + rOut * Math.sin(startAngle);
     const xOutEnd = center + rOut * Math.cos(endAngle);
@@ -185,7 +414,6 @@ export default function FlavourWheelExplorer() {
       return `M ${xOutStart} ${yOutStart} A ${rOut} ${rOut} 0 ${largeArc} 1 ${xOutEnd} ${yOutEnd} L ${center} ${center} Z`;
     }
 
-    // Inner points
     const xInStart = center + rIn * Math.cos(startAngle);
     const yInStart = center + rIn * Math.sin(startAngle);
     const xInEnd = center + rIn * Math.cos(endAngle);
@@ -205,23 +433,15 @@ export default function FlavourWheelExplorer() {
   const handleReset = () => {
     setSearchQuery("");
     setSelectedNode(null);
+    setZoomNode(null);
     setHoveredNode(null);
   };
 
-  // Helper to map country name to ISO3
   const getCountryIso3 = (name: string): string => {
     const matched = coffeeCountries.find(
       (c) => c.country.toLowerCase() === name.toLowerCase()
     );
     return matched ? matched.iso3 : "";
-  };
-
-  // Helper to resolve variety names to IDs
-  const getVarietyId = (name: string): string => {
-    const matched = coffeeVarieties.find(
-      (v) => v.name.toLowerCase() === name.toLowerCase()
-    );
-    return matched ? matched.id : name.toLowerCase().replace(/\s+/g, "-");
   };
 
   return (
@@ -234,17 +454,61 @@ export default function FlavourWheelExplorer() {
             type="text"
             placeholder="Search flavor, compounds (e.g. Limonene, vanillin)..."
             value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
+            onChange={handleSearchChange}
             className="w-full pl-10 pr-4 py-2.5 text-sm border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-500/20 focus:border-rose-500 transition-all bg-slate-50/50"
           />
+          {/* Search Dropdown Panel */}
+          {isSearchActive && (
+            <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-slate-200 rounded-2xl shadow-xl z-50 max-h-64 overflow-y-auto p-2 space-y-1 animate-in fade-in slide-in-from-top-1 duration-150">
+              <div className="text-[10px] font-black uppercase text-slate-400 px-3 py-1 flex justify-between items-center border-b border-slate-100 pb-1.5 mb-1">
+                <span>Matched Descriptors</span>
+                <span className="text-rose-500 bg-rose-50 px-1.5 py-0.5 rounded text-[8px] font-bold">{matchedSearchResults.length} found</span>
+              </div>
+              {matchedSearchResults.length > 0 ? (
+                matchedSearchResults.slice(0, 10).map((node) => (
+                  <button
+                    key={node.id}
+                    onClick={() => {
+                      handleSelectNode(node);
+                      setSearchQuery(""); // Clear query to hide dropdown
+                    }}
+                    className="w-full text-left px-3 py-2 text-xs font-bold text-slate-700 hover:bg-slate-50 active:bg-slate-100 rounded-xl flex items-center justify-between transition-colors group cursor-pointer"
+                  >
+                    <div className="flex items-center gap-2">
+                      <span 
+                        className="h-2.5 w-2.5 rounded-full border border-black/10 flex-shrink-0" 
+                        style={{ backgroundColor: node.color }}
+                      />
+                      <span className="truncate max-w-[150px]">{node.name}</span>
+                    </div>
+                    <span className="text-[9px] uppercase font-black text-slate-400 group-hover:text-rose-600 transition-colors">
+                      Level {node.level} • Select
+                    </span>
+                  </button>
+                ))
+              ) : (
+                <div className="text-xs text-slate-400 py-4 text-center font-semibold">
+                  No flavor attributes match your search.
+                </div>
+              )}
+              {matchedSearchResults.length > 10 && (
+                <div className="text-[9px] font-bold text-slate-400 text-center pt-1 border-t border-slate-100">
+                  + {matchedSearchResults.length - 10} more matches shown on wheel
+                </div>
+              )}
+            </div>
+          )}
         </div>
         <div className="flex gap-2 w-full md:w-auto">
-          {selectedNode && (
+          {zoomNode && (
             <button
-              onClick={() => setSelectedNode(null)}
-              className="flex-1 md:flex-none px-4 py-2 text-xs font-bold text-slate-600 bg-slate-100 hover:bg-slate-250 border border-slate-200 rounded-xl transition-all"
+              onClick={() => {
+                setZoomNode(null);
+                setSelectedNode(null);
+              }}
+              className="flex-1 md:flex-none px-4 py-2 text-xs font-bold text-slate-650 bg-slate-100 hover:bg-slate-200 border border-slate-200 rounded-xl transition-all"
             >
-              Deselect Flavor
+              Zoom Out Full
             </button>
           )}
           <button
@@ -265,21 +529,25 @@ export default function FlavourWheelExplorer() {
           <h4 className="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-6 w-full text-left flex items-center justify-between">
             <span>Specialty Taster's Sunburst Chart</span>
             <span className="font-semibold text-rose-600 text-[9px] bg-rose-50 border border-rose-200 px-2 py-0.5 rounded">
-              {placedNodes.length} Sensory Slices
+              {zoomNode ? "Zoomed View" : "Full View"} • {placedNodes.length} Slices
             </span>
           </h4>
 
-          {/* SVG Canvas */}
+          {/* SVG Canvas with mounting transition key */}
           <div className="w-full max-w-[500px] aspect-square relative">
             <svg 
+              key={zoomNode ? zoomNode.id : "root"}
               viewBox={`0 0 ${size} ${size}`} 
-              className="w-full h-full drop-shadow-md overflow-visible"
+              className="w-full h-full drop-shadow-md overflow-visible animate-in fade-in zoom-in-95 duration-500"
             >
               {/* Draw Sectors */}
               <g>
                 {placedNodes.map((node) => {
-                  const rIn = node.level === 1 ? R0 : node.level === 2 ? R1 : R2;
-                  const rOut = node.level === 1 ? R1 : node.level === 2 ? R2 : R3;
+                  const { rIn, rOut } = getRadii(node);
+                  
+                  // Skip rendering the root zoomNode itself as a slice since it represents the center circle background
+                  if (zoomNode && node.id === zoomNode.id) return null;
+
                   const path = getArcPath(node.startAngle, node.endAngle, rIn, rOut);
 
                   // Calculate highlight state
@@ -298,9 +566,9 @@ export default function FlavourWheelExplorer() {
                   const ty = center + rText * Math.sin(middleAngle);
                   const rotation = isLeft ? normDeg + 180 : normDeg;
 
-                  // Label rendering visibility threshold
+                  // Label rendering visibility threshold (adjusted for zoom views)
                   const span = node.endAngle - node.startAngle;
-                  const showLabel = node.level === 1 || span > 0.07;
+                  const showLabel = node.level === 1 || zoomNode || span > 0.045;
 
                   return (
                     <g 
@@ -308,19 +576,24 @@ export default function FlavourWheelExplorer() {
                       className="cursor-pointer"
                       onMouseEnter={() => setHoveredNode(node)}
                       onMouseLeave={() => setHoveredNode(null)}
-                      onClick={() => setSelectedNode(node)}
+                      onClick={() => {
+                        setSelectedNode(node);
+                        if (node.level < 3 && zoomNode?.id !== node.id) {
+                          setZoomNode(node);
+                        }
+                      }}
                     >
                       {/* Arc sector */}
                       <path
                         d={path}
                         fill={node.color}
                         stroke="#ffffff"
-                        strokeWidth={isHovered || isSelected ? 2.5 : 1}
+                        strokeWidth={isHovered || isSelected ? 2.5 : 1.2}
                         opacity={isDimmed ? 0.15 : 1}
-                        className="transition-all duration-300 hover:scale-[1.01]"
+                        className="transition-all duration-300 hover:scale-[1.008]"
                         style={{
                           transformOrigin: `${center}px ${center}px`,
-                          filter: isHovered || isSelected ? `drop-shadow(0 0 8px ${node.color}40)` : undefined
+                          filter: isHovered || isSelected ? `drop-shadow(0 0 10px ${node.color}50)` : undefined
                         }}
                       />
 
@@ -332,8 +605,8 @@ export default function FlavourWheelExplorer() {
                           dy="3"
                           textAnchor={isLeft ? "end" : "start"}
                           transform={`rotate(${rotation}, ${tx}, ${ty})`}
-                          fill={node.level === 1 ? "#ffffff" : "#334155"}
-                          fontSize={node.level === 1 ? 10 : node.level === 2 ? 8.5 : 7}
+                          fill={node.level === 1 ? "#ffffff" : "#1e293b"}
+                          fontSize={zoomNode ? (node.level === 2 ? 11 : 9.5) : (node.level === 1 ? 10.5 : node.level === 2 ? 8.5 : 7.2)}
                           fontWeight={node.level === 1 ? 800 : 700}
                           className="pointer-events-none transition-opacity duration-300 uppercase tracking-wide select-none"
                           opacity={isDimmed ? 0.15 : 1}
@@ -346,27 +619,154 @@ export default function FlavourWheelExplorer() {
                 })}
               </g>
 
-              {/* Center Circle Hub */}
+              {/* Clickable Center Circle Hub */}
               <circle
                 cx={center}
                 cy={center}
                 r={R0 - 4}
-                className="fill-white stroke-slate-200 stroke-2"
+                onClick={handleCenterClick}
+                onMouseEnter={() => setHoveredCenter(true)}
+                onMouseLeave={() => setHoveredCenter(false)}
+                className={`fill-white stroke-slate-200 stroke-2 transition-all duration-300 ${
+                  zoomNode ? "cursor-pointer hover:fill-slate-50 hover:stroke-rose-400" : ""
+                }`}
                 style={{
-                  filter: activeNode ? `drop-shadow(0 0 12px ${activeNode.color}30)` : "drop-shadow(0 4px 6px rgba(0,0,0,0.04))"
+                  filter: activeNode ? `drop-shadow(0 0 12px ${activeNode.color}35)` : "drop-shadow(0 4px 6px rgba(0,0,0,0.04))"
                 }}
               />
 
+              {/* Category-specific Center Icon using foreignObject */}
+              {(() => {
+                if (hoveredCenter) return null;
+                const node = activeNode || zoomNode;
+                if (!node) {
+                  return (
+                    <foreignObject x={center - 15} y={center - 32} width={30} height={30} className="pointer-events-none">
+                      <div className="flex items-center justify-center w-full h-full text-slate-300">
+                        <Orbit className="h-5.5 w-5.5 animate-spin" style={{ animationDuration: "12s" }} />
+                      </div>
+                    </foreignObject>
+                  );
+                }
+                
+                // Find root category ID
+                let rootId = node.id;
+                if (node.level === 3) {
+                  const parent = coffeeFlavourWheel.find((n) => n.id === node.parent);
+                  if (parent) {
+                    const grand = coffeeFlavourWheel.find((n) => n.id === parent.parent);
+                    rootId = grand ? grand.id : parent.id;
+                  }
+                } else if (node.level === 2) {
+                  const parent = coffeeFlavourWheel.find((n) => n.id === node.parent);
+                  rootId = parent ? parent.id : node.id;
+                }
+
+                let iconElement = <Coffee className="h-5.5 w-5.5" />;
+                let iconColor = "text-slate-400";
+                
+                if (rootId === "fruity") {
+                  iconElement = <Coffee className="h-5.5 w-5.5 animate-bounce" />;
+                  iconColor = "text-rose-500";
+                } else if (rootId === "floral") {
+                  iconElement = <Flower className="h-5.5 w-5.5 animate-pulse" />;
+                  iconColor = "text-pink-500";
+                } else if (rootId === "sweet") {
+                  iconElement = <Sparkles className="h-5.5 w-5.5 animate-pulse" />;
+                  iconColor = "text-amber-500";
+                } else if (rootId === "nutty-cocoa") {
+                  iconElement = <Coffee className="h-5.5 w-5.5" />;
+                  iconColor = "text-yellow-800";
+                } else if (rootId === "spices") {
+                  iconElement = <Flame className="h-5.5 w-5.5 animate-pulse" />;
+                  iconColor = "text-orange-500";
+                } else if (rootId === "roasted") {
+                  iconElement = <Flame className="h-5.5 w-5.5" />;
+                  iconColor = "text-zinc-600";
+                } else if (rootId === "green-vegetative") {
+                  iconElement = <Leaf className="h-5.5 w-5.5 animate-pulse" />;
+                  iconColor = "text-emerald-500";
+                } else if (rootId === "sour-fermented") {
+                  iconElement = <Beaker className="h-5.5 w-5.5" />;
+                  iconColor = "text-lime-655";
+                } else if (rootId === "other") {
+                  iconElement = <Info className="h-5.5 w-5.5" />;
+                  iconColor = "text-stone-500";
+                }
+
+                return (
+                  <foreignObject x={center - 15} y={center - 32} width={30} height={30} className="pointer-events-none">
+                    <div className={`flex items-center justify-center w-full h-full ${iconColor}`}>
+                      {iconElement}
+                    </div>
+                  </foreignObject>
+                );
+              })()}
+
               {/* Center text representation */}
               <g className="pointer-events-none">
-                {activeNode ? (
+                {zoomNode ? (
+                  // Zoomed-in state
+                  hoveredCenter ? (
+                    <>
+                      <text
+                        x={center}
+                        y={center - 8}
+                        textAnchor="middle"
+                        fill="#f43f5e"
+                        fontSize="13"
+                        fontWeight="900"
+                        className="uppercase tracking-tight"
+                      >
+                        ← Back
+                      </text>
+                      <text
+                        x={center}
+                        y={center + 12}
+                        textAnchor="middle"
+                        fill="#64748b"
+                        fontSize="8"
+                        fontWeight="750"
+                        className="uppercase tracking-wider"
+                      >
+                        Zoom Out
+                      </text>
+                    </>
+                  ) : (
+                    <>
+                      <text
+                        x={center}
+                        y={center + 6}
+                        textAnchor="middle"
+                        fill={zoomNode.color}
+                        fontSize="7"
+                        fontWeight="900"
+                        className="uppercase tracking-widest"
+                      >
+                        Zoomed In
+                      </text>
+                      <text
+                        x={center}
+                        y={center + 23}
+                        textAnchor="middle"
+                        fill="#0f172a"
+                        fontSize={zoomNode.name.length > 10 ? "9" : "11"}
+                        fontWeight="900"
+                        className="uppercase tracking-tight"
+                      >
+                        {zoomNode.name}
+                      </text>
+                    </>
+                  )
+                ) : activeNode ? (
+                  // Hovered/Selected slice state when not zoomed
                   <>
                     <text
                       x={center}
-                      y={center - 10}
+                      y={center + 6}
                       textAnchor="middle"
                       fill={activeNode.color}
-                      fontSize="9"
+                      fontSize="7"
                       fontWeight="900"
                       className="uppercase tracking-widest"
                     >
@@ -374,10 +774,10 @@ export default function FlavourWheelExplorer() {
                     </text>
                     <text
                       x={center}
-                      y={center + 12}
+                      y={center + 23}
                       textAnchor="middle"
                       fill="#0f172a"
-                      fontSize={activeNode.name.length > 10 ? "11" : "14"}
+                      fontSize={activeNode.name.length > 12 ? "8.5" : "11"}
                       fontWeight="900"
                       className="uppercase tracking-tight"
                     >
@@ -385,24 +785,25 @@ export default function FlavourWheelExplorer() {
                     </text>
                   </>
                 ) : (
+                  // Default idle state
                   <>
                     <text
                       x={center}
-                      y={center - 6}
+                      y={center + 6}
                       textAnchor="middle"
                       fill="#64748b"
-                      fontSize="9"
-                      fontWeight="800"
+                      fontSize="7"
+                      fontWeight="900"
                       className="uppercase tracking-widest"
                     >
                       Specialty
                     </text>
                     <text
                       x={center}
-                      y={center + 10}
+                      y={center + 22}
                       textAnchor="middle"
                       fill="#0f172a"
-                      fontSize="11"
+                      fontSize="9.5"
                       fontWeight="900"
                       className="uppercase tracking-widest"
                     >
@@ -413,6 +814,14 @@ export default function FlavourWheelExplorer() {
               </g>
             </svg>
           </div>
+
+          {/* Interactive Zoom Instruction Tip Overlay */}
+          {zoomNode === null && (
+            <div className="mt-4 text-[10px] text-slate-400 font-bold text-center pointer-events-none uppercase tracking-wider flex items-center gap-1.5 justify-center">
+              <Sparkles className="h-3.5 w-3.5 text-rose-450 animate-pulse" />
+              <span>Click any Category or Subcategory segment to zoom in</span>
+            </div>
+          )}
         </div>
 
         {/* Right Column: Detailed Sensory Profile Sidebar (Covers 5 columns) */}
@@ -426,7 +835,6 @@ export default function FlavourWheelExplorer() {
                   {activeNode.parent && (
                     <>
                       <span>/</span>
-                      {/* Check grandparent */}
                       {(() => {
                         const parentNode = coffeeFlavourWheel.find(n => n.id === activeNode.parent);
                         if (parentNode && parentNode.parent) {
@@ -473,19 +881,60 @@ export default function FlavourWheelExplorer() {
                   </h5>
                   <div className="flex flex-wrap gap-1.5">
                     {activeNode.chemicalCompounds.map((comp) => (
-                      <span 
+                      <button 
                         key={comp}
-                        className="bg-white border border-slate-200 text-slate-700 px-2.5 py-1 rounded-lg text-xs font-bold shadow-sm"
+                        onClick={() => {
+                          setSearchQuery(comp);
+                          setZoomNode(null); // Reset zoom to show matches globally
+                        }}
+                        className="bg-white hover:bg-rose-50 border border-slate-200 hover:border-rose-400 text-slate-700 hover:text-rose-700 px-2.5 py-1 rounded-lg text-xs font-bold shadow-sm transition-all flex items-center gap-1 cursor-pointer"
+                        title={`Filter wheel for ${comp}`}
                       >
-                        {comp}
-                      </span>
+                        <span>{comp}</span>
+                        <Search className="h-2.5 w-2.5 opacity-60" />
+                      </button>
                     ))}
                   </div>
                   <p className="text-[10px] text-slate-400 font-medium italic">
-                    These chemical esters, aldehydes, or organic acids form during metabolic ripening and pyrolysis.
+                    These chemical esters, aldehydes, or organic acids form during metabolic ripening and pyrolysis. Click any compound to trace its links.
                   </p>
                 </div>
               )}
+
+              {/* Dynamic Sensory Profile Gauges */}
+              {(() => {
+                const profile = getSensoryProfileForNode(activeNode);
+                const metrics = [
+                  { label: "Acidity Potential", value: profile.acidity, desc: profile.acidity >= 8 ? "Bright & Vibrant" : profile.acidity >= 5 ? "Balanced & Moderate" : "Low & Subdued" },
+                  { label: "Sweetness Development", value: profile.sweetness, desc: profile.sweetness >= 8 ? "Rich & Intense" : profile.sweetness >= 5 ? "Mild & Clean" : "Dry & Low" },
+                  { label: "Mouthfeel / Body", value: profile.body, desc: profile.body >= 8 ? "Thick & Syrupy" : profile.body >= 5 ? "Medium & Silky" : "Light & Tea-like" },
+                  { label: "Aromatic Intensity", value: profile.intensity, desc: profile.intensity >= 8 ? "Highly Pungent" : profile.intensity >= 5 ? "Moderate & Subtle" : "Mild & Delicate" }
+                ];
+                return (
+                  <div className="bg-slate-50 border border-slate-150 p-4 rounded-2xl space-y-3">
+                    <h5 className="text-[10px] font-black uppercase tracking-wider text-slate-500 flex items-center gap-1.5">
+                      <Sliders className="h-3.5 w-3.5 text-rose-500" />
+                      <span>Cupping Sensory Profile</span>
+                    </h5>
+                    <div className="space-y-2.5">
+                      {metrics.map((m) => (
+                        <div key={m.label} className="space-y-1">
+                          <div className="flex justify-between text-xs font-bold text-slate-700">
+                            <span>{m.label}</span>
+                            <span className="text-[10px] font-black" style={{ color: activeNode.color }}>{m.value}/10 ({m.desc})</span>
+                          </div>
+                          <div className="w-full h-2 bg-slate-200/70 rounded-full overflow-hidden">
+                            <div 
+                              className="h-full rounded-full transition-all duration-500 ease-out"
+                              style={{ width: `${m.value * 10}%`, backgroundColor: activeNode.color }}
+                            />
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                );
+              })()}
 
               {/* Brewing Recommendations */}
               <div className="p-4 rounded-2xl bg-rose-50/20 border border-rose-100 space-y-1.5">
@@ -513,7 +962,7 @@ export default function FlavourWheelExplorer() {
                         <Link
                           key={varId}
                           href={`/varieties?selected=${varId}`}
-                          className="inline-flex items-center gap-1 px-3 py-1.5 bg-slate-50 border border-slate-200 hover:border-rose-400 hover:text-rose-650 rounded-xl text-xs font-black transition-all shadow-sm cursor-pointer hover:-translate-y-0.5"
+                          className="inline-flex items-center gap-1 px-3 py-1.5 bg-slate-50 border border-slate-200 hover:border-rose-450 hover:text-rose-700 rounded-xl text-xs font-black transition-all shadow-sm cursor-pointer hover:-translate-y-0.5"
                         >
                           <span>{displayName}</span>
                           <ExternalLink className="h-3 w-3 opacity-60" />
@@ -538,7 +987,7 @@ export default function FlavourWheelExplorer() {
                         <Link
                           key={iso3}
                           href={`/?country=${iso3}`}
-                          className="inline-flex items-center gap-1 px-3 py-1.5 bg-slate-50 border border-slate-200 hover:border-rose-400 hover:text-rose-650 rounded-xl text-xs font-black transition-all shadow-sm cursor-pointer hover:-translate-y-0.5"
+                          className="inline-flex items-center gap-1 px-3 py-1.5 bg-slate-50 border border-slate-200 hover:border-rose-450 hover:text-rose-700 rounded-xl text-xs font-black transition-all shadow-sm cursor-pointer hover:-translate-y-0.5"
                         >
                           <span>{countryName}</span>
                           <ExternalLink className="h-3 w-3 opacity-60" />
@@ -551,7 +1000,7 @@ export default function FlavourWheelExplorer() {
             </div>
           ) : (
             <div className="flex flex-col items-center justify-center py-12 text-center my-auto space-y-4">
-              <div className="p-4 bg-rose-50 text-rose-500 rounded-full border border-rose-100 shadow-sm animate-pulse">
+              <div className="p-4 bg-rose-50/70 text-rose-500 rounded-full border border-rose-100 shadow-sm animate-pulse">
                 <Orbit className="h-8 w-8" />
               </div>
               <div className="space-y-1">
@@ -563,7 +1012,7 @@ export default function FlavourWheelExplorer() {
               <div className="w-full text-left text-[11px] leading-relaxed p-3.5 border border-slate-150 bg-slate-50/50 rounded-2xl text-slate-600 font-semibold flex gap-2">
                 <Info className="h-4 w-4 text-blue-500 flex-shrink-0 mt-0.5" />
                 <span>
-                  <strong>Tip:</strong> The wheel is grouped logically. Use the search bar to locate specific chemicals like <em>vanillin</em> or volatile <em>linalool</em>.
+                  <strong>Tip:</strong> Click a category to zoom the wheel, expanding nested sub-slices for easier mobile reading. Use search to locate organic molecules like <em>vanillin</em>.
                 </span>
               </div>
             </div>
@@ -572,15 +1021,15 @@ export default function FlavourWheelExplorer() {
           {/* Wheel Legend (Always visible in sidebar footer) */}
           <div className="pt-4 border-t border-slate-100 grid grid-cols-3 gap-2 text-[9px] font-black uppercase text-slate-500">
             <div className="flex items-center gap-1">
-              <div className="h-2 w-2 rounded-full bg-slate-100 border border-slate-300" />
+              <div className="h-2 w-2 rounded-full bg-slate-100 border border-slate-350" />
               <span>Concentric 1</span>
             </div>
             <div className="flex items-center gap-1">
-              <div className="h-2 w-2 rounded bg-slate-100 border border-slate-300" />
+              <div className="h-2 w-2 rounded bg-slate-100 border border-slate-350" />
               <span>Concentric 2</span>
             </div>
             <div className="flex items-center gap-1">
-              <div className="h-2 w-2 rounded-[20%] bg-slate-100 border border-slate-300" />
+              <div className="h-2 w-2 rounded-[20%] bg-slate-100 border border-slate-350" />
               <span>Concentric 3</span>
             </div>
           </div>
@@ -600,8 +1049,7 @@ export default function FlavourWheelExplorer() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-xs leading-relaxed font-semibold text-slate-600">
-          {/* Step 1 */}
-          <div className="space-y-2 bg-slate-50/50 p-4 border border-slate-150 rounded-2xl hover:shadow-sm transition-shadow duration-300">
+          <div className="space-y-2 bg-slate-50/50 p-4 border border-slate-150 rounded-2xl hover:shadow-md transition-shadow duration-300">
             <div className="h-8 w-8 rounded-full bg-rose-50 border border-rose-100 text-rose-650 flex items-center justify-center font-black">1</div>
             <h4 className="text-sm font-black text-slate-900 tracking-tight">Evaluate Fragrance & Aroma</h4>
             <p>
@@ -610,8 +1058,7 @@ export default function FlavourWheelExplorer() {
             </p>
           </div>
 
-          {/* Step 2 */}
-          <div className="space-y-2 bg-slate-50/50 p-4 border border-slate-150 rounded-2xl hover:shadow-sm transition-shadow duration-300">
+          <div className="space-y-2 bg-slate-50/50 p-4 border border-slate-150 rounded-2xl hover:shadow-md transition-shadow duration-300">
             <div className="h-8 w-8 rounded-full bg-rose-50 border border-rose-100 text-rose-650 flex items-center justify-center font-black">2</div>
             <h4 className="text-sm font-black text-slate-900 tracking-tight">Slurp to Aerate (Flavour)</h4>
             <p>
@@ -620,8 +1067,7 @@ export default function FlavourWheelExplorer() {
             </p>
           </div>
 
-          {/* Step 3 */}
-          <div className="space-y-2 bg-slate-50/50 p-4 border border-slate-150 rounded-2xl hover:shadow-sm transition-shadow duration-300">
+          <div className="space-y-2 bg-slate-50/50 p-4 border border-slate-150 rounded-2xl hover:shadow-md transition-shadow duration-300">
             <div className="h-8 w-8 rounded-full bg-rose-50 border border-rose-100 text-rose-650 flex items-center justify-center font-black">3</div>
             <h4 className="text-sm font-black text-slate-900 tracking-tight">Concentric Navigation</h4>
             <p>
@@ -630,8 +1076,7 @@ export default function FlavourWheelExplorer() {
             </p>
           </div>
 
-          {/* Step 4 */}
-          <div className="space-y-2 bg-slate-50/50 p-4 border border-slate-150 rounded-2xl hover:shadow-sm transition-shadow duration-300">
+          <div className="space-y-2 bg-slate-50/50 p-4 border border-slate-150 rounded-2xl hover:shadow-md transition-shadow duration-300">
             <div className="h-8 w-8 rounded-full bg-rose-50 border border-rose-100 text-rose-650 flex items-center justify-center font-black">4</div>
             <h4 className="text-sm font-black text-slate-900 tracking-tight">Assess Aftertaste & Temperature</h4>
             <p>
