@@ -1,0 +1,564 @@
+"use client";
+
+import { useState, useEffect, useMemo, useRef } from "react";
+import { coffeeBrewingMethods } from "@/data/coffeeBrewing";
+import { BrewingMethod, BrewStep, TastingTrouble } from "@/types/brewing";
+import {
+  Coffee,
+  Filter,
+  Flame,
+  Sliders,
+  Beaker,
+  Play,
+  Pause,
+  RotateCcw,
+  HelpCircle,
+  Sparkles,
+  Info,
+  Clock,
+  Gauge,
+  SlidersHorizontal,
+  ChevronRight,
+  TrendingUp,
+  AlertTriangle,
+  RotateCw,
+  Compass
+} from "lucide-react";
+
+export default function BrewingExplorer() {
+  const [selectedMethodId, setSelectedMethodId] = useState<string>("pour-over");
+  
+  // Calculator States
+  const [coffeeWeight, setCoffeeWeight] = useState<number>(15);
+  const [brewRatio, setBrewRatio] = useState<number>(16.6);
+
+  // Timer States
+  const [isTimerRunning, setIsTimerRunning] = useState<boolean>(false);
+  const [timerSeconds, setTimerSeconds] = useState<number>(0);
+  const timerIntervalRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Selected Method Data
+  const method = useMemo<BrewingMethod>(() => {
+    return coffeeBrewingMethods.find((m) => m.id === selectedMethodId) || coffeeBrewingMethods[0];
+  }, [selectedMethodId]);
+
+  // Set default parameters when method changes
+  useEffect(() => {
+    setBrewRatio(method.defaultRatio);
+    setCoffeeWeight(method.id === "espresso" ? 18 : method.id === "aeropress" ? 15 : method.id === "cold-brew" ? 50 : 15);
+    resetTimer();
+  }, [method]);
+
+  // Calculations
+  const calculatedWater = useMemo(() => {
+    return Math.round(coffeeWeight * brewRatio);
+  }, [coffeeWeight, brewRatio]);
+
+  const expectedYield = useMemo(() => {
+    // Water retention factor based on physics of the method
+    let retentionFactor = 2.0; // Drip/Filter retains ~2g of water per 1g of grounds
+    if (method.id === "espresso") retentionFactor = 1.1; // Squeezed under 9 bars
+    else if (method.id === "aeropress") retentionFactor = 1.3; // Pneumatic squeeze
+    else if (method.id === "moka-pot") retentionFactor = 1.5; // Steam extraction
+    else if (method.id === "cold-brew") retentionFactor = 2.2; // Steeped coarse grounds
+
+    const yieldVol = calculatedWater - coffeeWeight * retentionFactor;
+    return Math.round(Math.max(0, yieldVol));
+  }, [calculatedWater, coffeeWeight, method]);
+
+  // Dynamic Recipe Steps with scaled water weights
+  const scaledRecipeSteps = useMemo(() => {
+    const steps = method.stepRecipe;
+    const totalWater = calculatedWater;
+    
+    // Scale step water weights relative to totalWater
+    const defaultTotalStepWater = Math.max(...steps.map(s => s.waterAdded), 1);
+    
+    return steps.map((step) => {
+      // Scale proportionally, or use totalWater for final steps
+      const pct = step.waterAdded / defaultTotalStepWater;
+      const scaledWater = Math.round(pct * totalWater);
+      return {
+        ...step,
+        waterAdded: scaledWater
+      };
+    });
+  }, [method, calculatedWater]);
+
+  // Total Recipe duration helper
+  const totalDuration = useMemo(() => {
+    // Return max time plus some buffer for the last step
+    const steps = method.stepRecipe;
+    if (steps.length === 0) return 0;
+    
+    // Last step starts at steps[last].time. Let's add a reasonable duration for it.
+    let lastStepDuration = 60;
+    if (method.id === "espresso") lastStepDuration = 10;
+    else if (method.id === "aeropress") lastStepDuration = 30;
+    else if (method.id === "cold-brew") lastStepDuration = 7200; // Cold brew is hours, let's keep it representative
+
+    return steps[steps.length - 1].time + lastStepDuration;
+  }, [method]);
+
+  // Active step calculation based on timerSeconds
+  const activeStepIndex = useMemo(() => {
+    const steps = scaledRecipeSteps;
+    let activeIdx = 0;
+    for (let i = 0; i < steps.length; i++) {
+      if (timerSeconds >= steps[i].time) {
+        activeIdx = i;
+      }
+    }
+    return activeIdx;
+  }, [scaledRecipeSteps, timerSeconds]);
+
+  const activeStep = scaledRecipeSteps[activeStepIndex];
+
+  // Timer Controls
+  const startTimer = () => {
+    if (isTimerRunning) return;
+    setIsTimerRunning(true);
+    timerIntervalRef.current = setInterval(() => {
+      setTimerSeconds((prev) => {
+        if (prev >= totalDuration) {
+          setIsTimerRunning(false);
+          if (timerIntervalRef.current) clearInterval(timerIntervalRef.current);
+          return totalDuration;
+        }
+        return prev + 1;
+      });
+    }, 1000);
+  };
+
+  const pauseTimer = () => {
+    setIsTimerRunning(false);
+    if (timerIntervalRef.current) {
+      clearInterval(timerIntervalRef.current);
+      timerIntervalRef.current = null;
+    }
+  };
+
+  const resetTimer = () => {
+    pauseTimer();
+    setTimerSeconds(0);
+  };
+
+  // Clean up interval on unmount
+  useEffect(() => {
+    return () => {
+      if (timerIntervalRef.current) clearInterval(timerIntervalRef.current);
+    };
+  }, []);
+
+  // Format Timer text MM:SS
+  const formatTime = (secs: number) => {
+    if (method.id === "cold-brew") {
+      // Cold brew is in hours
+      const h = Math.floor(secs / 3600);
+      const m = Math.floor((secs % 3600) / 60);
+      const s = secs % 60;
+      if (h > 0) return `${h}h ${m}m`;
+      return `${m}m ${s}s`;
+    }
+    const mins = Math.floor(secs / 60);
+    const remainingSecs = secs % 60;
+    return `${mins.toString().padStart(2, "0")}:${remainingSecs.toString().padStart(2, "0")}`;
+  };
+
+  // Get matching Lucide icon based on method string
+  const getMethodIcon = (iconName: string, active: boolean) => {
+    const cls = `h-5 w-5 ${active ? "text-rose-500 scale-110" : "text-slate-400 group-hover:text-slate-700"} transition-all duration-300`;
+    switch (iconName) {
+      case "Filter":
+        return <Filter className={cls} />;
+      case "Coffee":
+        return <Coffee className={cls} />;
+      case "Flame":
+        return <Flame className={cls} />;
+      default:
+        return <Coffee className={cls} />;
+    }
+  };
+
+  return (
+    <div className="space-y-10">
+      
+      {/* Premium Method Selection Grid */}
+      <div className="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm space-y-4">
+        <h4 className="text-[10px] font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
+          <Compass className="h-4 w-4 text-rose-500" />
+          <span>Select Coffee Extraction Methodology</span>
+        </h4>
+        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2.5">
+          {coffeeBrewingMethods.map((m) => {
+            const isActive = m.id === selectedMethodId;
+            return (
+              <button
+                key={m.id}
+                onClick={() => setSelectedMethodId(m.id)}
+                className={`group flex flex-col items-center justify-center p-3.5 rounded-2xl border text-center transition-all duration-300 hover:-translate-y-0.5 cursor-pointer ${
+                  isActive
+                    ? "bg-slate-900 border-slate-900 text-white shadow-md"
+                    : "bg-slate-50 border-slate-200 text-slate-700 hover:bg-slate-100 hover:border-slate-300"
+                }`}
+              >
+                <div className={`p-2 rounded-xl mb-2 transition-all ${isActive ? "bg-white/10" : "bg-white border border-slate-150"}`}>
+                  {getMethodIcon(m.iconName, isActive)}
+                </div>
+                <span className="text-xs font-bold leading-tight">{m.name.split(" (")[0]}</span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Main Content Area */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        
+        {/* Left Column: Interactive Brewing Parameters & Calculator (5 columns) */}
+        <div className="lg:col-span-5 space-y-6">
+          <div className="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm space-y-6">
+            
+            {/* Header info */}
+            <div className="space-y-2 pb-4 border-b border-slate-150">
+              <div className="flex items-center gap-2">
+                <span className="bg-rose-50 border border-rose-250 text-rose-650 px-2 py-0.5 rounded text-[9px] font-black uppercase tracking-wider">
+                  {method.extractionMechanic.split(" ")[0]}
+                </span>
+                <span className="text-slate-400 text-[10px] font-bold">•</span>
+                <span className="text-slate-500 text-[10px] font-bold uppercase tracking-wider">{method.filterType}</span>
+              </div>
+              <h3 className="text-2xl font-black text-slate-950 tracking-tight leading-tight">{method.name}</h3>
+              <p className="text-xs font-semibold text-slate-500 leading-relaxed italic">{method.tagline}</p>
+            </div>
+
+            {/* Interactive Calculator Sliders */}
+            <div className="space-y-5">
+              <h4 className="text-[10px] font-black uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
+                <Sliders className="h-3.5 w-3.5 text-rose-500" />
+                <span>Interactive Yield Calculator</span>
+              </h4>
+
+              {/* Coffee Weight Slider */}
+              <div className="space-y-2">
+                <div className="flex justify-between items-center text-xs font-bold text-slate-700">
+                  <span>Dry Coffee Dose</span>
+                  <span className="text-rose-600 bg-rose-50 border border-rose-200 px-2 py-0.5 rounded text-[11px] font-black">
+                    {coffeeWeight} grams
+                  </span>
+                </div>
+                <input
+                  type="range"
+                  min={method.id === "espresso" ? 14 : 5}
+                  max={method.id === "cold-brew" ? 200 : 100}
+                  step={method.id === "espresso" ? 0.5 : 1}
+                  value={coffeeWeight}
+                  onChange={(e) => setCoffeeWeight(parseFloat(e.target.value))}
+                  className="w-full accent-rose-500 cursor-pointer h-1.5 bg-slate-200 rounded-lg appearance-none"
+                />
+                <div className="flex justify-between text-[9px] text-slate-400 font-bold uppercase">
+                  <span>Min ({method.id === "espresso" ? 14 : 5}g)</span>
+                  <span>Max ({method.id === "cold-brew" ? 200 : 100}g)</span>
+                </div>
+              </div>
+
+              {/* Brew Ratio Slider */}
+              <div className="space-y-2">
+                <div className="flex justify-between items-center text-xs font-bold text-slate-700">
+                  <span>Brewing Ratio</span>
+                  <span className="text-rose-600 bg-rose-50 border border-rose-200 px-2 py-0.5 rounded text-[11px] font-black">
+                    1 : {brewRatio}
+                  </span>
+                </div>
+                <input
+                  type="range"
+                  min={method.id === "espresso" ? 1 : 5}
+                  max={method.id === "espresso" ? 4 : 22}
+                  step={0.1}
+                  value={brewRatio}
+                  onChange={(e) => setBrewRatio(parseFloat(e.target.value))}
+                  className="w-full accent-rose-500 cursor-pointer h-1.5 bg-slate-200 rounded-lg appearance-none"
+                />
+                <div className="flex justify-between text-[9px] text-slate-400 font-bold uppercase">
+                  <span>Stronger (1:{method.id === "espresso" ? 1 : 5})</span>
+                  <span>Milder (1:{method.id === "espresso" ? 4 : 22})</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Calculated Output Grid */}
+            <div className="grid grid-cols-2 gap-3.5 bg-slate-50 border border-slate-150 p-4 rounded-2xl">
+              <div className="space-y-1">
+                <span className="text-[10px] font-black uppercase tracking-wider text-slate-400">Total Brew Water</span>
+                <p className="text-xl font-black text-slate-900">{calculatedWater} <span className="text-xs text-slate-500 font-bold">g/ml</span></p>
+                <p className="text-[9px] text-slate-400 font-bold">Optimal solvent volume</p>
+              </div>
+              <div className="space-y-1">
+                <span className="text-[10px] font-black uppercase tracking-wider text-slate-400">Expected Cup Yield</span>
+                <p className="text-xl font-black text-rose-600">{expectedYield} <span className="text-xs text-rose-500 font-bold">ml</span></p>
+                <p className="text-[9px] text-slate-400 font-bold">Minus puck/grounds retention</p>
+              </div>
+            </div>
+
+            {/* Grind Size Particle Visualizer */}
+            <div className="space-y-3 p-4 border border-slate-150 rounded-2xl bg-slate-50/50">
+              <div className="flex justify-between items-center text-xs font-bold text-slate-700">
+                <span className="flex items-center gap-1.5">
+                  <SlidersHorizontal className="h-3.5 w-3.5 text-slate-400" />
+                  <span>Grind Profile: {method.grindSizeText.split(" (")[0]}</span>
+                </span>
+                <span className="text-[10px] font-black text-slate-500">{method.grindSizeMicrons} µm</span>
+              </div>
+              {/* Styled particle board */}
+              <div className="h-14 bg-slate-900 border border-slate-950 rounded-xl relative overflow-hidden flex flex-wrap content-center justify-center gap-1.5 p-2">
+                {Array.from({ length: 45 }).map((_, idx) => {
+                  // Higher micron = larger dots, less density, further spaced
+                  const size = Math.max(1.5, Math.min(6.5, method.grindSizeMicrons / 200));
+                  const opacity = 0.5 + (idx % 5) * 0.1;
+                  return (
+                    <div
+                      key={idx}
+                      className="rounded-full bg-amber-800 border border-amber-900/40 shadow-sm flex-shrink-0"
+                      style={{
+                        width: `${size}px`,
+                        height: `${size}px`,
+                        opacity: opacity,
+                        margin: `${(1500 - method.grindSizeMicrons) / 350}px`
+                      }}
+                    />
+                  );
+                })}
+              </div>
+              <p className="text-[10px] text-slate-400 font-medium italic text-center">
+                Visualizing grind surface area. Fine grinds speed up diffusion kinetics but increase flow restriction.
+              </p>
+            </div>
+            
+            {/* Scientific Extraction targets */}
+            <div className="grid grid-cols-2 gap-3.5 border-t border-slate-150 pt-4">
+              <div className="flex items-start gap-2.5">
+                <Gauge className="h-4 w-4 text-rose-500 mt-0.5 flex-shrink-0" />
+                <div className="space-y-0.5">
+                  <span className="text-[9px] font-black uppercase text-slate-400">Target TDS Range</span>
+                  <p className="text-xs font-black text-slate-800">{method.tdsRange}</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-2.5">
+                <TrendingUp className="h-4 w-4 text-emerald-500 mt-0.5 flex-shrink-0" />
+                <div className="space-y-0.5">
+                  <span className="text-[9px] font-black uppercase text-slate-400">Target Extraction Yield</span>
+                  <p className="text-xs font-black text-slate-800">{method.eyRange}</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        {/* Right Column: Recipe Timeline & Chemistry (7 columns) */}
+        <div className="lg:col-span-7 space-y-6">
+          
+          {/* Timeline & Timer Component */}
+          <div className="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm space-y-6">
+            <div className="flex justify-between items-center pb-4 border-b border-slate-150">
+              <h4 className="text-[10px] font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
+                <Clock className="h-3.5 w-3.5 text-rose-500 animate-pulse" />
+                <span>Brewing Extraction Timer & Stepper</span>
+              </h4>
+              <span className="text-[9px] font-bold text-rose-600 bg-rose-50 border border-rose-200 px-2 py-0.5 rounded">
+                Total Target: {formatTime(totalDuration)}
+              </span>
+            </div>
+
+            {/* Big Timer display */}
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-5 bg-slate-900 border border-slate-950 p-5 rounded-2xl text-white">
+              <div className="space-y-1 text-center sm:text-left">
+                <span className="text-[9px] font-black uppercase text-rose-400 tracking-wider">Active Run Time</span>
+                <p className="text-4xl font-black font-mono tracking-wider">{formatTime(timerSeconds)}</p>
+              </div>
+
+              {/* Timer Controls */}
+              <div className="flex items-center gap-2">
+                {isTimerRunning ? (
+                  <button
+                    onClick={pauseTimer}
+                    className="p-3 bg-amber-500 hover:bg-amber-600 text-slate-950 rounded-xl transition-all font-bold cursor-pointer"
+                    title="Pause Timer"
+                  >
+                    <Pause className="h-5 w-5 fill-slate-950" />
+                  </button>
+                ) : (
+                  <button
+                    onClick={startTimer}
+                    className="p-3 bg-emerald-500 hover:bg-emerald-600 text-slate-950 rounded-xl transition-all font-bold cursor-pointer"
+                    title="Start Timer"
+                  >
+                    <Play className="h-5 w-5 fill-slate-950" />
+                  </button>
+                )}
+                <button
+                  onClick={resetTimer}
+                  className="p-3 bg-slate-800 hover:bg-slate-750 text-white border border-slate-700 rounded-xl transition-all font-bold cursor-pointer"
+                  title="Reset Timer"
+                >
+                  <RotateCcw className="h-5 w-5" />
+                </button>
+              </div>
+            </div>
+
+            {/* Stepper Steps List */}
+            <div className="space-y-3.5">
+              {scaledRecipeSteps.map((step, idx) => {
+                const isPassed = timerSeconds > step.time;
+                const isCurrent = activeStepIndex === idx && timerSeconds > 0;
+                const isUpcoming = timerSeconds <= step.time;
+
+                return (
+                  <div
+                    key={idx}
+                    className={`flex items-start gap-4 p-3.5 rounded-2xl border transition-all duration-300 ${
+                      isCurrent
+                        ? "bg-rose-50/40 border-rose-400 shadow-sm"
+                        : isPassed
+                        ? "bg-slate-50/60 border-slate-200 opacity-60"
+                        : "bg-white border-slate-150"
+                    }`}
+                  >
+                    {/* Time Indicator dot */}
+                    <div className="flex flex-col items-center flex-shrink-0 mt-0.5">
+                      <div
+                        className={`h-7 w-7 rounded-full border flex items-center justify-center text-[10px] font-black transition-all ${
+                          isCurrent
+                            ? "bg-rose-500 border-rose-600 text-white animate-pulse"
+                            : isPassed
+                            ? "bg-emerald-50 border-emerald-350 text-emerald-700"
+                            : "bg-slate-100 border-slate-250 text-slate-500"
+                        }`}
+                      >
+                        {formatTime(step.time).replace(" 00s", "").replace("m", "")}
+                      </div>
+                      {idx < scaledRecipeSteps.length - 1 && (
+                        <div className="w-[1.5px] h-10 bg-slate-200 mt-2" />
+                      )}
+                    </div>
+
+                    {/* Step details */}
+                    <div className="space-y-1.5 flex-1">
+                      <div className="flex justify-between items-center">
+                        <h5 className={`text-sm font-black tracking-tight ${isCurrent ? "text-rose-650" : "text-slate-800"}`}>
+                          {step.action}
+                        </h5>
+                        {step.waterAdded > 0 && (
+                          <span className={`text-[9px] font-bold px-1.5 py-0.5 rounded border ${
+                            isCurrent 
+                              ? "bg-rose-50 border-rose-200 text-rose-600" 
+                              : "bg-slate-100 border-slate-200 text-slate-500"
+                          }`}>
+                            Water: {step.waterAdded}g
+                          </span>
+                        )}
+                      </div>
+                      <p className="text-xs text-slate-605 leading-relaxed font-semibold">{step.detail}</p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+          </div>
+
+          {/* Physical Chemistry & Kinetics Panel */}
+          <div className="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm space-y-6">
+            <h4 className="text-[10px] font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5 pb-4 border-b border-slate-150">
+              <Beaker className="h-3.5 w-3.5 text-rose-500" />
+              <span>Extraction Chemistry & Hydrodynamics</span>
+            </h4>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="space-y-2 p-4 bg-slate-50 border border-slate-150 rounded-2xl">
+                <h5 className="text-[11px] font-black uppercase text-slate-500">Hydrodynamics of this Method</h5>
+                <p className="text-xs font-semibold text-slate-600 leading-relaxed">
+                  {method.physicsSummary}
+                </p>
+              </div>
+
+              <div className="space-y-3 p-4 bg-slate-50 border border-slate-150 rounded-2xl">
+                <h5 className="text-[11px] font-black uppercase text-slate-500">Solubility Dynamics & Volatiles</h5>
+                <div className="space-y-2 text-xs font-semibold text-slate-600 leading-relaxed">
+                  <div className="flex justify-between border-b border-slate-200 pb-1">
+                    <span className="text-slate-400 font-bold uppercase text-[9px]">Filter Bypass</span>
+                    <span className="font-bold text-slate-800">{method.bypassPercentage}%</span>
+                  </div>
+                  <div className="flex justify-between border-b border-slate-200 pb-1">
+                    <span className="text-slate-400 font-bold uppercase text-[9px]">Solvent Flow</span>
+                    <span className="font-bold text-slate-800">{method.extractionMechanic.split(" ")[0]}</span>
+                  </div>
+                  <div className="space-y-0.5">
+                    <span className="text-slate-400 font-bold uppercase text-[9px] block">Aroma Volatiles Preservation</span>
+                    <p className="text-[11px] leading-tight text-slate-500">{method.volatilePreservation}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Extraction Compounds Order timeline */}
+            <div className="space-y-3 border-t border-slate-150 pt-4">
+              <h5 className="text-[11px] font-black uppercase text-slate-500 flex items-center gap-1">
+                <span>The Three Stages of Chemical Extraction</span>
+                <span title="Volatile compounds extract in order of molecular solubility">
+                  <Info className="h-3 w-3 text-blue-500" />
+                </span>
+              </h5>
+              <div className="w-full grid grid-cols-3 h-5 rounded-full overflow-hidden text-[9px] font-black text-center text-white select-none">
+                <div className="bg-rose-500 flex items-center justify-center uppercase tracking-wider">1. Acids & Salts</div>
+                <div className="bg-amber-500 flex items-center justify-center uppercase tracking-wider">2. Sugars & Caramel</div>
+                <div className="bg-zinc-650 flex items-center justify-center uppercase tracking-wider">3. Bitter Tannins</div>
+              </div>
+              <p className="text-[10px] text-slate-400 font-medium leading-relaxed italic text-center">
+                Solvent temperature ({brewRatio > 0 ? method.defaultTemp : 93}°C) controls the rate of diffusion. Under-extracted coffee cuts off at Stage 1 (sour/salty), whereas over-extracted coffee reaches Stage 3 (dry/bitter/tannic).
+              </p>
+            </div>
+          </div>
+
+          {/* Tasting Troubleshooting Guide */}
+          <div className="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm space-y-4">
+            <h4 className="text-[10px] font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
+              <AlertTriangle className="h-3.5 w-3.5 text-rose-500" />
+              <span>Sensory Troubleshooting & Extraction Calibration</span>
+            </h4>
+            
+            <div className="space-y-3">
+              {method.troubleshooting.map((t, index) => (
+                <div key={index} className="p-4 bg-rose-50/15 border border-rose-100 rounded-2xl space-y-2.5">
+                  <div className="flex items-center gap-2">
+                    <div className="h-5 w-5 rounded-full bg-rose-50 border border-rose-200 text-rose-600 flex items-center justify-center font-black text-xs">
+                      !
+                    </div>
+                    <h5 className="text-xs font-black text-slate-900 uppercase tracking-wide">
+                      {t.issue}
+                    </h5>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-semibold text-slate-600 leading-relaxed pl-7 border-l border-slate-200">
+                    <div className="space-y-1">
+                      <span className="text-[9px] font-black uppercase text-slate-400 block">Root Chemical Cause</span>
+                      <p className="text-slate-700">{t.cause}</p>
+                    </div>
+                    <div className="space-y-1">
+                      <span className="text-[9px] font-black uppercase text-emerald-600 block">Physical Calibration Solution</span>
+                      <p className="text-slate-950 bg-emerald-50/50 p-1.5 rounded border border-emerald-100 text-[11px] font-bold">
+                        {t.solution}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  );
+}
