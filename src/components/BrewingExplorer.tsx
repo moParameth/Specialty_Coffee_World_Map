@@ -22,7 +22,11 @@ import {
   TrendingUp,
   AlertTriangle,
   RotateCw,
-  Compass
+  Compass,
+  Layers,
+  Droplet,
+  Compass as PhysicsIcon,
+  ShieldAlert
 } from "lucide-react";
 
 export default function BrewingExplorer() {
@@ -37,6 +41,9 @@ export default function BrewingExplorer() {
   const [timerSeconds, setTimerSeconds] = useState<number>(0);
   const timerIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
+  // Advanced Research Tabs
+  const [activeResearchTab, setActiveResearchTab] = useState<string>("hydrodynamics");
+
   // Selected Method Data
   const method = useMemo<BrewingMethod>(() => {
     return coffeeBrewingMethods.find((m) => m.id === selectedMethodId) || coffeeBrewingMethods[0];
@@ -45,7 +52,7 @@ export default function BrewingExplorer() {
   // Set default parameters when method changes
   useEffect(() => {
     setBrewRatio(method.defaultRatio);
-    setCoffeeWeight(method.id === "espresso" ? 18 : method.id === "aeropress" ? 15 : method.id === "cold-brew" ? 50 : 15);
+    setCoffeeWeight(method.id === "espresso" ? 18 : 15);
     resetTimer();
   }, [method]);
 
@@ -56,12 +63,7 @@ export default function BrewingExplorer() {
 
   const expectedYield = useMemo(() => {
     // Water retention factor based on physics of the method
-    let retentionFactor = 2.0; // Drip/Filter retains ~2g of water per 1g of grounds
-    if (method.id === "espresso") retentionFactor = 1.1; // Squeezed under 9 bars
-    else if (method.id === "aeropress") retentionFactor = 1.3; // Pneumatic squeeze
-    else if (method.id === "moka-pot") retentionFactor = 1.5; // Steam extraction
-    else if (method.id === "cold-brew") retentionFactor = 2.2; // Steeped coarse grounds
-
+    const retentionFactor = method.id === "espresso" ? 1.1 : 2.0;
     const yieldVol = calculatedWater - coffeeWeight * retentionFactor;
     return Math.round(Math.max(0, yieldVol));
   }, [calculatedWater, coffeeWeight, method]);
@@ -75,7 +77,6 @@ export default function BrewingExplorer() {
     const defaultTotalStepWater = Math.max(...steps.map(s => s.waterAdded), 1);
     
     return steps.map((step) => {
-      // Scale proportionally, or use totalWater for final steps
       const pct = step.waterAdded / defaultTotalStepWater;
       const scaledWater = Math.round(pct * totalWater);
       return {
@@ -87,16 +88,10 @@ export default function BrewingExplorer() {
 
   // Total Recipe duration helper
   const totalDuration = useMemo(() => {
-    // Return max time plus some buffer for the last step
     const steps = method.stepRecipe;
     if (steps.length === 0) return 0;
     
-    // Last step starts at steps[last].time. Let's add a reasonable duration for it.
-    let lastStepDuration = 60;
-    if (method.id === "espresso") lastStepDuration = 10;
-    else if (method.id === "aeropress") lastStepDuration = 30;
-    else if (method.id === "cold-brew") lastStepDuration = 7200; // Cold brew is hours, let's keep it representative
-
+    let lastStepDuration = method.id === "espresso" ? 10 : 60;
     return steps[steps.length - 1].time + lastStepDuration;
   }, [method]);
 
@@ -111,8 +106,6 @@ export default function BrewingExplorer() {
     }
     return activeIdx;
   }, [scaledRecipeSteps, timerSeconds]);
-
-  const activeStep = scaledRecipeSteps[activeStepIndex];
 
   // Timer Controls
   const startTimer = () => {
@@ -143,7 +136,6 @@ export default function BrewingExplorer() {
     setTimerSeconds(0);
   };
 
-  // Clean up interval on unmount
   useEffect(() => {
     return () => {
       if (timerIntervalRef.current) clearInterval(timerIntervalRef.current);
@@ -152,67 +144,60 @@ export default function BrewingExplorer() {
 
   // Format Timer text MM:SS
   const formatTime = (secs: number) => {
-    if (method.id === "cold-brew") {
-      // Cold brew is in hours
-      const h = Math.floor(secs / 3600);
-      const m = Math.floor((secs % 3600) / 60);
-      const s = secs % 60;
-      if (h > 0) return `${h}h ${m}m`;
-      return `${m}m ${s}s`;
-    }
     const mins = Math.floor(secs / 60);
     const remainingSecs = secs % 60;
     return `${mins.toString().padStart(2, "0")}:${remainingSecs.toString().padStart(2, "0")}`;
   };
 
-  // Get matching Lucide icon based on method string
-  const getMethodIcon = (iconName: string, active: boolean) => {
-    const cls = `h-5 w-5 ${active ? "text-rose-500 scale-110" : "text-slate-400 group-hover:text-slate-700"} transition-all duration-300`;
-    switch (iconName) {
-      case "Filter":
-        return <Filter className={cls} />;
-      case "Coffee":
-        return <Coffee className={cls} />;
-      case "Flame":
-        return <Flame className={cls} />;
-      default:
-        return <Coffee className={cls} />;
-    }
-  };
-
   return (
     <div className="space-y-10">
       
-      {/* Premium Method Selection Grid */}
-      <div className="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm space-y-4">
-        <h4 className="text-[10px] font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
+      {/* Dual Method selector Tabs */}
+      <div className="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm space-y-4">
+        <h4 className="text-[10px] font-black uppercase tracking-wider text-slate-400 flex items-center gap-1.5 justify-center">
           <Compass className="h-4 w-4 text-rose-500" />
-          <span>Select Coffee Extraction Methodology</span>
+          <span>Core Coffee Extraction Methodology Selector</span>
         </h4>
-        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2.5">
-          {coffeeBrewingMethods.map((m) => {
-            const isActive = m.id === selectedMethodId;
-            return (
-              <button
-                key={m.id}
-                onClick={() => setSelectedMethodId(m.id)}
-                className={`group flex flex-col items-center justify-center p-3.5 rounded-2xl border text-center transition-all duration-300 hover:-translate-y-0.5 cursor-pointer ${
-                  isActive
-                    ? "bg-slate-900 border-slate-900 text-white shadow-md"
-                    : "bg-slate-50 border-slate-200 text-slate-700 hover:bg-slate-100 hover:border-slate-300"
-                }`}
-              >
-                <div className={`p-2 rounded-xl mb-2 transition-all ${isActive ? "bg-white/10" : "bg-white border border-slate-150"}`}>
-                  {getMethodIcon(m.iconName, isActive)}
-                </div>
-                <span className="text-xs font-bold leading-tight">{m.name.split(" (")[0]}</span>
-              </button>
-            );
-          })}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-2xl mx-auto">
+          {/* Pour Over Button */}
+          <button
+            onClick={() => setSelectedMethodId("pour-over")}
+            className={`group relative flex items-center gap-4 p-5 rounded-2xl border transition-all duration-300 hover:scale-[1.01] cursor-pointer ${
+              selectedMethodId === "pour-over"
+                ? "bg-slate-950 border-slate-950 text-white shadow-lg"
+                : "bg-slate-50 border-slate-200 text-slate-800 hover:bg-slate-100 hover:border-slate-300"
+            }`}
+          >
+            <div className={`p-3.5 rounded-xl transition-all ${selectedMethodId === "pour-over" ? "bg-teal-500/20 text-teal-400" : "bg-white border border-slate-200 text-slate-500"}`}>
+              <Filter className="h-6 w-6" />
+            </div>
+            <div className="text-left">
+              <span className="text-[9px] font-black uppercase tracking-widest text-slate-400">Filter Percolation</span>
+              <h4 className="text-base font-black leading-tight">Drip / Pour Over (V60)</h4>
+            </div>
+          </button>
+
+          {/* Espresso Button */}
+          <button
+            onClick={() => setSelectedMethodId("espresso")}
+            className={`group relative flex items-center gap-4 p-5 rounded-2xl border transition-all duration-300 hover:scale-[1.01] cursor-pointer ${
+              selectedMethodId === "espresso"
+                ? "bg-slate-950 border-slate-950 text-white shadow-lg"
+                : "bg-slate-50 border-slate-200 text-slate-800 hover:bg-slate-100 hover:border-slate-300"
+            }`}
+          >
+            <div className={`p-3.5 rounded-xl transition-all ${selectedMethodId === "espresso" ? "bg-rose-500/20 text-rose-450" : "bg-white border border-slate-200 text-slate-500"}`}>
+              <Coffee className="h-6 w-6" />
+            </div>
+            <div className="text-left">
+              <span className="text-[9px] font-black uppercase tracking-widest text-slate-400">High-Pressure Percolation</span>
+              <h4 className="text-base font-black leading-tight">Espresso extraction</h4>
+            </div>
+          </button>
         </div>
       </div>
 
-      {/* Main Content Area */}
+      {/* Main Grid: Parameters + Stepper */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         
         {/* Left Column: Interactive Brewing Parameters & Calculator (5 columns) */}
@@ -229,7 +214,7 @@ export default function BrewingExplorer() {
                 <span className="text-slate-500 text-[10px] font-bold uppercase tracking-wider">{method.filterType}</span>
               </div>
               <h3 className="text-2xl font-black text-slate-950 tracking-tight leading-tight">{method.name}</h3>
-              <p className="text-xs font-semibold text-slate-500 leading-relaxed italic">{method.tagline}</p>
+              <p className="text-xs font-semibold text-slate-505 leading-relaxed italic">{method.tagline}</p>
             </div>
 
             {/* Interactive Calculator Sliders */}
@@ -250,15 +235,15 @@ export default function BrewingExplorer() {
                 <input
                   type="range"
                   min={method.id === "espresso" ? 14 : 5}
-                  max={method.id === "cold-brew" ? 200 : 100}
-                  step={method.id === "espresso" ? 0.5 : 1}
+                  max={method.id === "espresso" ? 22 : 45}
+                  step={0.5}
                   value={coffeeWeight}
                   onChange={(e) => setCoffeeWeight(parseFloat(e.target.value))}
                   className="w-full accent-rose-500 cursor-pointer h-1.5 bg-slate-200 rounded-lg appearance-none"
                 />
                 <div className="flex justify-between text-[9px] text-slate-400 font-bold uppercase">
                   <span>Min ({method.id === "espresso" ? 14 : 5}g)</span>
-                  <span>Max ({method.id === "cold-brew" ? 200 : 100}g)</span>
+                  <span>Max ({method.id === "espresso" ? 22 : 45}g)</span>
                 </div>
               </div>
 
@@ -272,16 +257,16 @@ export default function BrewingExplorer() {
                 </div>
                 <input
                   type="range"
-                  min={method.id === "espresso" ? 1 : 5}
-                  max={method.id === "espresso" ? 4 : 22}
+                  min={method.id === "espresso" ? 1.5 : 12.0}
+                  max={method.id === "espresso" ? 3.0 : 18.0}
                   step={0.1}
                   value={brewRatio}
                   onChange={(e) => setBrewRatio(parseFloat(e.target.value))}
                   className="w-full accent-rose-500 cursor-pointer h-1.5 bg-slate-200 rounded-lg appearance-none"
                 />
                 <div className="flex justify-between text-[9px] text-slate-400 font-bold uppercase">
-                  <span>Stronger (1:{method.id === "espresso" ? 1 : 5})</span>
-                  <span>Milder (1:{method.id === "espresso" ? 4 : 22})</span>
+                  <span>Stronger (1:{method.id === "espresso" ? 1.5 : 12.0})</span>
+                  <span>Milder (1:{method.id === "espresso" ? 3.0 : 18.0})</span>
                 </div>
               </div>
             </div>
@@ -411,7 +396,6 @@ export default function BrewingExplorer() {
               {scaledRecipeSteps.map((step, idx) => {
                 const isPassed = timerSeconds > step.time;
                 const isCurrent = activeStepIndex === idx && timerSeconds > 0;
-                const isUpcoming = timerSeconds <= step.time;
 
                 return (
                   <div
@@ -467,55 +451,101 @@ export default function BrewingExplorer() {
 
           </div>
 
-          {/* Physical Chemistry & Kinetics Panel */}
+          {/* Expanded Research Encyclopedia Panel */}
           <div className="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm space-y-6">
-            <h4 className="text-[10px] font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5 pb-4 border-b border-slate-150">
-              <Beaker className="h-3.5 w-3.5 text-rose-500" />
-              <span>Extraction Chemistry & Hydrodynamics</span>
-            </h4>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="space-y-2 p-4 bg-slate-50 border border-slate-150 rounded-2xl">
-                <h5 className="text-[11px] font-black uppercase text-slate-500">Hydrodynamics of this Method</h5>
-                <p className="text-xs font-semibold text-slate-600 leading-relaxed">
-                  {method.physicsSummary}
-                </p>
-              </div>
-
-              <div className="space-y-3 p-4 bg-slate-50 border border-slate-150 rounded-2xl">
-                <h5 className="text-[11px] font-black uppercase text-slate-500">Solubility Dynamics & Volatiles</h5>
-                <div className="space-y-2 text-xs font-semibold text-slate-600 leading-relaxed">
-                  <div className="flex justify-between border-b border-slate-200 pb-1">
-                    <span className="text-slate-400 font-bold uppercase text-[9px]">Filter Bypass</span>
-                    <span className="font-bold text-slate-800">{method.bypassPercentage}%</span>
-                  </div>
-                  <div className="flex justify-between border-b border-slate-200 pb-1">
-                    <span className="text-slate-400 font-bold uppercase text-[9px]">Solvent Flow</span>
-                    <span className="font-bold text-slate-800">{method.extractionMechanic.split(" ")[0]}</span>
-                  </div>
-                  <div className="space-y-0.5">
-                    <span className="text-slate-400 font-bold uppercase text-[9px] block">Aroma Volatiles Preservation</span>
-                    <p className="text-[11px] leading-tight text-slate-500">{method.volatilePreservation}</p>
-                  </div>
-                </div>
-              </div>
+            <div className="pb-4 border-b border-slate-150">
+              <h4 className="text-[10px] font-black uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
+                <Beaker className="h-3.5 w-3.5 text-rose-500" />
+                <span>Deep Research Encyclopedia</span>
+              </h4>
+              <p className="text-[10px] font-bold text-slate-500 mt-1">
+                Explore the advanced fluid physics, chemical reactions, and hydrodynamics of extraction.
+              </p>
             </div>
 
-            {/* Extraction Compounds Order timeline */}
-            <div className="space-y-3 border-t border-slate-150 pt-4">
-              <h5 className="text-[11px] font-black uppercase text-slate-500 flex items-center gap-1">
-                <span>The Three Stages of Chemical Extraction</span>
-                <span title="Volatile compounds extract in order of molecular solubility">
-                  <Info className="h-3 w-3 text-blue-500" />
-                </span>
+            {/* Research Tabs Navigation */}
+            <div className="flex flex-wrap gap-2">
+              {[
+                { id: "hydrodynamics", label: "Fluid Dynamics", icon: PhysicsIcon },
+                { id: "chemistry", label: "Water Chemistry", icon: Droplet },
+                { id: "materials", label: "Filtration & Bypass", icon: Layers },
+                { id: "kinetics", label: method.id === "espresso" ? "Puck Preparation" : "Pouring Kinetics", icon: Sliders }
+              ].map((tab) => {
+                const TabIcon = tab.icon;
+                const isActive = activeResearchTab === tab.id;
+                return (
+                  <button
+                    key={tab.id}
+                    onClick={() => setActiveResearchTab(tab.id)}
+                    className={`flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                      isActive
+                        ? "bg-slate-900 text-white shadow-sm"
+                        : "bg-slate-50 border border-slate-200 text-slate-600 hover:bg-slate-100 hover:text-slate-800"
+                    }`}
+                  >
+                    <TabIcon className="h-3.5 w-3.5" />
+                    <span>{tab.label}</span>
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Research Content Area */}
+            <div className="p-4 bg-slate-50 border border-slate-150 rounded-2xl animate-in fade-in duration-300">
+              {activeResearchTab === "hydrodynamics" && (
+                <div className="space-y-2">
+                  <h5 className="text-xs font-black uppercase tracking-wide text-rose-650 flex items-center gap-1">
+                    <PhysicsIcon className="h-3.5 w-3.5" />
+                    <span>Hydrodynamics & Fluid Resistance</span>
+                  </h5>
+                  <p className="text-xs text-slate-700 leading-relaxed font-semibold whitespace-pre-line">
+                    {method.physicsDetails}
+                  </p>
+                </div>
+              )}
+              {activeResearchTab === "chemistry" && (
+                <div className="space-y-2">
+                  <h5 className="text-xs font-black uppercase tracking-wide text-teal-600 flex items-center gap-1">
+                    <Droplet className="h-3.5 w-3.5" />
+                    <span>Water Chemistry, pH Buffering & Volatiles</span>
+                  </h5>
+                  <p className="text-xs text-slate-700 leading-relaxed font-semibold whitespace-pre-line">
+                    {method.waterChemistry}
+                  </p>
+                </div>
+              )}
+              {activeResearchTab === "materials" && (
+                <div className="space-y-2">
+                  <h5 className="text-xs font-black uppercase tracking-wide text-indigo-600 flex items-center gap-1">
+                    <Layers className="h-3.5 w-3.5" />
+                    <span>Material Science: Filtration & Slurry Bypass</span>
+                  </h5>
+                  <p className="text-xs text-slate-700 leading-relaxed font-semibold whitespace-pre-line">
+                    {method.bypassAndPaper}
+                  </p>
+                </div>
+              )}
+              {activeResearchTab === "kinetics" && (
+                <div className="space-y-2">
+                  <h5 className="text-xs font-black uppercase tracking-wide text-amber-600 flex items-center gap-1">
+                    <Sliders className="h-3.5 w-3.5" />
+                    <span>{method.id === "espresso" ? "Compaction & Distribution Mechanics" : "Pouring Agitation & Hydrostatic Head"}</span>
+                  </h5>
+                  <p className="text-xs text-slate-700 leading-relaxed font-semibold whitespace-pre-line">
+                    {method.puckPrepOrPouringKinetics}
+                  </p>
+                </div>
+              )}
+            </div>
+
+            {/* Fraction timeline */}
+            <div className="space-y-3.5 border-t border-slate-150 pt-4">
+              <h5 className="text-xs font-black uppercase text-slate-500 flex items-center gap-1.5">
+                <Info className="h-4 w-4 text-blue-500" />
+                <span>Thermodynamic Fraction Stages</span>
               </h5>
-              <div className="w-full grid grid-cols-3 h-5 rounded-full overflow-hidden text-[9px] font-black text-center text-white select-none">
-                <div className="bg-rose-500 flex items-center justify-center uppercase tracking-wider">1. Acids & Salts</div>
-                <div className="bg-amber-500 flex items-center justify-center uppercase tracking-wider">2. Sugars & Caramel</div>
-                <div className="bg-zinc-650 flex items-center justify-center uppercase tracking-wider">3. Bitter Tannins</div>
-              </div>
-              <p className="text-[10px] text-slate-400 font-medium leading-relaxed italic text-center">
-                Solvent temperature ({brewRatio > 0 ? method.defaultTemp : 93}°C) controls the rate of diffusion. Under-extracted coffee cuts off at Stage 1 (sour/salty), whereas over-extracted coffee reaches Stage 3 (dry/bitter/tannic).
+              <p className="text-xs text-slate-750 font-semibold leading-relaxed whitespace-pre-line">
+                {method.extractionFractions}
               </p>
             </div>
           </div>
@@ -523,22 +553,22 @@ export default function BrewingExplorer() {
           {/* Tasting Troubleshooting Guide */}
           <div className="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm space-y-4">
             <h4 className="text-[10px] font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
-              <AlertTriangle className="h-3.5 w-3.5 text-rose-500" />
+              <ShieldAlert className="h-4 w-4 text-rose-500" />
               <span>Sensory Troubleshooting & Extraction Calibration</span>
             </h4>
             
             <div className="space-y-3">
               {method.troubleshooting.map((t, index) => (
-                <div key={index} className="p-4 bg-rose-50/15 border border-rose-100 rounded-2xl space-y-2.5">
+                <div key={index} className="p-4 bg-rose-50/15 border border-rose-105 rounded-2xl space-y-2.5">
                   <div className="flex items-center gap-2">
-                    <div className="h-5 w-5 rounded-full bg-rose-50 border border-rose-200 text-rose-600 flex items-center justify-center font-black text-xs">
+                    <div className="h-5 w-5 rounded-full bg-rose-55 border border-rose-200 text-rose-600 flex items-center justify-center font-black text-xs">
                       !
                     </div>
                     <h5 className="text-xs font-black text-slate-900 uppercase tracking-wide">
                       {t.issue}
                     </h5>
                   </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-semibold text-slate-600 leading-relaxed pl-7 border-l border-slate-200">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-semibold text-slate-650 leading-relaxed pl-7 border-l border-slate-200">
                     <div className="space-y-1">
                       <span className="text-[9px] font-black uppercase text-slate-400 block">Root Chemical Cause</span>
                       <p className="text-slate-700">{t.cause}</p>

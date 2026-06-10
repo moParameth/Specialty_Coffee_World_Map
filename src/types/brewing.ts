@@ -29,4 +29,11 @@ export interface BrewingMethod {
   volatilePreservation: string;
   stepRecipe: BrewStep[];
   troubleshooting: TastingTrouble[];
+  
+  // Advanced research fields
+  waterChemistry: string;
+  physicsDetails: string;
+  bypassAndPaper: string;
+  puckPrepOrPouringKinetics: string;
+  extractionFractions: string;
 }
