@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Map, Coffee, History, Workflow, Flame, Truck } from "lucide-react";
+import { Map, Coffee, History, Workflow, Flame, Truck, Orbit } from "lucide-react";
 
 type RouteConfig = {
   path: string;
@@ -61,6 +61,14 @@ const routes: RouteConfig[] = [
     title: "Coffee Supply Chain Journey",
     subtitle: "Trace the physical, economic, and logistical journey from soil to cup",
     iconColor: "text-amber-800"
+  },
+  {
+    path: "/flavour-wheel",
+    label: "Flavour Wheel",
+    icon: Orbit,
+    title: "Interactive Coffee Flavour Wheel",
+    subtitle: "Explore the sensory lexicon, aroma chemistry, and tasting notes of specialty coffee",
+    iconColor: "text-rose-500"
   }
 ];
 
