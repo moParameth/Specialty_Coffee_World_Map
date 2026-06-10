@@ -36,4 +36,9 @@ export interface BrewingMethod {
   bypassAndPaper: string;
   puckPrepOrPouringKinetics: string;
   extractionFractions: string;
+
+  // Deeper Research Dimensions
+  thermalDynamics: string;
+  particleDistribution: string;
+  equipmentVariations: string;
 }

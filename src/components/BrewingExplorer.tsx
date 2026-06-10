@@ -469,7 +469,10 @@ export default function BrewingExplorer() {
                 { id: "hydrodynamics", label: "Fluid Dynamics", icon: PhysicsIcon },
                 { id: "chemistry", label: "Water Chemistry", icon: Droplet },
                 { id: "materials", label: "Filtration & Bypass", icon: Layers },
-                { id: "kinetics", label: method.id === "espresso" ? "Puck Preparation" : "Pouring Kinetics", icon: Sliders }
+                { id: "kinetics", label: method.id === "espresso" ? "Puck Preparation" : "Pouring Kinetics", icon: Sliders },
+                { id: "thermal", label: "Thermal Dynamics", icon: Flame },
+                { id: "particles", label: "Particle Distribution", icon: Sparkles },
+                { id: "equipment", label: "Equipment Variations", icon: Coffee }
               ].map((tab) => {
                 const TabIcon = tab.icon;
                 const isActive = activeResearchTab === tab.id;
@@ -533,6 +536,39 @@ export default function BrewingExplorer() {
                   </h5>
                   <p className="text-xs text-slate-700 leading-relaxed font-semibold whitespace-pre-line">
                     {method.puckPrepOrPouringKinetics}
+                  </p>
+                </div>
+              )}
+              {activeResearchTab === "thermal" && (
+                <div className="space-y-2">
+                  <h5 className="text-xs font-black uppercase tracking-wide text-orange-600 flex items-center gap-1">
+                    <Flame className="h-3.5 w-3.5" />
+                    <span>Thermal Dynamics & Heat Transfer</span>
+                  </h5>
+                  <p className="text-xs text-slate-700 leading-relaxed font-semibold whitespace-pre-line">
+                    {method.thermalDynamics}
+                  </p>
+                </div>
+              )}
+              {activeResearchTab === "particles" && (
+                <div className="space-y-2">
+                  <h5 className="text-xs font-black uppercase tracking-wide text-fuchsia-600 flex items-center gap-1">
+                    <Sparkles className="h-3.5 w-3.5" />
+                    <span>Particle Size Distribution & Fines</span>
+                  </h5>
+                  <p className="text-xs text-slate-700 leading-relaxed font-semibold whitespace-pre-line">
+                    {method.particleDistribution}
+                  </p>
+                </div>
+              )}
+              {activeResearchTab === "equipment" && (
+                <div className="space-y-2">
+                  <h5 className="text-xs font-black uppercase tracking-wide text-sky-600 flex items-center gap-1">
+                    <Coffee className="h-3.5 w-3.5" />
+                    <span>Equipment Geometry & Variations</span>
+                  </h5>
+                  <p className="text-xs text-slate-700 leading-relaxed font-semibold whitespace-pre-line">
+                    {method.equipmentVariations}
                   </p>
                 </div>
               )}
