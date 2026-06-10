@@ -278,14 +278,14 @@ export default function FlavourWheelExplorer() {
     // Zoomed into Level 1 node
     if (zoomNode.level === 1) {
       if (node.id === zoomNode.id) {
-        return { rIn: R0, rOut: R1 };
+        return { rIn: R0, rOut: R0 };
       }
       if (node.level === 2) {
         const hasChildren = coffeeFlavourWheel.some((n) => n.parent === node.id);
         if (!hasChildren) {
-          return { rIn: R1, rOut: R3 };
+          return { rIn: R0, rOut: R3 };
         }
-        return { rIn: R1, rOut: R2 };
+        return { rIn: R0, rOut: R2 };
       }
       // Level 3
       return { rIn: R2, rOut: R3 };
@@ -293,10 +293,10 @@ export default function FlavourWheelExplorer() {
 
     // Zoomed into Level 2 node
     if (node.id === zoomNode.id) {
-      return { rIn: R0, rOut: R1 };
+      return { rIn: R0, rOut: R0 };
     }
-    // Level 3 children of the zoomed subcategory occupy the rest of the canvas (R1 to R3)
-    return { rIn: R1, rOut: R3 };
+    // Level 3 children of the zoomed subcategory occupy the rest of the canvas (R0 to R3)
+    return { rIn: R0, rOut: R3 };
   };
 
   const matchedSearchResults = useMemo(() => {
