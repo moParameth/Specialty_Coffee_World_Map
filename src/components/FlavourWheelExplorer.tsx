@@ -240,19 +240,21 @@ export default function FlavourWheelExplorer() {
       const childrenL3 = coffeeFlavourWheel.filter((n) => n.parent === zoomNode.id);
       const k = childrenL3.length;
 
-      let currentAngleL3 = -Math.PI / 2;
-      childrenL3.forEach((childL3) => {
-        const spanL3 = (2 * Math.PI) / k;
-        const endAngleL3 = currentAngleL3 + spanL3;
+      if (k > 0) {
+        let currentAngleL3 = -Math.PI / 2;
+        childrenL3.forEach((childL3) => {
+          const spanL3 = (2 * Math.PI) / k;
+          const endAngleL3 = currentAngleL3 + spanL3;
 
-        list.push({
-          ...childL3,
-          startAngle: currentAngleL3,
-          endAngle: endAngleL3,
+          list.push({
+            ...childL3,
+            startAngle: currentAngleL3,
+            endAngle: endAngleL3,
+          });
+
+          currentAngleL3 = endAngleL3;
         });
-
-        currentAngleL3 = endAngleL3;
-      });
+      }
     }
 
     return list;
@@ -262,6 +264,12 @@ export default function FlavourWheelExplorer() {
   const getRadii = (node: PlacedNode) => {
     if (!zoomNode) {
       // Default concentric ring widths
+      if (node.level === 2) {
+        const hasChildren = coffeeFlavourWheel.some((n) => n.parent === node.id);
+        if (!hasChildren) {
+          return { rIn: R1, rOut: R3 };
+        }
+      }
       const rIn = node.level === 1 ? R0 : node.level === 2 ? R1 : R2;
       const rOut = node.level === 1 ? R1 : node.level === 2 ? R2 : R3;
       return { rIn, rOut };
@@ -273,6 +281,10 @@ export default function FlavourWheelExplorer() {
         return { rIn: R0, rOut: R1 };
       }
       if (node.level === 2) {
+        const hasChildren = coffeeFlavourWheel.some((n) => n.parent === node.id);
+        if (!hasChildren) {
+          return { rIn: R1, rOut: R3 };
+        }
         return { rIn: R1, rOut: R2 };
       }
       // Level 3
@@ -296,7 +308,13 @@ export default function FlavourWheelExplorer() {
     if (node.level === 1) {
       setZoomNode(node);
     } else if (node.level === 2) {
-      setZoomNode(node);
+      const hasChildren = coffeeFlavourWheel.some((n) => n.parent === node.id);
+      if (hasChildren) {
+        setZoomNode(node);
+      } else {
+        const parentNode = coffeeFlavourWheel.find((n) => n.id === node.parent);
+        setZoomNode(parentNode || null);
+      }
     } else if (node.level === 3) {
       const parentNode = coffeeFlavourWheel.find((n) => n.id === node.parent);
       if (parentNode) {
@@ -540,6 +558,19 @@ export default function FlavourWheelExplorer() {
               viewBox={`0 0 ${size} ${size}`} 
               className="w-full h-full drop-shadow-md overflow-visible animate-in fade-in zoom-in-95 duration-500"
             >
+              <defs>
+                <filter id="slice-glow" x="-25%" y="-25%" width="150%" height="150%">
+                  <feGaussianBlur stdDeviation="3.8" result="blur" />
+                  <feComponentTransfer in="blur" result="glow">
+                    <feFuncA type="linear" slope="0.6" />
+                  </feComponentTransfer>
+                  <feMerge>
+                    <feMergeNode in="glow" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
+              </defs>
+
               {/* Draw Sectors */}
               <g>
                 {placedNodes.map((node) => {
@@ -561,7 +592,7 @@ export default function FlavourWheelExplorer() {
                   const normDeg = deg < 0 ? deg + 360 : deg;
 
                   const isLeft = normDeg > 90 && normDeg < 270;
-                  const rText = isLeft ? rOut - 8 : rIn + 8;
+                  const rText = (rIn + rOut) / 2; // Centered radially!
                   const tx = center + rText * Math.cos(middleAngle);
                   const ty = center + rText * Math.sin(middleAngle);
                   const rotation = isLeft ? normDeg + 180 : normDeg;
@@ -578,8 +609,13 @@ export default function FlavourWheelExplorer() {
                       onMouseLeave={() => setHoveredNode(null)}
                       onClick={() => {
                         setSelectedNode(node);
-                        if (node.level < 3 && zoomNode?.id !== node.id) {
+                        if (node.level === 1) {
                           setZoomNode(node);
+                        } else if (node.level === 2) {
+                          const hasChildren = coffeeFlavourWheel.some((n) => n.parent === node.id);
+                          if (hasChildren) {
+                            setZoomNode(node);
+                          }
                         }
                       }}
                     >
@@ -593,27 +629,59 @@ export default function FlavourWheelExplorer() {
                         className="transition-all duration-300 hover:scale-[1.008]"
                         style={{
                           transformOrigin: `${center}px ${center}px`,
-                          filter: isHovered || isSelected ? `drop-shadow(0 0 10px ${node.color}50)` : undefined
+                          filter: isHovered || isSelected ? "url(#slice-glow)" : undefined
                         }}
                       />
 
-                      {/* Rotated Text Label */}
-                      {showLabel && (
-                        <text
-                          x={tx}
-                          y={ty}
-                          dy="3"
-                          textAnchor={isLeft ? "end" : "start"}
-                          transform={`rotate(${rotation}, ${tx}, ${ty})`}
-                          fill={node.level === 1 ? "#ffffff" : "#1e293b"}
-                          fontSize={zoomNode ? (node.level === 2 ? 11 : 9.5) : (node.level === 1 ? 10.5 : node.level === 2 ? 8.5 : 7.2)}
-                          fontWeight={node.level === 1 ? 800 : 700}
-                          className="pointer-events-none transition-opacity duration-300 uppercase tracking-wide select-none"
-                          opacity={isDimmed ? 0.15 : 1}
-                        >
-                          {node.name}
-                        </text>
-                      )}
+                      {/* Radial Multi-Line Centered Label */}
+                      {showLabel && (() => {
+                        const fontColor = node.level === 1 ? "#ffffff" : "#1e293b";
+                        const fontSize = zoomNode 
+                          ? (node.level === 2 ? 11 : 9.5) 
+                          : (node.level === 1 ? 10.5 : node.level === 2 ? 8.5 : 7.2);
+                        const fontWeight = node.level === 1 ? 800 : 700;
+
+                        // Split label by slash or ampersand for level 1 and 2 to fit radially
+                        const parts = (node.level < 3 && (node.name.includes(" / ") || node.name.includes(" & ")))
+                          ? node.name.split(/\s*[\/&]\s*/)
+                          : [node.name];
+
+                        if (parts.length > 1) {
+                          return (
+                            <text
+                              x={tx}
+                              y={ty}
+                              textAnchor="middle"
+                              transform={`rotate(${rotation}, ${tx}, ${ty})`}
+                              fill={fontColor}
+                              fontSize={fontSize - 0.6}
+                              fontWeight={fontWeight}
+                              className="pointer-events-none transition-opacity duration-300 uppercase tracking-wide select-none"
+                              opacity={isDimmed ? 0.15 : 1}
+                            >
+                              <tspan x={tx} dy="-4">{parts[0]}</tspan>
+                              <tspan x={tx} dy="10">{parts[1]}</tspan>
+                            </text>
+                          );
+                        }
+
+                        return (
+                          <text
+                            x={tx}
+                            y={ty}
+                            dy="3.5"
+                            textAnchor="middle"
+                            transform={`rotate(${rotation}, ${tx}, ${ty})`}
+                            fill={fontColor}
+                            fontSize={fontSize}
+                            fontWeight={fontWeight}
+                            className="pointer-events-none transition-opacity duration-300 uppercase tracking-wide select-none"
+                            opacity={isDimmed ? 0.15 : 1}
+                          >
+                            {node.name}
+                          </text>
+                        );
+                      })()}
                     </g>
                   );
                 })}
@@ -916,7 +984,7 @@ export default function FlavourWheelExplorer() {
                       <Sliders className="h-3.5 w-3.5 text-rose-500" />
                       <span>Cupping Sensory Profile</span>
                     </h5>
-                    <div className="space-y-2.5">
+                    <div key={activeNode.id} className="space-y-2.5">
                       {metrics.map((m) => (
                         <div key={m.label} className="space-y-1">
                           <div className="flex justify-between text-xs font-bold text-slate-700">
@@ -925,7 +993,7 @@ export default function FlavourWheelExplorer() {
                           </div>
                           <div className="w-full h-2 bg-slate-200/70 rounded-full overflow-hidden">
                             <div 
-                              className="h-full rounded-full transition-all duration-500 ease-out"
+                              className="h-full rounded-full transition-all duration-500 ease-out animate-grow"
                               style={{ width: `${m.value * 10}%`, backgroundColor: activeNode.color }}
                             />
                           </div>
@@ -1086,6 +1154,16 @@ export default function FlavourWheelExplorer() {
           </div>
         </div>
       </div>
+
+      {/* Inline styles for sensory gauge spring grow animation */}
+      <style jsx>{`
+        @keyframes grow-width {
+          from { width: 0%; }
+        }
+        .animate-grow {
+          animation: grow-width 1.1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+      `}</style>
     </div>
   );
 }
