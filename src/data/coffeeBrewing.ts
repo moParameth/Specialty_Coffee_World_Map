@@ -69,7 +69,31 @@ export const coffeeBrewingMethods: BrewingMethod[] = [
     extractionFractions: "Soluble compounds extract in a predictable thermodynamic sequence based on molecular weight and polarity: \n1. **Organic Acids & Salts (0 - 45s)**: Highly polar compounds like malic, citric, and quinic acids dissolve instantly, yielding sour, bright, and salty components.\n2. **Sweetness & Lipids (45s - 110s)**: Simple sugars, carbohydrates, and light oils extract next, bringing sweetness, balance, and aroma complexity.\n3. **Bitter Tannins & Phenols (110s - 180s)**: Heavy, less polar chlorogenic acid lactones, caffeine, and dry wood-fiber phenols extract slowly. If extraction continues too long, these dominate the taste profile, producing bitterness and astringency.",
     thermalDynamics: "Heat loss during a pour-over is significant due to the large exposed surface area of the water slurry and the thin paper filter. Water evaporating off the surface rapidly drops the slurry temperature. Therefore, even if the kettle is 98°C, the actual slurry temperature rarely exceeds 88-90°C. Plastic brewers (like the Hario V60 or Tricolate) are often preferred by professionals because plastic has a lower thermal conductivity and heat capacity than ceramic or glass, meaning it absorbs less heat from the brew water, keeping the extraction temperature more stable.",
     particleDistribution: "Filter brewing requires a unimodal particle distribution (a single, sharp peak in particle size) to minimize extreme outliers. 'Fines' (particles <100 microns) are detrimental in pour-over; they migrate to the bottom of the filter, clogging the pores and massively extending draw-down times, which causes over-extraction. 'Boulders' (excessively large particles) remain under-extracted, contributing sour, hollow notes. High-end flat burr grinders (like the Mahlkönig EK43) are prized for producing highly uniform, unimodal grinds with minimal fines, allowing for higher extraction yields without bitterness.",
-    equipmentVariations: "Pour-over brewers are categorized by geometry and bypass. Conical brewers (V60, Chemex) rely heavily on bypass (water flowing down the sides), yielding high clarity but lower body. Flat-bottom brewers (Kalita Wave, Orea) create a wider, shallower coffee bed, promoting a more even extraction with a sweeter, heavier body. 'Zero-bypass' brewers (NextLevel Pulsar, Tricolate) use a perfectly cylindrical wall and a dispersion screen, forcing 100% of the water through the coffee bed. This allows for incredibly high extraction yields (22-26%) and extreme sweetness, but requires a very coarse, highly uniform grind to prevent choking."
+    equipmentVariations: "Pour-over brewers are categorized by geometry and bypass. Conical brewers (V60, Chemex) rely heavily on bypass (water flowing down the sides), yielding high clarity but lower body. Flat-bottom brewers (Kalita Wave, Orea) create a wider, shallower coffee bed, promoting a more even extraction with a sweeter, heavier body. 'Zero-bypass' brewers (NextLevel Pulsar, Tricolate) use a perfectly cylindrical wall and a dispersion screen, forcing 100% of the water through the coffee bed. This allows for incredibly high extraction yields (22-26%) and extreme sweetness, but requires a very coarse, highly uniform grind to prevent choking.",
+    imageUrl: "/images/brewing/pour-over.png",
+    history: "The history of drip and paper filtration began in 1908 in Dresden, Germany, when Melitta Bentz, a German housewife, grew tired of the bitter taste and grittiness of percolator coffee. Seeking a cleaner cup, she punctured the bottom of a brass cup with a nail, lined it with a sheet of blotting paper from her son’s school notebook, and poured hot water over the coffee grounds. This simple invention was patented in June 1908, launching the Melitta company. In 2004, Japanese glass manufacturer Hario refined the physics of drip brewing by designing the V60—a 60-degree conical dripper with interior spiral ridges. The conical design allowed for a deeper coffee bed, while the ridges prevented the filter paper from sealing against the cone walls, enabling steady air flow and continuous gravity-fed extraction. The Third Wave coffee movement of the 2010s championed the V60 as the ultimate tool for highlighting the delicate, origin-specific notes of light-roast specialty coffees.",
+    historyTimeline: [
+      {
+        year: "1908",
+        title: "Paper Filter Invented",
+        description: "Melitta Bentz punctures a brass cup and uses blotting paper to filter out grittiness and bitterness."
+      },
+      {
+        year: "1921",
+        title: "Hario Glass Founded",
+        description: "Hario is established in Tokyo, initially manufacturing heat-resistant laboratory glassware before moving into domestic kitchenware."
+      },
+      {
+        year: "2004",
+        title: "Launch of the V60",
+        description: "Hario launches the 60-degree conical V60 dripper with spiral ribs and a large center hole, defining modern filter extraction."
+      },
+      {
+        year: "2010s",
+        title: "Third Wave Coffee Boom",
+        description: "The V60 is widely adopted as the gold standard for brewing light-roast single-origin coffees to showcase terroir."
+      }
+    ]
   },
   {
     id: "espresso",
@@ -133,6 +157,30 @@ export const coffeeBrewingMethods: BrewingMethod[] = [
     extractionFractions: "Due to the fast extraction rate (25-30 seconds), the three chemical fractions extract in rapid succession:\n1. **The Ristretto Phase (0 - 10s)**: Water first dissolves highly polar acids, salts, and concentrated caffeine, flowing out thick and dark brown. Extremely intense, sour, and concentrated.\n2. **The Normale Phase (10s - 22s)**: Flow turns golden-brown (tiger striping). Sweet sugars, complex lipids, and aromas extract, balancing the initial acidity with sweetness.\n3. **The Lungo / Blonding Phase (22s - 30s)**: Flow turns light yellow (blonding) as solubles deplete. Bitter chlorogenic acid lactones and astringent wood phenols dissolve. Stopping the shot before excessive blonding is vital to prevent an ashy, drying aftertaste.",
     thermalDynamics: "Espresso requires extreme thermal stability because extraction occurs at 9 bars of pressure over just 25-30 seconds. A drop of even 1°C can shift the flavor from sweet and balanced to sharply sour. High-end machines utilize dual boilers, PID controllers (Proportional-Integral-Derivative), and saturated group heads (where the group head is directly welded to the brew boiler and filled with water) to maintain exact temperatures. Furthermore, because the coffee puck is dense and cold, the incoming brew water loses heat instantly upon contact. Lighter roasts require higher temperatures (94-96°C) to provide enough thermal energy to dissolve stubborn, dense cellular structures.",
     particleDistribution: "Unlike pour-over, traditional espresso extraction benefits from a bimodal grind distribution. The grinder produces two peaks: larger particles (200-400 microns) that form the structural matrix of the puck, and microscopic 'fines' (<50 microns) that pack into the interstitial gaps between the larger particles. These fines create the necessary hydraulic resistance to build 9 bars of pressure. Without fines, water would rush through instantly. However, modern 'High-Extraction' (HE) espresso trends use highly uniform flat burrs and precision high-flow baskets to pull long, fast shots (turbo shots), sacrificing some body for immense flavor clarity.",
-    equipmentVariations: "Espresso baskets drastically alter extraction physics. Traditional baskets are slightly tapered with smaller hole areas, providing innate flow resistance. Modern precision baskets (VST, IMS, Weber Unifilter) have perfectly straight walls and laser-cut holes that cover the entire bottom surface, eliminating dead spots. This increased open area lowers resistance, forcing the barista to grind finer, which pushes extraction yields from the traditional 18-19% up to 21-23%. Additionally, machine types matter: pump machines provide a flat 9-bar pressure profile, while spring lever machines provide a naturally declining pressure profile (starting at 9 bars, dropping to 4 bars), which softly extracts the delicate finish of the shot without pulling bitter tannins."
+    equipmentVariations: "Espresso baskets drastically alter extraction physics. Traditional baskets are slightly tapered with smaller hole areas, providing innate flow resistance. Modern precision baskets (VST, IMS, Weber Unifilter) have perfectly straight walls and laser-cut holes that cover the entire bottom surface, eliminating dead spots. This increased open area lowers resistance, forcing the barista to grind finer, which pushes extraction yields from the traditional 18-19% up to 21-23%. Additionally, machine types matter: pump machines provide a flat 9-bar pressure profile, while spring lever machines provide a naturally declining pressure profile (starting at 9 bars, dropping to 4 bars), which softly extracts the delicate finish of the shot without pulling bitter tannins.",
+    imageUrl: "/images/brewing/espresso.png",
+    history: "Espresso’s journey began in late 19th-century Milan, Italy, driven by the industrial need to brew coffee faster for workers. In 1884, Angelo Moriondo patented the first bulk steam-driven coffee brewer. In 1901, Luigi Bezzera improved this concept by patenting the portafilter and individual brewing groups, allowing a barista to prepare single cups directly for customers. Desiderio Pavoni commercialized Bezzera’s patents in 1905, creating the first 'Ideale' machines. However, these machines relied on steam pressure (~1.5 bars), which scorched the grounds and produced bitter coffee. The breakthrough occurred in 1938 when Achille Gaggia invented a manual piston-driven lever system. By forcing water through the coffee puck using spring tension and a piston under 8-10 bars of pressure, it avoided boiling temperatures and emulsified the oils in the coffee, creating the first 'crema'. In 1961, Faema introduced the E61 machine, featuring a rotary electric pump for constant pressure and a thermosyphon loop for thermal stability, setting the archetype for modern commercial espresso extraction.",
+    historyTimeline: [
+      {
+        year: "1884",
+        title: "Steam-Bulk Brewer",
+        description: "Angelo Moriondo of Turin patents the first steam-driven coffee machine to produce batch drinks rapidly."
+      },
+      {
+        year: "1901",
+        title: "Portafilter & Single Cup Groups",
+        description: "Luigi Bezzera patents single-cup pressurized brewing, inventing the portafilter and individual group heads."
+      },
+      {
+        year: "1938",
+        title: "Piston & Spring Lever (Crema)",
+        description: "Achille Gaggia patents a manual piston mechanism forcing hot water under 8-10 bars through the puck, producing crema."
+      },
+      {
+        year: "1961",
+        title: "The Faema E61 Standard",
+        description: "Ernesto Valente designs the E61, introducing the rotary electric pump and the thermosyphon loop for thermal stability."
+      }
+    ]
   }
 ];

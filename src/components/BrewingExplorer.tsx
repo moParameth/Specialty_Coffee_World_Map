@@ -217,6 +217,24 @@ export default function BrewingExplorer() {
               <p className="text-xs font-semibold text-slate-505 leading-relaxed italic">{method.tagline}</p>
             </div>
 
+            {/* Scientific Illustration Figure */}
+            <div className="relative h-56 w-full rounded-2xl overflow-hidden border border-slate-200 shadow-md group">
+              <img
+                src={method.imageUrl}
+                alt={method.name}
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />
+              <div className="absolute bottom-4 left-4 right-4">
+                <span className="bg-rose-500 text-white px-2 py-0.5 rounded text-[8px] font-black uppercase tracking-widest mb-1.5 inline-block">
+                  Figure 1.0: Extraction Physics
+                </span>
+                <p className="text-[10px] font-medium text-slate-200 leading-snug">
+                  Visual representation of the {method.id === "espresso" ? "pressurized emulsion kinetics" : "gravity-driven capillary percolation flow"} dynamics.
+                </p>
+              </div>
+            </div>
+
             {/* Interactive Calculator Sliders */}
             <div className="space-y-5">
               <h4 className="text-[10px] font-black uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
@@ -583,6 +601,48 @@ export default function BrewingExplorer() {
               <p className="text-xs text-slate-750 font-semibold leading-relaxed whitespace-pre-line">
                 {method.extractionFractions}
               </p>
+            </div>
+          </div>
+
+          {/* Historical Evolution Timeline */}
+          <div className="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm space-y-6">
+            <div className="pb-4 border-b border-slate-150">
+              <h4 className="text-[10px] font-black uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
+                <Clock className="h-3.5 w-3.5 text-rose-500" />
+                <span>Historical Chronology & Lineage</span>
+              </h4>
+              <p className="text-[10px] font-bold text-slate-505 mt-1 leading-relaxed">
+                The industrial and cultural milestones that shaped modern {method.name.toLowerCase()} extraction physics.
+              </p>
+            </div>
+
+            {/* Timeline UI */}
+            <div className="relative border-l border-slate-150 pl-5 ml-2.5 space-y-6">
+              {method.historyTimeline.map((item, index) => (
+                <div key={index} className="relative group">
+                  {/* Timeline point */}
+                  <div className="absolute -left-[27.5px] top-1 h-3.5 w-3.5 rounded-full bg-slate-900 border-2 border-white ring-2 ring-slate-200 group-hover:scale-110 group-hover:bg-rose-500 group-hover:ring-rose-200 transition-all duration-300" />
+                  
+                  <div className="space-y-1">
+                    <div className="flex items-center gap-2">
+                      <span className="text-[11px] font-black text-rose-600 bg-rose-50 border border-rose-200 px-2 py-0.5 rounded-md leading-none">
+                        {item.year}
+                      </span>
+                      <h5 className="text-xs font-black text-slate-900 group-hover:text-rose-650 transition-colors">
+                        {item.title}
+                      </h5>
+                    </div>
+                    <p className="text-xs font-semibold text-slate-605 leading-relaxed">
+                      {item.description}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Brief Narrative */}
+            <div className="p-4 bg-slate-50 border border-slate-150 rounded-2xl text-xs font-semibold text-slate-650 leading-relaxed italic">
+              {method.history}
             </div>
           </div>
 

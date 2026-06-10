@@ -11,6 +11,12 @@ export interface TastingTrouble {
   solution: string;
 }
 
+export interface HistoryMilestone {
+  year: string;
+  title: string;
+  description: string;
+}
+
 export interface BrewingMethod {
   id: string;
   name: string;
@@ -41,4 +47,9 @@ export interface BrewingMethod {
   thermalDynamics: string;
   particleDistribution: string;
   equipmentVariations: string;
+
+  // History & Illustrations
+  history: string;
+  imageUrl: string;
+  historyTimeline: HistoryMilestone[];
 }
