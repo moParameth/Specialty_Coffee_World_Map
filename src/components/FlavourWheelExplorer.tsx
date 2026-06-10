@@ -641,10 +641,16 @@ export default function FlavourWheelExplorer() {
                           : (node.level === 1 ? 10.5 : node.level === 2 ? 8.5 : 7.2);
                         const fontWeight = node.level === 1 ? 800 : 700;
 
-                        // Split label by slash or ampersand for level 1 and 2 to fit radially
-                        const parts = (node.level < 3 && (node.name.includes(" / ") || node.name.includes(" & ")))
-                          ? node.name.split(/\s*[\/&]\s*/)
-                          : [node.name];
+                        // Split label by slash, ampersand, or space (for multi-word long names) to fit radially
+                        let parts = [node.name];
+                        if (node.name.includes(" / ")) {
+                          parts = node.name.split(/\s*\/\s*/);
+                        } else if (node.name.includes(" & ")) {
+                          parts = node.name.split(/\s*&\s*/);
+                        } else if (node.name.includes(" ") && node.name.length > 10) {
+                          const spaceIndex = node.name.indexOf(" ");
+                          parts = [node.name.slice(0, spaceIndex), node.name.slice(spaceIndex + 1)];
+                        }
 
                         if (parts.length > 1) {
                           return (
